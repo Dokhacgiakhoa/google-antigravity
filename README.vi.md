@@ -14,7 +14,7 @@
 
 ### Bắt đầu nhanh (Khuyên dùng)
 
-Tạo dự án AI Agent mới chỉ với một lệnh:
+Mở Terminal và chạy lệnh:
 
 ```sh
 npx antigravity-ide create my-agent-project

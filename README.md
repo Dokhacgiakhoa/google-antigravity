@@ -14,7 +14,7 @@
 
 ### Quick Start (Recommended)
 
-Create a new AI Agent project instantly:
+Open your Terminal and run:
 
 ```sh
 npx antigravity-ide create my-agent-project
