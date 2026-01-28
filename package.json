@@ -1,6 +1,6 @@
 {
   "name": "antigravity-ide",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "The Ultimate AI Agent IDE. Create AI Agent projects with interactive setup for skills, rules, and workflows.",
   "main": "cli/index.js",
   "bin": {
