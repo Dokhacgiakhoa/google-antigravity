@@ -1,0 +1,34 @@
+# Exclude from npm package
+node_modules/
+.next/
+.git/
+.vscode/
+*.log
+*.lock
+
+# Test files and directories
+test-cli-project/
+lab/.next/
+lab/node_modules/
+test/.next/
+test/node_modules/
+
+# Development files
+.DS_Store
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Editor configs (keep .editorconfig)
+.vscode/
+.idea/
+
+# Temp files
+tmp/
+temp/
+*.tmp

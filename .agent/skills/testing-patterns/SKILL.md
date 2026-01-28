@@ -1,178 +1,259 @@
 ---
 name: testing-patterns
-description: Testing patterns and principles. Unit, integration, mocking strategies.
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+description: Jest testing patterns, factory functions, mocking strategies, and TDD workflow. Use when writing unit tests, creating test factories, or following TDD red-green-refactor cycle.
 ---
 
-# Testing Patterns
+# Testing Patterns and Utilities
 
-> Principles for reliable test suites.
+## Testing Philosophy
 
----
+**Test-Driven Development (TDD):**
+- Write failing test FIRST
+- Implement minimal code to pass
+- Refactor after green
+- Never write production code without a failing test
 
-## 1. Testing Pyramid
+**Behavior-Driven Testing:**
+- Test behavior, not implementation
+- Focus on public APIs and business requirements
+- Avoid testing implementation details
+- Use descriptive test names that describe behavior
 
+**Factory Pattern:**
+- Create `getMockX(overrides?: Partial<X>)` functions
+- Provide sensible defaults
+- Allow overriding specific properties
+- Keep tests DRY and maintainable
+
+## Test Utilities
+
+### Custom Render Function
+
+Create a custom render that wraps components with required providers:
+
+```typescript
+// src/utils/testUtils.tsx
+import { render } from '@testing-library/react-native';
+import { ThemeProvider } from './theme';
+
+export const renderWithTheme = (ui: React.ReactElement) => {
+  return render(
+    <ThemeProvider>{ui}</ThemeProvider>
+  );
+};
 ```
-        /\          E2E (Few)
-       /  \         Critical flows
-      /----\
-     /      \       Integration (Some)
-    /--------\      API, DB queries
-   /          \
-  /------------\    Unit (Many)
-                    Functions, classes
+
+**Usage:**
+```typescript
+import { renderWithTheme } from 'utils/testUtils';
+import { screen } from '@testing-library/react-native';
+
+it('should render component', () => {
+  renderWithTheme(<MyComponent />);
+  expect(screen.getByText('Hello')).toBeTruthy();
+});
 ```
 
----
+## Factory Pattern
 
-## 2. AAA Pattern
+### Component Props Factory
 
-| Step | Purpose |
-|------|---------|
-| **Arrange** | Set up test data |
-| **Act** | Execute code under test |
-| **Assert** | Verify outcome |
+```typescript
+import { ComponentProps } from 'react';
 
----
+const getMockMyComponentProps = (
+  overrides?: Partial<ComponentProps<typeof MyComponent>>
+) => {
+  return {
+    title: 'Default Title',
+    count: 0,
+    onPress: jest.fn(),
+    isLoading: false,
+    ...overrides,
+  };
+};
 
-## 3. Test Type Selection
+// Usage in tests
+it('should render with custom title', () => {
+  const props = getMockMyComponentProps({ title: 'Custom Title' });
+  renderWithTheme(<MyComponent {...props} />);
+  expect(screen.getByText('Custom Title')).toBeTruthy();
+});
+```
 
-### When to Use Each
+### Data Factory
 
-| Type | Best For | Speed |
-|------|----------|-------|
-| **Unit** | Pure functions, logic | Fast (<50ms) |
-| **Integration** | API, DB, services | Medium |
-| **E2E** | Critical user flows | Slow |
+```typescript
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+}
 
----
+const getMockUser = (overrides?: Partial<User>): User => {
+  return {
+    id: '123',
+    name: 'John Doe',
+    email: 'john@example.com',
+    role: 'user',
+    ...overrides,
+  };
+};
 
-## 4. Unit Test Principles
+// Usage
+it('should display admin badge for admin users', () => {
+  const user = getMockUser({ role: 'admin' });
+  renderWithTheme(<UserCard user={user} />);
+  expect(screen.getByText('Admin')).toBeTruthy();
+});
+```
 
-### Good Unit Tests
+## Mocking Patterns
 
-| Principle | Meaning |
-|-----------|---------|
-| Fast | < 100ms each |
-| Isolated | No external deps |
-| Repeatable | Same result always |
-| Self-checking | No manual verification |
-| Timely | Written with code |
+### Mocking Modules
 
-### What to Unit Test
+```typescript
+// Mock entire module
+jest.mock('utils/analytics');
 
-| Test | Don't Test |
-|------|------------|
-| Business logic | Framework code |
-| Edge cases | Third-party libs |
-| Error handling | Simple getters |
+// Mock with factory function
+jest.mock('utils/analytics', () => ({
+  Analytics: {
+    logEvent: jest.fn(),
+  },
+}));
 
----
+// Access mock in test
+const mockLogEvent = jest.requireMock('utils/analytics').Analytics.logEvent;
+```
 
-## 5. Integration Test Principles
+### Mocking GraphQL Hooks
 
-### What to Test
+```typescript
+jest.mock('./GetItems.generated', () => ({
+  useGetItemsQuery: jest.fn(),
+}));
 
-| Area | Focus |
-|------|-------|
-| API endpoints | Request/response |
-| Database | Queries, transactions |
-| External services | Contracts |
+const mockUseGetItemsQuery = jest.requireMock(
+  './GetItems.generated'
+).useGetItemsQuery as jest.Mock;
 
-### Setup/Teardown
+// In test
+mockUseGetItemsQuery.mockReturnValue({
+  data: { items: [] },
+  loading: false,
+  error: undefined,
+});
+```
 
-| Phase | Action |
-|-------|--------|
-| Before All | Connect resources |
-| Before Each | Reset state |
-| After Each | Clean up |
-| After All | Disconnect |
+## Test Structure
 
----
+```typescript
+describe('ComponentName', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
 
-## 6. Mocking Principles
+  describe('Rendering', () => {
+    it('should render component with default props', () => {});
+    it('should render loading state when loading', () => {});
+  });
 
-### When to Mock
+  describe('User interactions', () => {
+    it('should call onPress when button is clicked', async () => {});
+  });
 
-| Mock | Don't Mock |
-|------|------------|
-| External APIs | The code under test |
-| Database (unit) | Simple dependencies |
-| Time/random | Pure functions |
-| Network | In-memory stores |
+  describe('Edge cases', () => {
+    it('should handle empty data gracefully', () => {});
+  });
+});
+```
 
-### Mock Types
+## Query Patterns
 
-| Type | Use |
-|------|-----|
-| Stub | Return fixed values |
-| Spy | Track calls |
-| Mock | Set expectations |
-| Fake | Simplified implementation |
+```typescript
+// Element must exist
+expect(screen.getByText('Hello')).toBeTruthy();
 
----
+// Element should not exist
+expect(screen.queryByText('Goodbye')).toBeNull();
 
-## 7. Test Organization
+// Element appears asynchronously
+await waitFor(() => {
+  expect(screen.findByText('Loaded')).toBeTruthy();
+});
+```
 
-### Naming
+## User Interaction Patterns
 
-| Pattern | Example |
-|---------|---------|
-| Should behavior | "should return error when..." |
-| When condition | "when user not found..." |
-| Given-when-then | "given X, when Y, then Z" |
+```typescript
+import { fireEvent, screen } from '@testing-library/react-native';
 
-### Grouping
+it('should submit form on button click', async () => {
+  const onSubmit = jest.fn();
+  renderWithTheme(<LoginForm onSubmit={onSubmit} />);
 
-| Level | Use |
-|-------|-----|
-| describe | Group related tests |
-| it/test | Individual case |
-| beforeEach | Common setup |
+  fireEvent.changeText(screen.getByLabelText('Email'), 'user@example.com');
+  fireEvent.changeText(screen.getByLabelText('Password'), 'password123');
+  fireEvent.press(screen.getByTestId('login-button'));
 
----
+  await waitFor(() => {
+    expect(onSubmit).toHaveBeenCalled();
+  });
+});
+```
 
-## 8. Test Data
+## Anti-Patterns to Avoid
 
-### Strategies
+### Testing Mock Behavior Instead of Real Behavior
 
-| Approach | Use |
-|----------|-----|
-| Factories | Generate test data |
-| Fixtures | Predefined datasets |
-| Builders | Fluent object creation |
+```typescript
+// Bad - testing the mock
+expect(mockFetchData).toHaveBeenCalled();
 
-### Principles
+// Good - testing actual behavior
+expect(screen.getByText('John Doe')).toBeTruthy();
+```
 
-- Use realistic data
-- Randomize non-essential values (faker)
-- Share common fixtures
-- Keep data minimal
+### Not Using Factories
 
----
+```typescript
+// Bad - duplicated, inconsistent test data
+it('test 1', () => {
+  const user = { id: '1', name: 'John', email: 'john@test.com', role: 'user' };
+});
+it('test 2', () => {
+  const user = { id: '2', name: 'Jane', email: 'jane@test.com' }; // Missing role!
+});
 
-## 9. Best Practices
+// Good - reusable factory
+const user = getMockUser({ name: 'Custom Name' });
+```
 
-| Practice | Why |
-|----------|-----|
-| One assert per test | Clear failure reason |
-| Independent tests | No order dependency |
-| Fast tests | Run frequently |
-| Descriptive names | Self-documenting |
-| Clean up | Avoid side effects |
+## Best Practices
 
----
+1. **Always use factory functions** for props and data
+2. **Test behavior, not implementation**
+3. **Use descriptive test names**
+4. **Organize with describe blocks**
+5. **Clear mocks between tests**
+6. **Keep tests focused** - one behavior per test
 
-## 10. Anti-Patterns
+## Running Tests
 
-| ❌ Don't | ✅ Do |
-|----------|-------|
-| Test implementation | Test behavior |
-| Duplicate test code | Use factories |
-| Complex test setup | Simplify or split |
-| Ignore flaky tests | Fix root cause |
-| Skip cleanup | Reset state |
+```bash
+# Run all tests
+npm test
 
----
+# Run with coverage
+npm run test:coverage
 
-> **Remember:** Tests are documentation. If someone can't understand what the code does from the tests, rewrite them.
+# Run specific file
+npm test ComponentName.test.tsx
+```
+
+## Integration with Other Skills
+
+- **react-ui-patterns**: Test all UI states (loading, error, empty, success)
+- **systematic-debugging**: Write test that reproduces bug before fixing

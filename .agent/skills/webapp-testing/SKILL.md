@@ -1,187 +1,96 @@
 ---
 name: webapp-testing
-description: Web application testing principles. E2E, Playwright, deep audit strategies.
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
+license: Complete terms in LICENSE.txt
 ---
 
-# Web App Testing
+# Web Application Testing
 
-> Discover and test everything. Leave no route untested.
+To test local web applications, write native Python Playwright scripts.
 
-## 🔧 Runtime Scripts
+**Helper Scripts Available**:
+- `scripts/with_server.py` - Manages server lifecycle (supports multiple servers)
 
-**Execute these for automated browser testing:**
+**Always run scripts with `--help` first** to see usage. DO NOT read the source until you try running the script first and find that a customized solution is abslutely necessary. These scripts can be very large and thus pollute your context window. They exist to be called directly as black-box scripts rather than ingested into your context window.
 
-| Script | Purpose | Usage |
-|--------|---------|-------|
-| `scripts/playwright_runner.py` | Basic browser test | `python scripts/playwright_runner.py https://example.com` |
-| | With screenshot | `python scripts/playwright_runner.py <url> --screenshot` |
-| | Accessibility check | `python scripts/playwright_runner.py <url> --a11y` |
-
-**Requires:** `pip install playwright && playwright install chromium`
-
----
-
-## 1. Deep Audit Approach
-
-### Discovery First
-
-| Target | How to Find |
-|--------|-------------|
-| Routes | Scan app/, pages/, router files |
-| API endpoints | Grep for HTTP methods |
-| Components | Find component directories |
-| Features | Read documentation |
-
-### Systematic Testing
-
-1. **Map** - List all routes/APIs
-2. **Scan** - Verify they respond
-3. **Test** - Cover critical paths
-
----
-
-## 2. Testing Pyramid for Web
+## Decision Tree: Choosing Your Approach
 
 ```
-        /\          E2E (Few)
-       /  \         Critical user flows
-      /----\
-     /      \       Integration (Some)
-    /--------\      API, data flow
-   /          \
-  /------------\    Component (Many)
-                    Individual UI pieces
+User task → Is it static HTML?
+    ├─ Yes → Read HTML file directly to identify selectors
+    │         ├─ Success → Write Playwright script using selectors
+    │         └─ Fails/Incomplete → Treat as dynamic (below)
+    │
+    └─ No (dynamic webapp) → Is the server already running?
+        ├─ No → Run: python scripts/with_server.py --help
+        │        Then use the helper + write simplified Playwright script
+        │
+        └─ Yes → Reconnaissance-then-action:
+            1. Navigate and wait for networkidle
+            2. Take screenshot or inspect DOM
+            3. Identify selectors from rendered state
+            4. Execute actions with discovered selectors
 ```
 
----
+## Example: Using with_server.py
 
-## 3. E2E Test Principles
+To start a server, run `--help` first, then use the helper:
 
-### What to Test
-
-| Priority | Tests |
-|----------|-------|
-| 1 | Happy path user flows |
-| 2 | Authentication flows |
-| 3 | Critical business actions |
-| 4 | Error handling |
-
-### E2E Best Practices
-
-| Practice | Why |
-|----------|-----|
-| Use data-testid | Stable selectors |
-| Wait for elements | Avoid flaky tests |
-| Clean state | Independent tests |
-| Avoid implementation details | Test user behavior |
-
----
-
-## 4. Playwright Principles
-
-### Core Concepts
-
-| Concept | Use |
-|---------|-----|
-| Page Object Model | Encapsulate page logic |
-| Fixtures | Reusable test setup |
-| Assertions | Built-in auto-wait |
-| Trace Viewer | Debug failures |
-
-### Configuration
-
-| Setting | Recommendation |
-|---------|----------------|
-| Retries | 2 on CI |
-| Trace | on-first-retry |
-| Screenshots | on-failure |
-| Video | retain-on-failure |
-
----
-
-## 5. Visual Testing
-
-### When to Use
-
-| Scenario | Value |
-|----------|-------|
-| Design system | High |
-| Marketing pages | High |
-| Component library | Medium |
-| Dynamic content | Lower |
-
-### Strategy
-
-- Baseline screenshots
-- Compare on changes
-- Review visual diffs
-- Update intentional changes
-
----
-
-## 6. API Testing Principles
-
-### Coverage Areas
-
-| Area | Tests |
-|------|-------|
-| Status codes | 200, 400, 404, 500 |
-| Response shape | Matches schema |
-| Error messages | User-friendly |
-| Edge cases | Empty, large, special chars |
-
----
-
-## 7. Test Organization
-
-### File Structure
-
-```
-tests/
-├── e2e/           # Full user flows
-├── integration/   # API, data
-├── component/     # UI units
-└── fixtures/      # Shared data
+**Single server:**
+```bash
+python scripts/with_server.py --server "npm run dev" --port 5173 -- python your_automation.py
 ```
 
-### Naming Convention
+**Multiple servers (e.g., backend + frontend):**
+```bash
+python scripts/with_server.py \
+  --server "cd backend && python server.py" --port 3000 \
+  --server "cd frontend && npm run dev" --port 5173 \
+  -- python your_automation.py
+```
 
-| Pattern | Example |
-|---------|---------|
-| Feature-based | `login.spec.ts` |
-| Descriptive | `user-can-checkout.spec.ts` |
+To create an automation script, include only Playwright logic (servers are managed automatically):
+```python
+from playwright.sync_api import sync_playwright
 
----
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True) # Always launch chromium in headless mode
+    page = browser.new_page()
+    page.goto('http://localhost:5173') # Server already running and ready
+    page.wait_for_load_state('networkidle') # CRITICAL: Wait for JS to execute
+    # ... your automation logic
+    browser.close()
+```
 
-## 8. CI Integration
+## Reconnaissance-Then-Action Pattern
 
-### Pipeline Steps
+1. **Inspect rendered DOM**:
+   ```python
+   page.screenshot(path='/tmp/inspect.png', full_page=True)
+   content = page.content()
+   page.locator('button').all()
+   ```
 
-1. Install dependencies
-2. Install browsers
-3. Run tests
-4. Upload artifacts (traces, screenshots)
+2. **Identify selectors** from inspection results
 
-### Parallelization
+3. **Execute actions** using discovered selectors
 
-| Strategy | Use |
-|----------|-----|
-| Per file | Playwright default |
-| Sharding | Large suites |
-| Workers | Multiple browsers |
+## Common Pitfall
 
----
+❌ **Don't** inspect the DOM before waiting for `networkidle` on dynamic apps
+✅ **Do** wait for `page.wait_for_load_state('networkidle')` before inspection
 
-## 9. Anti-Patterns
+## Best Practices
 
-| ❌ Don't | ✅ Do |
-|----------|-------|
-| Test implementation | Test behavior |
-| Hardcode waits | Use auto-wait |
-| Skip cleanup | Isolate tests |
-| Ignore flaky tests | Fix root cause |
+- **Use bundled scripts as black boxes** - To accomplish a task, consider whether one of the scripts available in `scripts/` can help. These scripts handle common, complex workflows reliably without cluttering the context window. Use `--help` to see usage, then invoke directly. 
+- Use `sync_playwright()` for synchronous scripts
+- Always close the browser when done
+- Use descriptive selectors: `text=`, `role=`, CSS selectors, or IDs
+- Add appropriate waits: `page.wait_for_selector()` or `page.wait_for_timeout()`
 
----
+## Reference Files
 
-> **Remember:** E2E tests are expensive. Use them for critical paths only.
+- **examples/** - Examples showing common patterns:
+  - `element_discovery.py` - Discovering buttons, links, and inputs on a page
+  - `static_html_automation.py` - Using file:// URLs for local HTML
+  - `console_logging.py` - Capturing console logs during automation

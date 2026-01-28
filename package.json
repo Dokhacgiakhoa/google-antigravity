@@ -1,23 +1,54 @@
 {
-  "name": "antigravity-kit",
-  "version": "2.0.0",
-  "description": "AI Agent templates - Skills, Agents, and Workflows for enhanced coding assistance",
+  "name": "antigravity-ide",
+  "version": "3.0.0",
+  "description": "The Ultimate AI Agent IDE. Create AI Agent projects with interactive setup for skills, rules, and workflows.",
+  "main": "cli/index.js",
+  "bin": {
+    "antigravity-ide": "./cli/index.js",
+    "agide": "./cli/index.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vudovn/antigravity-kit.git"
+    "url": "https://github.com/Dokhacgiakhoa/google-antigravity.git"
   },
-  "homepage": "https://github.com/vudovn/antigravity-kit#readme",
+  "homepage": "https://github.com/Dokhacgiakhoa/google-antigravity#readme",
   "bugs": {
-    "url": "https://github.com/vudovn/antigravity-kit/issues"
+    "url": "https://github.com/Dokhacgiakhoa/google-antigravity/issues"
   },
   "keywords": [
-    "antigravity",
-    "ai",
-    "agent",
+    "antigravity-ide",
+    "ai-agent",
+    "ai-ide",
+    "agent-framework",
     "gemini",
+    "cli",
     "skills",
-    "templates"
+    "ai-development"
   ],
-  "author": "vudovn",
+  "files": [
+    "cli/",
+    ".agent/",
+    "web/",
+    "LICENSE",
+    "README.md",
+    "COPYRIGHT.md"
+  ],
+  "dependencies": {
+    "boxen": "^5.1.2",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "figlet": "^1.7.0",
+    "fs-extra": "^11.2.0",
+    "gradient-string": "^2.0.2",
+    "ora": "^5.4.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "author": "Dokhacgiakhoa",
   "license": "MIT"
 }

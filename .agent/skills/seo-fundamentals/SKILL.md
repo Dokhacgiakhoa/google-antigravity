@@ -1,129 +1,173 @@
 ---
 name: seo-fundamentals
-description: SEO fundamentals, E-E-A-T, Core Web Vitals, and Google algorithm principles.
+description: >
+  Core principles of SEO including E-E-A-T, Core Web Vitals, technical foundations,
+  content quality, and how modern search engines evaluate pages. This skill explains
+  *why* SEO works, not how to execute specific optimizations.
 allowed-tools: Read, Glob, Grep
+---
+
 ---
 
 # SEO Fundamentals
 
-> Principles for search engine visibility.
+> **Foundational principles for sustainable search visibility.**
+> This skill explains _how search engines evaluate quality_, not tactical shortcuts.
 
 ---
 
-## 1. E-E-A-T Framework
+## 1. E-E-A-T (Quality Evaluation Framework)
 
-| Principle | Signals |
-|-----------|---------|
-| **Experience** | First-hand knowledge, real examples |
-| **Expertise** | Credentials, depth of knowledge |
-| **Authoritativeness** | Backlinks, mentions, industry recognition |
-| **Trustworthiness** | HTTPS, transparency, accurate info |
+E-E-A-T is **not a direct ranking factor**.
+It is a framework used by search engines to **evaluate content quality**, especially for sensitive or high-impact topics.
+
+| Dimension             | What It Represents                 | Common Signals                                      |
+| --------------------- | ---------------------------------- | --------------------------------------------------- |
+| **Experience**        | First-hand, real-world involvement | Original examples, lived experience, demonstrations |
+| **Expertise**         | Subject-matter competence          | Credentials, depth, accuracy                        |
+| **Authoritativeness** | Recognition by others              | Mentions, citations, links                          |
+| **Trustworthiness**   | Reliability and safety             | HTTPS, transparency, accuracy                       |
+
+> Pages competing in the same space are often differentiated by **trust and experience**, not keywords.
 
 ---
 
-## 2. Core Web Vitals
+## 2. Core Web Vitals (Page Experience Signals)
 
-| Metric | Target | Measures |
-|--------|--------|----------|
-| **LCP** | < 2.5s | Loading performance |
-| **INP** | < 200ms | Interactivity |
-| **CLS** | < 0.1 | Visual stability |
+Core Web Vitals measure **how users experience a page**, not whether it deserves to rank.
+
+| Metric  | Target  | What It Reflects    |
+| ------- | ------- | ------------------- |
+| **LCP** | < 2.5s  | Loading performance |
+| **INP** | < 200ms | Interactivity       |
+| **CLS** | < 0.1   | Visual stability    |
+
+**Important context:**
+
+- CWV rarely override poor content
+- They matter most when content quality is comparable
+- Failing CWV can _hold back_ otherwise good pages
 
 ---
 
 ## 3. Technical SEO Principles
 
-### Site Structure
+Technical SEO ensures pages are **accessible, understandable, and stable**.
 
-| Element | Purpose |
-|---------|---------|
-| XML sitemap | Help crawling |
-| robots.txt | Control access |
-| Canonical tags | Prevent duplicates |
-| HTTPS | Security signal |
+### Crawl & Index Control
 
-### Performance
+| Element           | Purpose                |
+| ----------------- | ---------------------- |
+| XML sitemaps      | Help discovery         |
+| robots.txt        | Control crawl access   |
+| Canonical tags    | Consolidate duplicates |
+| HTTP status codes | Communicate page state |
+| HTTPS             | Security and trust     |
 
-| Factor | Impact |
-|--------|--------|
-| Page speed | Core Web Vital |
-| Mobile-friendly | Ranking factor |
-| Clean URLs | Crawlability |
+### Performance & Accessibility
+
+| Factor                 | Why It Matters                |
+| ---------------------- | ----------------------------- |
+| Page speed             | User satisfaction             |
+| Mobile-friendly design | Mobile-first indexing         |
+| Clean URLs             | Crawl clarity                 |
+| Semantic HTML          | Accessibility & understanding |
 
 ---
 
 ## 4. Content SEO Principles
 
-### Page Elements
+### Page-Level Elements
 
-| Element | Best Practice |
-|---------|---------------|
-| Title tag | 50-60 chars, keyword front |
-| Meta description | 150-160 chars, compelling |
-| H1 | One per page, main keyword |
-| H2-H6 | Logical hierarchy |
-| Alt text | Descriptive, not stuffed |
+| Element          | Principle                    |
+| ---------------- | ---------------------------- |
+| Title tag        | Clear topic + intent         |
+| Meta description | Click relevance, not ranking |
+| H1               | Page’s primary subject       |
+| Headings         | Logical structure            |
+| Alt text         | Accessibility and context    |
 
-### Content Quality
+### Content Quality Signals
 
-| Factor | Importance |
-|--------|------------|
-| Depth | Comprehensive coverage |
-| Freshness | Regular updates |
-| Uniqueness | Original value |
-| Readability | Clear writing |
-
----
-
-## 5. Schema Markup Types
-
-| Type | Use |
-|------|-----|
-| Article | Blog posts, news |
-| Organization | Company info |
-| Person | Author profiles |
-| FAQPage | Q&A content |
-| Product | E-commerce |
-| Review | Ratings |
-| BreadcrumbList | Navigation |
+| Dimension   | What Search Engines Look For |
+| ----------- | ---------------------------- |
+| Depth       | Fully answers the query      |
+| Originality | Adds unique value            |
+| Accuracy    | Factually correct            |
+| Clarity     | Easy to understand           |
+| Usefulness  | Satisfies intent             |
 
 ---
 
-## 6. AI Content Guidelines
+## 5. Structured Data (Schema)
 
-### What Google Looks For
+Structured data helps search engines **understand meaning**, not boost rankings directly.
 
-| ✅ Do | ❌ Don't |
-|-------|----------|
-| AI draft + human edit | Publish raw AI content |
-| Add original insights | Copy without value |
-| Expert review | Skip fact-checking |
-| Follow E-E-A-T | Keyword stuffing |
+| Type           | Purpose                |
+| -------------- | ---------------------- |
+| Article        | Content classification |
+| Organization   | Entity identity        |
+| Person         | Author information     |
+| FAQPage        | Q&A clarity            |
+| Product        | Commerce details       |
+| Review         | Ratings context        |
+| BreadcrumbList | Site structure         |
 
----
-
-## 7. Ranking Factors (Prioritized)
-
-| Priority | Factor |
-|----------|--------|
-| 1 | Quality, relevant content |
-| 2 | Backlinks from authority sites |
-| 3 | Page experience (Core Web Vitals) |
-| 4 | Mobile optimization |
-| 5 | Technical SEO fundamentals |
+> Schema enables eligibility for rich results but does not guarantee them.
 
 ---
 
-## 8. Measurement
+## 6. AI-Assisted Content Principles
 
-| Metric | Tool |
-|--------|------|
-| Rankings | Search Console, Ahrefs |
-| Traffic | Analytics |
-| Core Web Vitals | PageSpeed Insights |
-| Indexing | Search Console |
-| Backlinks | Ahrefs, Semrush |
+Search engines evaluate **output quality**, not authorship method.
+
+### Effective Use
+
+- AI as a drafting or research assistant
+- Human review for accuracy and clarity
+- Original insights and synthesis
+- Clear accountability
+
+### Risky Use
+
+- Publishing unedited AI output
+- Factual errors or hallucinations
+- Thin or duplicated content
+- Keyword-driven text with no value
 
 ---
 
-> **Remember:** SEO is a long-term game. Quality content + technical excellence + patience = results.
+## 7. Relative Importance of SEO Factors
+
+There is **no fixed ranking factor order**.
+However, when competing pages are similar, importance tends to follow this pattern:
+
+| Relative Weight | Factor                      |
+| --------------- | --------------------------- |
+| Highest         | Content relevance & quality |
+| High            | Authority & trust signals   |
+| Medium          | Page experience (CWV, UX)   |
+| Medium          | Mobile optimization         |
+| Baseline        | Technical accessibility     |
+
+> Technical SEO enables ranking; content quality earns it.
+
+---
+
+## 8. Measurement & Evaluation
+
+SEO fundamentals should be validated using **multiple signals**, not single metrics.
+
+| Area        | What to Observe            |
+| ----------- | -------------------------- |
+| Visibility  | Indexed pages, impressions |
+| Engagement  | Click-through, dwell time  |
+| Performance | CWV field data             |
+| Coverage    | Indexing status            |
+| Authority   | Mentions and links         |
+
+---
+
+> **Key Principle:**
+> Sustainable SEO is built on _useful content_, _technical clarity_, and _trust over time_.
+> There are no permanent shortcuts.
