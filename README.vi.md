@@ -41,6 +41,14 @@ Hệ thống sẽ tự động cấu hình qua 2 bước:
 npx antigravity-ide my-project --skip-prompts
 ```
 
+### Cập nhật phiên bản mới nhất
+
+Luôn giữ bộ não Antigravity của bạn ở bản mới nhất với các kỹ năng và tính năng mới:
+
+```sh
+npx antigravity-ide update
+```
+
 ## 🤖 Tương thích Đa Mô hình AI
 
 **Google Antigravity** được thiết kế để làm "Bộ não" cho bất kỳ AI Model nào.

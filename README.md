@@ -31,10 +31,16 @@ Follow the interactive setup:
 1.  **Agent Engine**: Choose **Standard (Node.js)** for lightweight tasks or **Advanced (Python)** for AI/Data Science.
 2.  **Industry Domain**: Select your field (Finance, Education, etc.) to optimize the Agent's focus and skills.
 
-### Skip Prompts (Use Defaults)
-
 ```sh
 npx antigravity-ide my-project --skip-prompts
+```
+
+### Update to Latest Version
+
+Keep your Antigravity IDE up to date with the latest skills and brain features:
+
+```sh
+npx antigravity-ide update
 ```
 
 ## 🤖 AI Model Compatibility
