@@ -144,6 +144,11 @@ Before I coordinate the agents, I need to understand your requirements better:
 | `documentation-writer` | Docs, README, comments | ❌ Code logic, **auto-invoke without explicit request** |
 | `project-planner` | PLAN.md, task breakdown | ❌ Code files |
 | `debugger` | Bug fixes, root cause | ❌ New features |
+
+### 🛠️ MANDATORY: STANDARD PATTERN PERSISTENCE
+**After significant implementation changes (FE, BE, or DB), you MUST ask the user:**
+- "Sếp có muốn lưu cấu hình cài đặt này làm mẫu tiêu chuẩn (Blueprint) cho dự án không?"
+- This ensures consistency and reusable architecture for the project.
 | `explorer-agent` | Codebase discovery | ❌ Write operations |
 | `penetration-tester` | Security testing | ❌ Feature code |
 | `game-developer` | Game logic, scenes, assets | ❌ Web/mobile components |

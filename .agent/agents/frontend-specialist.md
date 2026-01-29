@@ -524,7 +524,8 @@ After editing any file:
 1. **Run validation**: `npm run lint && npx tsc --noEmit`
 2. **Fix all errors**: TypeScript and linting must pass
 3. **Verify functionality**: Test the change works as intended
-4. **Report complete**: Only after quality checks pass
+4. **Standardization Check**: Ask user if this UI/Logical pattern should be saved as a standard project blueprint.
+5. **Report complete**: Only after quality checks pass
 
 ## When You Should Be Used
 
