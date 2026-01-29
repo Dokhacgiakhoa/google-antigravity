@@ -5,6 +5,7 @@
 const prompts = require('prompts');
 const chalk = require('chalk');
 const gradient = require('gradient-string');
+const packageJson = require('../package.json');
 
 // Display concise banner with gradient
 function displayBanner() {
@@ -17,7 +18,7 @@ function displayBanner() {
   console.log(gradient.pastel.multiline(' / ___ |/ / / / /_/ / /_/ / /  / /_/ /| |/ / / /_/ /_/ / '));
   console.log(gradient.pastel.multiline('/_/  |_/_/ /_/\\__/_/\\____/_/   \\__,_/ |___/_/\\__/\\__, /  '));
   console.log(gradient.pastel.multiline('                                                 /____/   '));
-  console.log(chalk.gray('  Google Antigravity • v1.0.0'));
+  console.log(chalk.gray(`  Google Antigravity • v${packageJson.version}`));
   console.log(chalk.gray('  Developed with 💡 by Dokhacgiakhoa'));
   console.log(gradient.rainbow('━'.repeat(60)));
   console.log('');
@@ -25,79 +26,71 @@ function displayBanner() {
 
 const skillCategories = {
   webdev: {
-    name: 'Web Development',
+    name: 'Web High-Performance',
     skills: [
-      'nextjs-react-expert',
-      'typescript-expert',
-      'tailwind-design-system',
-      'api-design-principles',
-      'frontend-design',
-      'backend-patterns'
+      'modern-web-architect',
+      'full-stack-scaffold',
+      'api-documenter',
+      'i18n-localization'
     ]
   },
   mobile: {
-    name: 'Mobile Development',
+    name: 'Mobile & Game',
     skills: [
-      'react-native-architecture',
-      'flutter-expert',
       'mobile-design',
-      'ios-developer',
-      'mobile-security-coder'
+      'game-development',
+      'i18n-localization'
     ]
   },
   devops: {
     name: 'DevOps & Cloud',
     skills: [
-      'kubernetes-architect',
-      'terraform-specialist',
-      'docker-expert',
-      'cicd-automation-workflow-automate',
-      'deployment-engineer'
+      'cloud-architect-master',
+      'deployment-engineer',
+      'incident-responder',
+      'mcp-builder'
     ]
   },
   security: {
-    name: 'Security & Testing',
+    name: 'Security & Audit',
     skills: [
       'security-auditor',
-      'tdd-orchestrator',
-      'test-automator',
-      'vulnerability-scanner',
-      'penetration-testing'
+      'penetration-tester-master',
+      'production-code-audit',
+      'vulnerability-scanner'
     ]
   },
   ai: {
     name: 'AI & ML',
     skills: [
       'ai-engineer',
-      'ml-engineer',
-      'prompt-engineer',
-      'rag-engineer',
-      'llm-app-patterns'
+      'geo-fundamentals',
+      'prompt-engineer' // Assuming this exists or will be mapped to ai-engineer capabilities
     ]
   },
-  data: {
-    name: 'Data Engineering',
+  growth: { // Renamed from data for better fit
+    name: 'Growth & Data',
     skills: [
-      'data-engineer',
-      'sql-pro',
-      'database-architect',
-      'data-quality-frameworks',
-      'spark-optimization'
+      'cro-expert-kit',
+      'seo-expert-kit',
+      'database-migration',
+      'performance-engineer'
     ]
   }
 };
 
-async function getProjectConfig(skipPrompts = false) {
+async function getProjectConfig(skipPrompts = false, predefinedName = null) {
   if (skipPrompts) {
     return {
-      projectName: 'my-agent-project',
+      projectName: predefinedName || 'my-agent-project',
       template: 'standard',
       rules: 'balanced',
       skillCategories: ['webdev'],
       workflows: ['git', 'testing'],
       includeDashboard: false,
       language: 'en',
-      packageManager: 'npm'
+      packageManager: 'npm',
+      engineMode: 'standard'
     };
   }
 
@@ -107,9 +100,12 @@ async function getProjectConfig(skipPrompts = false) {
   console.log(chalk.bold.cyan('🚀 Project Setup Wizard\n'));
   console.log(chalk.gray('Answer a few questions to configure your AI Agent project...\n'));
 
-  const response = await prompts([
+  /* 
+    PHASE 1: BASIC INFORMATION
+  */
+  const basics = await prompts([
     {
-      type: 'text',
+      type: predefinedName ? null : 'text',
       name: 'projectName',
       message: 'Project name:',
       initial: 'my-agent-project',
@@ -132,73 +128,39 @@ async function getProjectConfig(skipPrompts = false) {
     },
     {
       type: 'select',
-      name: 'template',
-      message: (prev, values) => values.language === 'vi' ? 'Chọn mẫu dự án:' : 'Choose project template:',
+      name: 'engineMode',
+      message: (prev, values) => values.language === 'vi' ? 'Chọn Agent Engine:' : 'Select Agent Engine:',
       choices: (prev, values) => values.language === 'vi' ? [
-        { title: '1. Tối giản - Chỉ cấu trúc .agent cơ bản', value: 'minimal' },
-        { title: '2. Tiêu chuẩn - .agent + các skill được chọn (Khuyên dùng)', value: 'standard' },
-        { title: '3. Đầy đủ - Tất cả mọi thứ (full skills, lab, test suite)', value: 'full' }
+        { title: '⚡ Standard (Node.js) - Nhanh, nhẹ, không cấu hình', value: 'standard' },
+        { title: '🧠 Advanced (Python) - Hỗ trợ AI sâu, Khoa học dữ liệu', value: 'advanced' },
       ] : [
-        { title: '1. Minimal - Basic .agent structure only', value: 'minimal' },
-        { title: '2. Standard - .agent + selected skills (Recommended)', value: 'standard' },
-        { title: '3. Full - Everything (all skills, lab, test suite)', value: 'full' }
-      ],
-      initial: 1
-    },
-    {
-      type: 'select',
-      name: 'rules',
-      message: (prev, values) => values.language === 'vi' ? 'Quy tắc hành vi Agent:' : 'Agent behavior rules:',
-      choices: (prev, values) => values.language === 'vi' ? [
-        { title: '1. Nghiêm ngặt - An toàn tối đa, luôn hỏi trước khi làm', value: 'strict' },
-        { title: '2. Cân bằng - Tự chủ vừa phải, an toàn (Khuyên dùng)', value: 'balanced' },
-        { title: '3. Linh hoạt - Tự chủ cao, ít hạn chế', value: 'flexible' }
-      ] : [
-        { title: '1. Strict - Maximum safety, requires approval for most actions', value: 'strict' },
-        { title: '2. Balanced - Good mix of autonomy and safety (Recommended)', value: 'balanced' },
-        { title: '3. Flexible - High autonomy, minimal restrictions', value: 'flexible' }
-      ],
-      initial: 1
-    },
-    {
-      type: (prev, values) => values.template !== 'minimal' ? 'multiselect' : null,
-      name: 'skillCategories',
-      message: (prev, values) => values.language === 'vi' ? 'Chọn nhóm kỹ năng:' : 'Select skill categories to include:',
-      choices: Object.entries(skillCategories).map(([key, { name }]) => ({
-        title: name,
-        value: key,
-        selected: key === 'webdev'
-      })),
-      hint: 'Space to select, Enter to confirm'
-    },
-    {
-      type: 'multiselect',
-      name: 'workflows',
-      message: (prev, values) => values.language === 'vi' ? 'Chọn quy trình làm việc (Workflows):' : 'Select workflows to include:',
-      choices: (prev, values) => values.language === 'vi' ? [
-        { title: 'Git Workflows - Quản lý nhánh, commit, PR', value: 'git', selected: true },
-        { title: 'Testing - TDD, unit tests, E2E tests', value: 'testing', selected: true },
-        { title: 'Deployment - CI/CD, quy trình production', value: 'deployment', selected: false },
-        { title: 'Code Review - Review code tự động', value: 'review', selected: false }
-      ] : [
-        { title: 'Git Workflows - Branch management, commits, PRs', value: 'git', selected: true },
-        { title: 'Testing - TDD, unit tests, E2E tests', value: 'testing', selected: true },
-        { title: 'Deployment - CI/CD, production workflows', value: 'deployment', selected: false },
-        { title: 'Code Review - Automated review workflows', value: 'review', selected: false }
-      ],
-      hint: 'Space to select, Enter to confirm'
-    },
-
-    {
-      type: 'select',
-      name: 'packageManager',
-      message: (prev, values) => values.language === 'vi' ? 'Trình quản lý gói (Package Manager):' : 'Package manager:',
-      choices: [
-        { title: '1. npm', value: 'npm' },
-        { title: '2. pnpm', value: 'pnpm' },
-        { title: '3. yarn', value: 'yarn' }
+        { title: '⚡ Standard (Node.js) - Fast, Lightweight, Zero-Config', value: 'standard' },
+        { title: '🧠 Advanced (Python) - Deep AI, Data Science support', value: 'advanced' },
       ],
       initial: 0
+    },
+    {
+      type: 'select',
+      name: 'industryDomain',
+      message: (prev, values) => values.language === 'vi' ? 'Chọn Lĩnh vực dự án (Industry):' : 'Select Industry Domain:',
+      choices: (prev, values) => values.language === 'vi' ? [
+        { title: '💰 Finance (Tài chính - Fintech)', value: 'finance' },
+        { title: '🎓 Education (Giáo dục - EdTech)', value: 'education' },
+        { title: '🍔 F&B / Restaurant (Nhà hàng)', value: 'fnb' },
+        { title: '👤 Personal / Portfolio (Cá nhân)', value: 'personal' },
+        { title: '🏥 Healthcare (Y tế - HealthTech)', value: 'healthcare' },
+        { title: '🚚 Logistics (Vận tải)', value: 'logistics' },
+        { title: '🔮 Other (Khác - Web/App cơ bản)', value: 'other' }
+      ] : [
+        { title: '💰 Finance (Fintech)', value: 'finance' },
+        { title: '🎓 Education (EdTech)', value: 'education' },
+        { title: '🍔 F&B / Restaurant', value: 'fnb' },
+        { title: '👤 Personal / Portfolio', value: 'personal' },
+        { title: '🏥 Healthcare (HealthTech)', value: 'healthcare' },
+        { title: '🚚 Logistics', value: 'logistics' },
+        { title: '🔮 Other (General Web/App)', value: 'other' }
+      ],
+      initial: 6
     }
   ], {
     onCancel: () => {
@@ -206,8 +168,32 @@ async function getProjectConfig(skipPrompts = false) {
       process.exit(0);
     }
   });
+  
+  // If predefinedName was used, inject it back into basics if it wasn't prompted
+  if (predefinedName) {
+    basics.projectName = predefinedName;
+  }
 
-  return response;
+  // PRESETS CONFIGURATION
+  // All selections now use preset values with full skills
+  const commonWorkflows = ['git'];
+  const commonRules = 'balanced';
+  const settings = {
+    template: 'standard',
+    rules: commonRules,
+    workflows: commonWorkflows,
+    packageManager: 'npm'
+  };
+
+  // For industry presets, we install ALL skills ("tải đầy đủ")
+  // but the selected industry will be used to set priority in GEMINI.md
+  
+  // Return configuration with presets
+  return { ...basics, ...settings, skillCategories: Object.keys(skillCategories) };
+
+
+  
+
 }
 
 function getSkillsForCategories(categories) {

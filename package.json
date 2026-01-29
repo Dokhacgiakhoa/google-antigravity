@@ -1,8 +1,17 @@
 {
   "name": "antigravity-ide",
-  "version": "3.5.1",
+  "version": "3.5.28",
   "description": "The Ultimate AI Agent Brain - Rules, Skills, and Workflows",
   "main": "cli/index.js",
+  "files": [
+    "cli",
+    ".agent",
+    "setup.js",
+    "update.js",
+    "README.md",
+    "LICENSE",
+    "VERSION"
+  ],
   "bin": {
     "antigravity": "./cli/index.js",
     "antigravity-setup": "./setup.js",
@@ -10,8 +19,7 @@
   },
   "scripts": {
     "setup": "node ./setup.js",
-    "update": "node ./update.js",
-    "create": "node ./cli/index.js create"
+    "update": "node ./update.js"
   },
   "dependencies": {
     "chalk": "^4.1.2",

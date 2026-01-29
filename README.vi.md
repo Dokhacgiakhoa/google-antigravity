@@ -9,46 +9,47 @@
 
 **Google Antigravity** là động cơ trí tuệ cốt lõi để xây dựng các AI Agent. Nó cung cấp công cụ CLI (`npx`) giúp bạn tạo lập tức thì các dự án sẵn sàng cho Agent với bộ kỹ năng chuyên nghiệp toàn diện và các quy tắc vận hành chặt chẽ.
 
+| **20+** Master Skills | **15+** Specialist Agents | **11** Quy trình | **13** Shared Modules |
+| :---: | :---: | :---: | :---: |
+| Bộ Kỹ Năng Chủ Chốt | Tác Nhân Chuyên Gia | Quy trình Chuẩn | Tiêu chuẩn dùng chung |
+
 ## 📦 Cài Đặt
 
 ### Bắt đầu nhanh
 
-Mở Terminal và chạy lệnh:
+Chạy lệnh sau:
 
 ```sh
-npx google-antigravity create my-agent-project
+# 1. Tạo dự án mới (Khuyên dùng)
+npx antigravity-ide ten-du-an
+
+# 2. Cài vào thư mục hiện tại (Smart Install)
+npx antigravity-ide
 ```
 
-Làm theo hướng dẫn để tùy chỉnh Agent của bạn.
+Hệ thống sẽ tự động cấu hình qua 2 bước:
+1.  **Agent Engine**: 
+    - **Standard (Node.js)**: Tốc độ cao, loại bỏ các file Python không cần thiết.
+    - **Advanced (Python)**: Hỗ trợ Full AI/Data Science (giữ nguyên .py, notebook).
+2.  **Lĩnh vực (Industry)**: 
+    - Chọn lĩnh vực của bạn (Tài chính, Giáo dục, Vận tải...).
+    - Hệ thống sẽ **tải toàn bộ kỹ năng** nhưng tự động cấu hình để **ưu tiên tối đa** cho lĩnh vực đó.
 
 ### Bỏ qua câu hỏi (dùng mặc định)
 
 ```sh
-npx google-antigravity create my-project --skip-prompts
+npx antigravity-ide my-project --skip-prompts
 ```
 
-## 🤖 Tương thích với Google Gemini
+## 🤖 Tương thích Đa Mô hình AI
 
-**Tất cả 550+ skills đều hoạt động với Gemini!**
+**Google Antigravity** được thiết kế để làm "Bộ não" cho bất kỳ AI Model nào.
 
-```javascript
-// Gemini agent tự động có sẵn tất cả skills
-import { GoogleGenerativeAI } from "@google/generative-ai";
+- **Google Gemini**: Tận dụng tối đa cửa sổ ngữ cảnh 2M token.
+- **Anthropic Claude**: Tối ưu hóa tư duy với bộ quy tắc `.agent`.
+- **OpenAI GPT-4**: Chuẩn hóa định dạng kỹ năng.
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ 
-  model: "gemini-2.0-flash-exp"
-});
-
-// Skills nằm trong .agent/skills/ - sẵn sàng dùng ngay!
-```
-
-**Tại sao chọn Gemini + Antigravity IDE?**
-- ✅ **Universal Skills**: Hoạt động với mọi AI model
-- ✅ **Large Context**: Gemini 1.5 Pro xử lý được 2M tokens
-- ✅ **Production-Ready**: 550+ skills đã qua kiểm chứng thực tế
-
-👉 Xem [GEMINI.md](./GEMINI.md) để biết hướng dẫn chi tiết.
+👉 **Xem [GEMINI.md](./GEMINI.md) để biết hướng dẫn tích hợp chi tiết.**
 
 ## 🚀 Tính năng Cốt lõi
 
@@ -59,10 +60,11 @@ Trái tim của hệ thống là thư mục `.agent`, chứa:
 - **Quy tắc Vận hành**: Các giao thức định nghĩa sẵn để Agent hoạt động an toàn và hiệu quả.
 
 ### ⚡ **Khởi tạo Dự án (CLI)**
-Công cụ CLI nhẹ nhàng để bootstrap dự án mới:
-- **Cài đặt Tương tác**: Chọn độ nghiêm ngặt của Agent (Strict/Balanced/Flexible).
-- **Lựa chọn Kỹ năng**: Tự động cài đặt các bộ kỹ năng phù hợp (ví dụ: Web Dev + AI).
-- **Nhanh gọn**: Tối giản, không cài đặt các thành phần dư thừa.
+Công cụ CLI thông minh để bootstrap dự án mới:
+- **Smart Install**: Tự động phát hiện ngữ cảnh để cài vào thư mục hiện tại hoặc tạo mới.
+- **Agent Engines**: **Standard** (Node.js, siêu nhẹ) hoặc **Advanced** (Python, đầy đủ sức mạnh).
+- **Domain Intelligence**: Tải toàn bộ kỹ năng chuyên nghiệp nhưng tự động ưu tiên lĩnh vực của bạn (Tài chính, Y tế...) trong cấu hình Agent.
+- **Nhanh gọn**: Tối giản, lọc file thông minh theo Engine.
 
 ## 📂 Cấu trúc dự án
 
@@ -72,22 +74,12 @@ antigravity-ide/
 └── cli/              # ⚡ CLI TOOL: Tạo project
 ```
 
-
-
 ## 📚 Tài liệu
 
 - [**README.md**](./README.md) - Phiên bản tiếng Anh
 - [**SKILLS.md**](./SKILLS.md) - Danh sách 550+ skills
 - [**GEMINI.md**](./GEMINI.md) - Hướng dẫn tích hợp Gemini
 - [**COPYRIGHT.md**](./COPYRIGHT.md) - Thông tin bản quyền
-
-## 📜 Giấy phép & Ghi nhận
-
-Dự án này sử dụng giấy phép MIT.
-
-*   Phát triển dựa trên [Antigravity Kit](https://github.com/vudovn/antigravity-kit) của [vudovn](https://github.com/vudovn).
-*   Xem [LICENSE](./LICENSE) để biết chi tiết về giấy phép.
-*   Xem [COPYRIGHT.md](./COPYRIGHT.md) để đọc giải thích bằng tiếng Việt.
 
 ---
 *Được tạo với ❤️ bởi Dokhacgiakhoa*

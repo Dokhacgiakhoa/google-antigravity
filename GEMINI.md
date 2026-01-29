@@ -21,7 +21,7 @@
 ### 1. Create Project
 
 ```bash
-npx antigravity-ide create my-gemini-agent
+npx antigravity-ide my-gemini-agent
 ```
 
 ### 2. Configure for Gemini

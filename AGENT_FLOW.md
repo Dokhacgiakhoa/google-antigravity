@@ -1,6 +1,6 @@
 # 🔄 Agent Flow Architecture
 
-> **Antigravity Kit** - Comprehensive AI Agent Workflow Documentation
+> **Google Antigravity** - Comprehensive AI Agent Workflow Documentation
 
 ---
 

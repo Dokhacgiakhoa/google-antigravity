@@ -3,7 +3,7 @@
 ## ✅ Published Successfully!
 
 **Package:** `antigravity-ide`  
-**Version:** `3.0.0`  
+**Version:** `3.5.5`  
 **Published:** 2026-01-29  
 **Link:** https://www.npmjs.com/package/antigravity-ide
 
@@ -52,13 +52,13 @@ npm publish
 
 ### 4. Verify publication
 
-Visit: `https://www.npmjs.com/package/google-antigravity`
+Visit: `https://www.npmjs.com/package/antigravity-ide`
 
 ### 5. Test installation
 
 ```bash
 # In a different directory
-npx google-antigravity@latest create my-test-project
+npx antigravity-ide@latest
 ```
 
 ## Version Management
@@ -66,10 +66,10 @@ npx google-antigravity@latest create my-test-project
 Update version before each publish:
 
 ```bash
-# Patch (bug fixes): 3.0.0 → 3.0.1
+# Patch (bug fixes): 3.5.5 → 3.5.6
 npm version patch
 
-# Minor (new features): 3.0.0 → 3.1.0
+# Minor (new features): 3.5.0 → 3.6.0
 npm version minor
 
 # Major (breaking changes): 3.0.0 → 4.0.0
@@ -81,21 +81,20 @@ npm version major
 If you need to remove a version within 72 hours:
 
 ```bash
-npm unpublish google-antigravity@3.0.0-enhanced
+npm unpublish antigravity-ide@3.5.5
 ```
 
 ⚠️ **Warning**: Unpublishing is discouraged. Use deprecation instead:
 
 ```bash
-npm deprecate google-antigravity@3.0.0-enhanced "This version has issues, please upgrade"
+npm deprecate antigravity-ide@3.5.5 "This version has issues, please upgrade"
 ```
 
 ## Troubleshooting
 
 **"Package name taken"**
-- The name `google-antigravity` might be taken
-- Try: `@dokhacgiakhoa/google-antigravity` (scoped package)
-- Update `package.json`: `"name": "@dokhacgiakhoa/google-antigravity"`
+- The name `antigravity-ide` is yours.
+- If creating a new one, try: `@dokhacgiakhoa/antigravity-ide` (scoped package)
 
 ## Post-Publish Verification
 
@@ -107,7 +106,7 @@ Visit: https://www.npmjs.com/package/antigravity-ide
 
 You should see:
 - Package name: `antigravity-ide`
-- Version: `3.0.0`
+- Version: `3.5.5`
 - Published date
 - README preview
 - Download stats (will start from 0)
@@ -118,12 +117,12 @@ In a different directory (NOT the project directory):
 
 ```bash
 # Test npx (recommended way)
-npx antigravity-ide create test-install-project
+npx antigravity-ide
 
 # Test global installation
 npm install -g antigravity-ide
 antigravity-ide --version
-antigravity-ide create another-test
+antigravity-ide
 ```
 
 ### 3. Monitor Package
@@ -138,7 +137,7 @@ antigravity-ide create another-test
 When you want to publish updates:
 
 1. Make your changes
-2. Update version:
+2. Update   "version": "3.5.11"
    ```bash
    npm version patch  # 3.0.0 → 3.0.1
    # or

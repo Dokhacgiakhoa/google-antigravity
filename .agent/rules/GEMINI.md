@@ -143,6 +143,26 @@ When user's prompt is NOT in English:
 2. What PRINCIPLES must I apply?
 3. How does this DIFFER from generic output?
 
+3. How does this DIFFER from generic output?
+
+### 📚 Shared Standards (Auto-Active)
+
+**The following 13 Shared Modules in `.agent/.shared` must be respected:**
+
+1.  `ai-master`
+2.  `api-standards`
+3.  `compliance`
+4.  `database-master`
+5.  `design-system`
+6.  `domain-blueprints`
+7.  `i18n-master`
+8.  `infra-blueprints`
+9.  `metrics`
+10. `security-armor`
+11. `testing-master`
+12. `ui-ux-pro-max`
+13. `vitals-templates`
+
 ---
 
 ## TIER 1: CODE RULES (When Writing Code)

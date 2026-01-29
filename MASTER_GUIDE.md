@@ -15,8 +15,8 @@ Chào mừng bạn đến với hệ thống Antigravity IDE đã được "đ�
 
 Để cài đặt hoặc cập nhật hệ thống lên mức Global (toàn cục), hãy sử dụng các lệnh sau:
 
-- **Cài đặt mới**: `npx antigravity-setup` (Cho phép chọn ngôn ngữ Việt/Anh).
-- **Cập nhật tính năng**: `npx antigravity-update` (Bảo tồn toàn bộ nội dung custom của bạn).
+- **Cài đặt mới**: `npx antigravity-ide` (Cài vào thư mục hiện tại) hoặc `npx antigravity-ide [tên-dự-án]`.
+- **Cập nhật tính năng**: `npx antigravity-ide update` (Bảo tồn nội dung custom).
 
 ---
 

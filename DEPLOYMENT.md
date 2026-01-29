@@ -3,7 +3,7 @@
 ## Package Information
 
 **Package Name:** `antigravity-ide`  
-**Version:** `3.0.0`  
+**Version:** `3.5.13`  
 **Published Date:** January 29, 2026  
 **npm Registry:** https://www.npmjs.com/package/antigravity-ide
 
@@ -15,18 +15,15 @@ Users can install and use the package via:
 
 ### Method 1: NPX (Recommended)
 ```bash
-npx antigravity-ide create my-project
+npx antigravity-ide
+# or
+npx antigravity-ide my-project
 ```
 
 ### Method 2: Global Installation
 ```bash
 npm install -g antigravity-ide
-antigravity-ide create my-project
-```
-
-### Short Alias
-```bash
-agide create my-project  # Short command
+antigravity-ide
 ```
 
 ---
@@ -63,6 +60,8 @@ agide create my-project  # Short command
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 3.5.13 | 2026-01-29 | Documentation fixes & Smart Install polish |
+| 3.5.0 | 2026-01-29 | Major CLI overhaul & Engine Intelligence |
 | 3.0.0 | 2026-01-29 | Initial public release |
 
 ---
