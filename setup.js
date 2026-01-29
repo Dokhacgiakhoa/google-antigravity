@@ -218,26 +218,50 @@ async function setup() {
 
         // Inject Industry Domain
         if (industryDomain) {
-            const domainBlock = `\n- **Lĩnh vực hoạt động**: ${industryDomain.toUpperCase()}\n  - Hệ thống sẽ ưu tiên các pattern và best practice thuộc lĩnh vực này.`;
-            // Insert after Identity bullets
-            content = content.replace(/(Giá trị cốt lõi\*\*)/, `\n${domainBlock}\n$1`);
+            const domainBlock = `- **Lĩnh vực hoạt động**: ${industryDomain.toUpperCase()}\n  - Hệ thống sẽ ưu tiên các pattern và best practice thuộc lĩnh vực này.`;
+            
+            // Insert before 'Giá trị cốt lõi' bullet point
+            content = content.replace(/(- \*\*Giá trị cốt lõi)/, `${domainBlock}\n$1`);
         }
 
         fs.writeFileSync(geminiRulePath, content);
-        console.log(`✅ Configured GEMINI.md with Agent Name & Industry context.`);
+        // console.log(`✅ Configured GEMINI.md with Agent Name & Industry context.`); // Suppress simple log
     }
 
     // 3. Localize Workflows
     localizeWorkflows(lang);
 
-    console.log('\n✨ Thiết lập Hoàn tất! IDE của sếp hiện đã được Toàn cầu hóa.');
-    console.log(`Thư mục lưu trữ toàn cục: ${GLOBAL_DIR}`);
+    // FINAL SUMMARY (Premium Style)
+    console.log('\n' + gradient.pastel.multiline('📦 Configuring Google Antigravity Environment'));
+    console.log(gradient.atlas('━'.repeat(60)));
     
-    rl.close();
+    console.log(chalk.green('√') + ' Global Rules Synced (Enterprise Standard)');
+    console.log(chalk.green('√') + ' Workflows Localized');
+    console.log(chalk.green('√') + ` Workspace Configured (${projectScale.toUpperCase()} Mode)`);
+    console.log(chalk.green('√') + ' Context Injected (Identity & Domain)');
+    
+    console.log(gradient.rainbow('\n✓ SUCCESS! System Ready'));
+    console.log(gradient.atlas('━'.repeat(60)));
+
+    console.log(chalk.bold.yellow('\n🤖 Kích hoạt AI Agent (Next Steps):'));
+    if (lang === 'vi') {
+        console.log(`   1. Mở dự án:     ${chalk.cyan('cd <your-project>')}`);
+        console.log(`   2. Mở Chat:      ${chalk.cyan('(Sử dụng AI Panel của IDE)')}`);
+        console.log(`   3. Kích hoạt:    ${chalk.cyan('Đọc nội dung .agent/rules/GEMINI.md')}`);
+        console.log(`\n   ✨ ${chalk.gray('AI sẽ tự động nhận diện danh tính ' + chalk.bold(agentName || 'Antigravity') + ' và lĩnh vực ' + chalk.bold(industryDomain || 'General'))}`);
+    } else {
+        console.log(`   1. Open Project: ${chalk.cyan('cd <your-project>')}`);
+        console.log(`   2. Open Chat:    ${chalk.cyan('(Use IDE AI Panel)')}`);
+        console.log(`   3. Activate:     ${chalk.cyan('Read .agent/rules/GEMINI.md')}`);
+        console.log(`\n   ✨ ${chalk.gray('AI will automatically recognize ' + chalk.bold(agentName || 'Antigravity') + ' and ' + chalk.bold(industryDomain || 'General') + ' context.')}`);
+    }
+    console.log(gradient.atlas('━'.repeat(60)) + '\n');
+
+    process.exit(0); // Exit properly to avoid that "Exit code 1"
 }
 
 function localizeWorkflows(lang) {
-    console.log('\n🌍 Localizing Workflows...');
+    // console.log('\n🌍 Localizing Workflows...'); // Suppress log
     try {
         const workflowsJSON = JSON.parse(fs.readFileSync(path.join(SOURCE_DIR, '.shared', 'i18n-master', 'workflows.json'), 'utf-8'));
         const workflowDir = path.join(GLOBAL_DIR, 'workflows');
