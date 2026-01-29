@@ -1,45 +1,39 @@
 ---
 trigger: glob
-glob: "**/*.{js,jsx,ts,tsx,css,scss,html,vue,svelte}"
+glob: "**/*.{js,jsx,ts,tsx,css,scss,html,vue,svelte,dart,swift,kt,xml}"
 ---
 
-# FRONTEND.MD - Premium UI/UX Standards
+# FRONTEND.MD - Client-Side Mastery
 
-> **Mục tiêu**: Đảm bảo giao diện luôn đạt chuẩn Premium, mượt mà và nhất quán.
-
----
-
-## 🎨 1. AESTHETICS (Thẩm mỹ)
-
-1. **Color Palette**: 
-   - Không dùng màu gốc (plain red, plain blue).
-   - Sử dụng HSL hoặc Hex đã tinh chỉnh (ví dụ: Thay vì `#0000FF`, dùng `#3B82F6`).
-2. **Spacing**:
-   - Sử dụng hệ thống lưới 4px/8px (System 8).
-   - Luôn có khoảng thở (Whitespace) hợp lý.
-3. **Typography**:
-   - Ưu tiên font hiện đại (Inter, Roboto, SF Pro).
-   - Hệ thống Type Scale rõ ràng (H1 > H2 > H3).
+> **Mục tiêu**: Quản lý thống nhất Giao diện Web & Mobile. Một nguồn chân lý cho trải nghiệm người dùng.
 
 ---
 
-## ⚡ 2. PERFORMANCE & INTERACTION
+## 🎨 1. PREMIUM UX/UI
 
-1. **Micro-interactions**:
-   - Mọi nút bấm (Button) phải có trạng thái `:hover` và `:active`.
-   - Sử dụng transition mượt (ví dụ: `transition-all duration-200`).
-2. **Skeleton Loading**:
-   - Không để màn hình trắng. Luôn hiển thị Skeleton khi đang tải dữ liệu.
-3. **Responsive**:
-   - Mobile-First: Code cho mobile trước, sau đó media query cho PC.
+1. **Aesthetics**: Màu sắc HSL tinh chỉnh, Typography chuẩn (Inter/Roboto).
+2. **Spacing**: Hệ thống lưới 4px/8px. Whitespace là sang trọng.
+3. **Feedback**: Mọi tương tác (Click, Tap) đều phải có phản hồi thị giác ngay lập tức.
 
 ---
 
-## 🛡️ 3. CODE QUALITY
+## 📱 2. MOBILE & RESPONSIVE
 
-1. **Component**: 
-   - Chia nhỏ Component (< 200 dòng).
-   - Đặt tên theo PascalCase (`UserProfile.tsx`).
-2. **State Management**:
-   - Tránh Prop Drilling quá 3 cấp.
-   - Sử dụng Context hoặc State Manager (Zustand/Redux) khi cần.
+1. **Touch Targets**: Button tối thiểu 44x44px (Chuẩn ngón tay cái).
+2. **Safe Areas**: Tôn trọng tai thỏ (Notch) và Home Indicator trên iOS/Android.
+3. **Mobile-First**: Code CSS cho mobile trước, override cho PC sau.
+
+---
+
+## ⚡ 3. PERFORMANCE DOMAIN
+
+1. **Core Web Vitals**: LCP < 2.5s, CLS < 0.1, FID < 100ms.
+2. **Optimistic UI**: Cập nhật giao diện TRƯỚC khi API trả về (Zalo/Facebook style).
+3. **Asset Optimization**: Ảnh WebP, Video lazy-load.
+
+---
+
+## 🛡️ 4. STATE & COMPONENT
+
+1. **Atomic Design**: Component nhỏ, tái sử dụng cao (`<Button />`, `<INPUT />`).
+2. **State**: Server State (TanStack Query) !== Client State (Zustand/Context). Tách biệt rõ ràng.

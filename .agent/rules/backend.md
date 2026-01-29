@@ -1,42 +1,46 @@
 ---
 trigger: glob
-glob: "**/*.{py,js,ts,go,rs,sql,php,java}"
+glob: "**/*.{py,js,ts,go,rs,sql,php,java,dockerfile,tf,yaml,yml}"
 ---
 
-# BACKEND.MD - Solid Implementation Standards
+# BACKEND.MD - Systems & Logic Standards
 
-> **Mục tiêu**: Xây dựng hệ thống Backend mạnh mẽ, dễ bảo trì và mở rộng.
-
----
-
-## 🏗️ 1. API DESIGN
-
-1. **RESTful/GraphQL**: Tuân thủ chuẩn mực (GET để lấy, POST để tạo, PUT/PATCH để sửa, DELETE để xóa).
-2. **Response Format**:
-   - Luôn trả về JSON thống nhất:
-     ```json
-     {
-       "success": true,
-       "data": { ... },
-       "error": null
-     }
-     ```
-3. **Status Codes**: Sử dụng đúng HTTP Code (200, 201, 400, 401, 403, 404, 500).
+> **Mục tiêu**: Một bộ luật duy nhất quản lý toàn bộ Logic, Dữ liệu và Hạ tầng. Hiệu suất cao - Không chồng chéo.
 
 ---
 
-## 🗄️ 2. DATABASE & PERFORMANCE
+## 🏗️ 1. ARCHITECTURE & API
 
-1. **Indexing**: Luôn Index các cột thường xuyên query (WHERE, JOIN).
-2. **N+1 Problem**: Tránh query trong vòng lặp. Sử dụng `.include()` hoặc `.join()`.
-3. **Transaction**: Bọc các tác vụ ghi dữ liệu liên quan vào Transaction để đảm bảo tính toàn vẹn (ACID).
+1. **Clean Architecture**: Tách biệt rõ ràng: Controller -> Service -> Repository -> Database.
+2. **API Standards**:
+   - RESTful: `GET /resources`, `POST /resources`.
+   - GraphQL: Định nghĩa Schema rõ ràng, tránh N+1.
+   - Response: `{ success: true, data: any, error: null }`.
+3. **Stateless**: Server không lưu state user (dùng Redis/JWT).
 
 ---
 
-## 🛡️ 3. ERROR HANDLING & LOGGING
+## 🗄️ 2. DATABASE MASTERY (DBA Mode)
 
-1. **Try-Catch**: Bọc logic vào try-catch blocks.
-2. **Logging**: 
-   - Không dùng `console.log` bừa bãi.
-   - Sử dụng Logger có cấu trúc (Winston, Pino, Loguru) với level (INFO, WARN, ERROR).
-3. **Graceful Shutdown**: Xử lý việc ngắt kết nối DB khi server dừng.
+1. **Schema Design**:
+   - Tuân thủ 3NF (Chuẩn hóa cấp 3).
+   - `snake_case` cho tên bảng/cột.
+   - Luôn có `created_at`, `updated_at`.
+2. **Performance**:
+   - **Index**: Bắt buộc Index cho khóa ngoại (FK) và cột search.
+   - **Migration**: Không bao giờ sửa cột trực tiếp ở Production. Tạo migration file mới.
+
+---
+
+## ☁️ 3. DEVOPS & INFRASTRUCTURE
+
+1. **Config**: 12-Factor App. Config lấy từ Environment Variables.
+2. **Docker**: Đa tầng (Multi-stage build). Tầng cuối chỉ chứa binary/artifact.
+3. **CI/CD**: Pipeline không được pass nếu Unit Test fail.
+
+---
+
+## 🛡️ 4. ERROR HANDLING
+
+1. **Structured Logging**: Log phải parse được (JSON). KHÔNG dùng `print`/`console.log`.
+2. **Graceful Failure**: DB chết thì API trả về 503, không được treo request.
