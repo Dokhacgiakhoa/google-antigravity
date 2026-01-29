@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.5.29] - 2026-01-29
+
+### Documentation
+- **License**: Restored "THIRD PARTY NOTICES & ATTRIBUTIONS" section to `LICENSE` to properly credit original authors (VUDOVN, sickn33) in compliance with open-source reuse standards.
+
 ## [3.5.28] - 2026-01-29
 
 ### Documentation
