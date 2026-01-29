@@ -11,214 +11,263 @@ const { getProjectConfig, getSkillsForCategories } = require('./prompts');
 const gradient = require('gradient-string');
 
 async function createProject(projectName, options) {
-  try {
-    // Determine target directory
-    const isCurrentDir = !projectName || projectName === '.';
-    const targetName = isCurrentDir ? path.basename(process.cwd()) : projectName;
-    
-    // Get configuration (pass targetName if specifically provided/determined as CWD target)
-    // If isCurrentDir is true, we pass '.' to prompts to tell it to skip the name question
-    const config = await getProjectConfig(options.skipPrompts, isCurrentDir ? targetName : projectName);
-    
-    // Resolve final project path
-    const projectPath = isCurrentDir ? process.cwd() : path.resolve(process.cwd(), config.projectName);
-    const finalProjectName = config.projectName;
-
-    // Check if directory exists (only if NOT current dir)
-    if (!isCurrentDir && fs.existsSync(projectPath)) {
-      console.error(chalk.red(`\n❌ Directory "${finalProjectName}" already exists.\n`));
-      process.exit(1);
-    }
-
-    console.log('\n');
-    console.log(gradient.cristal('━'.repeat(60)));
-    console.log(chalk.bold('  📦 Creating Google Antigravity Project'));
-    console.log(gradient.cristal('━'.repeat(60)));
-    console.log('');
-
-    // Create project directory
-    const spinner = ora('Creating project structure...').start();
-    fs.mkdirSync(projectPath, { recursive: true });
-
-    // Copy base structure
-    await copyBaseStructure(projectPath, config);
-    spinner.succeed('Project structure created');
-
-    // Copy selected skills
-    if (config.template !== 'minimal' && config.skillCategories?.length > 0) {
-      spinner.start('Installing selected skills...');
-      await copySkills(projectPath, config.skillCategories, config.engineMode);
-      spinner.succeed(`Installed ${config.skillCategories.length} skill categories`);
-    }
-
-    // Copy workflows
-    if (config.workflows?.length > 0) {
-      spinner.start('Setting up workflows...');
-      await copyWorkflows(projectPath, config.workflows);
-      spinner.succeed(`Configured ${config.workflows.length} workflows`);
-    }
-
-
-
-    // Generate configuration files
-    spinner.start('Generating configuration files...');
-    await generateConfigs(projectPath, config);
-    spinner.succeed('Configuration files created');
-
-    // Initialize git
-    spinner.start('Initializing git repository...');
     try {
-      execSync('git init', { cwd: projectPath, stdio: 'ignore' });
-      spinner.succeed('Git repository initialized');
+        // Determine target directory
+        const isCurrentDir = !projectName || projectName === '.';
+        const targetName = isCurrentDir ? path.basename(process.cwd()) : projectName;
+
+        // Get configuration (pass targetName if specifically provided/determined as CWD target)
+        // If isCurrentDir is true, we pass '.' to prompts to tell it to skip the name question
+        const config = await getProjectConfig(options.skipPrompts, isCurrentDir ? targetName : projectName);
+
+        // Resolve final project path
+        const projectPath = isCurrentDir ? process.cwd() : path.resolve(process.cwd(), config.projectName);
+        const finalProjectName = config.projectName;
+
+        // Check if directory exists (only if NOT current dir)
+        if (!isCurrentDir && fs.existsSync(projectPath)) {
+            console.error(chalk.red(`\n❌ Directory "${finalProjectName}" already exists.\n`));
+            process.exit(1);
+        }
+
+        console.log('\n');
+        console.log(gradient.cristal('━'.repeat(60)));
+        console.log(chalk.bold('  📦 Creating Google Antigravity Project'));
+        console.log(gradient.cristal('━'.repeat(60)));
+        console.log('');
+
+        // Create project directory
+        const spinner = ora('Creating project structure...').start();
+        fs.mkdirSync(projectPath, { recursive: true });
+
+        // Copy base structure
+        await copyBaseStructure(projectPath, config);
+        spinner.succeed('Project structure created');
+
+        // Copy selected skills
+        if (config.template !== 'minimal' && config.skillCategories?.length > 0) {
+            spinner.start('Installing selected skills...');
+            await copySkills(projectPath, config.skillCategories, config.engineMode);
+            spinner.succeed(`Installed ${config.skillCategories.length} skill categories`);
+        }
+
+        // Copy workflows
+        if (config.workflows?.length > 0) {
+            spinner.start('Setting up workflows...');
+            await copyWorkflows(projectPath, config.workflows);
+            spinner.succeed(`Configured ${config.workflows.length} workflows`);
+        }
+
+
+
+        // Generate configuration files
+        spinner.start('Generating configuration files...');
+        await generateConfigs(projectPath, config);
+        spinner.succeed('Configuration files created');
+
+        // Initialize git
+        spinner.start('Initializing git repository...');
+        try {
+            execSync('git init', { cwd: projectPath, stdio: 'ignore' });
+            spinner.succeed('Git repository initialized');
+        } catch (error) {
+            spinner.warn('Git initialization skipped (git not found)');
+        }
+
+        // Print success message
+        printSuccessMessage(finalProjectName, config);
+
     } catch (error) {
-      spinner.warn('Git initialization skipped (git not found)');
+        console.error(chalk.red('\n❌ Error creating project:'), error.message);
+        process.exit(1);
+    }
+}
+
+// Helper to handle core file conflicts (auto-create backup if exists)
+function handleCoreFileConflict(filePath, fileName) {
+    if (!fs.existsSync(filePath)) {
+        return { shouldWrite: true, targetPath: filePath };
     }
 
-    // Print success message
-    printSuccessMessage(finalProjectName, config);
-
-  } catch (error) {
-    console.error(chalk.red('\n❌ Error creating project:'), error.message);
-    process.exit(1);
-  }
+    // File exists - create backup with .new extension
+    const dir = path.dirname(filePath);
+    const ext = path.extname(fileName);
+    const base = path.basename(fileName, ext);
+    const newPath = path.join(dir, `${base}.new${ext}`);
+    return { shouldWrite: true, targetPath: newPath, isBackup: true };
 }
 
 // Helper to determine file filter based on engine mode
 function getEngineFilter(engineMode) {
-  return (src, dest) => {
-    // If mode is 'standard' (Node.js focus), exclude Python files
-    if (engineMode === 'standard') {
-      const lowerSrc = src.toLowerCase();
-      // Exclude Python source, compiled files, and package configs
-      if (lowerSrc.endsWith('.py') || 
-          lowerSrc.endsWith('.pyc') || 
-          lowerSrc.endsWith('requirements.txt') || 
-          lowerSrc.endsWith('pipfile') || 
-          lowerSrc.endsWith('pyproject.toml') ||
-          lowerSrc.includes('__pycache__') ||
-          lowerSrc.includes('venv/') ||
-          lowerSrc.includes('.venv/')) {
-        return false;
-      }
-    }
-    // 'advanced' mode (or others) includes everything
-    return true;
-  };
+    return (src, dest) => {
+        // If mode is 'standard' (Node.js focus), exclude Python files
+        if (engineMode === 'standard') {
+            const lowerSrc = src.toLowerCase();
+            // Exclude Python source, compiled files, and package configs
+            if (lowerSrc.endsWith('.py') ||
+                lowerSrc.endsWith('.pyc') ||
+                lowerSrc.endsWith('requirements.txt') ||
+                lowerSrc.endsWith('pipfile') ||
+                lowerSrc.endsWith('pyproject.toml') ||
+                lowerSrc.includes('__pycache__') ||
+                lowerSrc.includes('venv/') ||
+                lowerSrc.includes('.venv/')) {
+                return false;
+            }
+        }
+        // 'advanced' mode (or others) includes everything
+        return true;
+    };
 }
 
 async function copyBaseStructure(projectPath, config) {
-  const sourceAgentDir = path.join(__dirname, '..', '.agent');
-  const destAgentDir = path.join(projectPath, '.agent');
-  const filter = getEngineFilter(config.engineMode);
-  
-  // Create base .agent directory
-  fs.mkdirSync(destAgentDir, { recursive: true });
+    const sourceAgentDir = path.join(__dirname, '..', '.agent');
+    const destAgentDir = path.join(projectPath, '.agent');
+    const filter = getEngineFilter(config.engineMode);
 
-  // Copy all subdirectories from .agent (except skills, which are handled separately)
-  if (fs.existsSync(sourceAgentDir)) {
-    const entries = fs.readdirSync(sourceAgentDir, { withFileTypes: true });
-    
-    for (const entry of entries) {
-      if (entry.name === 'skills' || entry.name === 'GEMINI.md' || entry.name === 'START_HERE.md') {
-        continue; // Handle these separately
-      }
-      
-      const sourceEntryPath = path.join(sourceAgentDir, entry.name);
-      const destEntryPath = path.join(destAgentDir, entry.name);
-      
-      await fs.copy(sourceEntryPath, destEntryPath, { filter });
+    // Create base .agent directory
+    fs.mkdirSync(destAgentDir, { recursive: true });
+
+    // Copy all subdirectories from .agent (except skills, which are handled separately)
+    if (fs.existsSync(sourceAgentDir)) {
+        const entries = fs.readdirSync(sourceAgentDir, { withFileTypes: true });
+
+        for (const entry of entries) {
+            if (entry.name === 'skills' || entry.name === 'GEMINI.md' || entry.name === 'START_HERE.md') {
+                continue; // Handle these separately
+            }
+
+            const sourceEntryPath = path.join(sourceAgentDir, entry.name);
+            const destEntryPath = path.join(destAgentDir, entry.name);
+
+            await fs.copy(sourceEntryPath, destEntryPath, { filter });
+        }
     }
-  }
 
-  // Ensure 'skills' dir exists even if empty
-  fs.mkdirSync(path.join(destAgentDir, 'skills'), { recursive: true });
+    // Ensure 'skills' dir exists even if empty
+    fs.mkdirSync(path.join(destAgentDir, 'skills'), { recursive: true });
 
-  // Copy GEMINI.md based on rules
-  const geminiContent = generateGeminiMd(config.rules, config.language, config.industryDomain, config.agentName);
-  fs.writeFileSync(path.join(destAgentDir, 'GEMINI.md'), geminiContent);
+    // Copy GEMINI.md based on rules (core file - auto backup if exists)
+    const geminiPath = path.join(destAgentDir, 'GEMINI.md');
+    const geminiDecision = handleCoreFileConflict(geminiPath, 'GEMINI.md');
 
-  // Copy START_HERE.md (onboarding guide)
-  const startHereSource = path.join(sourceAgentDir, 'START_HERE.md');
-  if (fs.existsSync(startHereSource)) {
-    fs.copyFileSync(startHereSource, path.join(destAgentDir, 'START_HERE.md'));
-  }
+    if (geminiDecision.shouldWrite) {
+        const geminiContent = generateGeminiMd(config.rules, config.language, config.industryDomain, config.agentName);
+        fs.writeFileSync(geminiDecision.targetPath, geminiContent);
 
-  // Copy basic files (README, .gitignore)
-  const files = ['README.md', '.gitignore'];
-  const rootDir = path.join(__dirname, '..');
-  
-  files.forEach(file => {
-    const source = path.join(rootDir, file);
-    const dest = path.join(projectPath, file);
-    if (fs.existsSync(source)) {
-      fs.copyFileSync(source, dest);
+        if (geminiDecision.isBackup) {
+            console.log(chalk.yellow(`  ℹ️  GEMINI.md exists, created ${path.basename(geminiDecision.targetPath)}`));
+        } else {
+            console.log(chalk.green('  ✓ Created GEMINI.md'));
+        }
     }
-  });
+
+    // Copy START_HERE.md (core file - auto backup if exists)
+    const startHereSource = path.join(sourceAgentDir, 'START_HERE.md');
+    const startHereDest = path.join(destAgentDir, 'START_HERE.md');
+
+    if (fs.existsSync(startHereSource)) {
+        const startHereDecision = handleCoreFileConflict(startHereDest, 'START_HERE.md');
+
+        if (startHereDecision.shouldWrite) {
+            fs.copyFileSync(startHereSource, startHereDecision.targetPath);
+
+            if (startHereDecision.isBackup) {
+                console.log(chalk.yellow(`  ℹ️  START_HERE.md exists, created ${path.basename(startHereDecision.targetPath)}`));
+            } else {
+                console.log(chalk.green('  ✓ Created START_HERE.md'));
+            }
+        }
+    }
+
+    // Copy basic files (README, .gitignore) - only if they don't exist
+    const files = ['README.md', '.gitignore'];
+    const rootDir = path.join(__dirname, '..');
+
+    files.forEach(file => {
+        const source = path.join(rootDir, file);
+        const dest = path.join(projectPath, file);
+        if (fs.existsSync(source) && !fs.existsSync(dest)) {
+            fs.copyFileSync(source, dest);
+            console.log(chalk.green(`  ✓ Created ${file}`));
+        } else if (fs.existsSync(dest)) {
+            console.log(chalk.yellow(`  ℹ️  Skipped ${file} (already exists)`));
+        }
+    });
 }
 
 async function copySkills(projectPath, categories, engineMode) {
-  const skillsSourceDir = path.join(__dirname, '..', '.agent', 'skills');
-  const skillsDestDir = path.join(projectPath, '.agent', 'skills');
-  const filter = getEngineFilter(engineMode);
-  
-  // Check if source directory exists
-  if (!fs.existsSync(skillsSourceDir)) {
-    console.warn(chalk.yellow(`\n⚠️  Warning: Skills directory not found at ${skillsSourceDir}`));
-    console.warn('   The .agent folder might be missing from the package.');
-    return;
-  }
+    const skillsSourceDir = path.join(__dirname, '..', '.agent', 'skills');
+    const skillsDestDir = path.join(projectPath, '.agent', 'skills');
+    const filter = getEngineFilter(engineMode);
 
-  const selectedSkills = getSkillsForCategories(categories);
-  
-  for (const skill of selectedSkills) {
-    const skillPath = path.join(skillsSourceDir, skill);
-    if (fs.existsSync(skillPath)) {
-      const destPath = path.join(skillsDestDir, skill);
-      await fs.copy(skillPath, destPath, { filter });
-    } else {
-      // Optional: Warn about missing specific skills if needed
+    // Check if source directory exists
+    if (!fs.existsSync(skillsSourceDir)) {
+        console.warn(chalk.yellow(`\n⚠️  Warning: Skills directory not found at ${skillsSourceDir}`));
+        console.warn('   The .agent folder might be missing from the package.');
+        return;
     }
-  }
+
+    const selectedSkills = getSkillsForCategories(categories);
+
+    for (const skill of selectedSkills) {
+        const skillPath = path.join(skillsSourceDir, skill);
+        if (fs.existsSync(skillPath)) {
+            const destPath = path.join(skillsDestDir, skill);
+            await fs.copy(skillPath, destPath, { filter });
+        } else {
+            // Optional: Warn about missing specific skills if needed
+        }
+    }
 }
 
 async function copyWorkflows(projectPath, workflows) {
-  const workflowsSourceDir = path.join(__dirname, '..', '.agent', 'workflows');
-  const workflowsDestDir = path.join(projectPath, '.agent', 'workflows');
-  
-  for (const workflow of workflows) {
-    const workflowFile = `${workflow}.md`;
-    const source = path.join(workflowsSourceDir, workflowFile);
-    if (fs.existsSync(source)) {
-      await fs.copy(source, path.join(workflowsDestDir, workflowFile));
+    const workflowsSourceDir = path.join(__dirname, '..', '.agent', 'workflows');
+    const workflowsDestDir = path.join(projectPath, '.agent', 'workflows');
+
+    for (const workflow of workflows) {
+        const workflowFile = `${workflow}.md`;
+        const source = path.join(workflowsSourceDir, workflowFile);
+        if (fs.existsSync(source)) {
+            await fs.copy(source, path.join(workflowsDestDir, workflowFile));
+        }
     }
-  }
 }
 
 
 
 async function generateConfigs(projectPath, config) {
-  // Generate package.json
-  const packageJson = {
-    name: config.projectName,
-    version: '1.0.0',
-    description: 'AI Agent project powered by Google Antigravity',
-    private: true,
-    scripts: {
-      dev: 'echo "No dev server configured"',
-      build: 'echo "No build script"'
-    },
-    keywords: ['ai', 'agent', 'google-antigravity'],
-    author: '',
-    license: 'MIT'
-  };
-  
-  fs.writeFileSync(
-    path.join(projectPath, 'package.json'),
-    JSON.stringify(packageJson, null, 2)
-  );
+    // Generate package.json only if it doesn't exist
+    const packageJsonPath = path.join(projectPath, 'package.json');
 
-  // Generate .editorconfig
-  const editorConfig = `root = true
+    if (!fs.existsSync(packageJsonPath)) {
+        const packageJson = {
+            name: config.projectName,
+            version: '1.0.0',
+            description: 'AI Agent project powered by Google Antigravity',
+            private: true,
+            scripts: {
+                dev: 'echo "No dev server configured"',
+                build: 'echo "No build script"'
+            },
+            keywords: ['ai', 'agent', 'google-antigravity'],
+            author: '',
+            license: 'MIT'
+        };
+
+        fs.writeFileSync(
+            packageJsonPath,
+            JSON.stringify(packageJson, null, 2)
+        );
+        console.log(chalk.green('  ✓ Created package.json'));
+    } else {
+        console.log(chalk.yellow('  ℹ️  Skipped package.json (already exists)'));
+    }
+
+    // Generate .editorconfig only if it doesn't exist
+    const editorconfigPath = path.join(projectPath, '.editorconfig');
+    if (!fs.existsSync(editorconfigPath)) {
+        const editorConfig = `root = true
 
 [*]
 charset = utf-8
@@ -231,43 +280,47 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 `;
-  fs.writeFileSync(path.join(projectPath, '.editorconfig'), editorConfig);
+        fs.writeFileSync(editorconfigPath, editorConfig);
+        console.log(chalk.green('  ✓ Created .editorconfig'));
+    } else {
+        console.log(chalk.yellow('  ℹ️  Skipped .editorconfig (already exists)'));
+    }
 }
 
 function generateGeminiMd(rules, language = 'en', industry = 'other', agentName = 'Antigravity') {
-  const strictness = {
-    strict: {
-      autoRun: 'false',
-      confirmLevel: 'Ask before every file modification and command execution'
-    },
-    balanced: {
-      autoRun: 'true for safe read operations',
-      confirmLevel: 'Ask before destructive operations'
-    },
-    flexible: {
-      autoRun: 'true',
-      confirmLevel: 'Minimal confirmation, high autonomy'
-    }
-  };
+    const strictness = {
+        strict: {
+            autoRun: 'false',
+            confirmLevel: 'Ask before every file modification and command execution'
+        },
+        balanced: {
+            autoRun: 'true for safe read operations',
+            confirmLevel: 'Ask before destructive operations'
+        },
+        flexible: {
+            autoRun: 'true',
+            confirmLevel: 'Minimal confirmation, high autonomy'
+        }
+    };
 
-  const config = strictness[rules] || strictness.balanced;
-  const isVi = language === 'vi';
-  
-  // Define Industry Focus strings
-  const industryMap = {
-    finance: isVi ? 'Tài chính & Fintech (An toàn, Chính xác)' : 'Finance & Fintech (Security, Precision)',
-    education: isVi ? 'Giáo dục & EdTech (Trực quan, Giải thích)' : 'Education & EdTech (Intuitive, Explanatory)',
-    fnb: isVi ? 'F&B & Nhà hàng (Tốc độ, Tiện lợi)' : 'F&B & Restaurant (Speed, Convenience)',
-    personal: isVi ? 'Cá nhân & Portfolio (Sáng tạo, Cá nhân hóa)' : 'Personal & Portfolio (Creative, Personalized)',
-    healthcare: isVi ? 'Y tế & Sức khỏe (Bảo mật, Tin cậy)' : 'Healthcare & HealthTech (Privacy, Reliability)',
-    logistics: isVi ? 'Vận tải & Logistics (Hiệu quả, Real-time)' : 'Logistics & Supply Chain (Efficiency, Real-time)',
-    other: isVi ? 'Phát triển chung' : 'General Development',
-    other: isVi ? 'Phát triển chung' : 'General Development'
-  };
-  
-  const industryFocus = industryMap[industry] || industryMap.other;
+    const config = strictness[rules] || strictness.balanced;
+    const isVi = language === 'vi';
 
-  const contentEn = `---
+    // Define Industry Focus strings
+    const industryMap = {
+        finance: isVi ? 'Tài chính & Fintech (An toàn, Chính xác)' : 'Finance & Fintech (Security, Precision)',
+        education: isVi ? 'Giáo dục & EdTech (Trực quan, Giải thích)' : 'Education & EdTech (Intuitive, Explanatory)',
+        fnb: isVi ? 'F&B & Nhà hàng (Tốc độ, Tiện lợi)' : 'F&B & Restaurant (Speed, Convenience)',
+        personal: isVi ? 'Cá nhân & Portfolio (Sáng tạo, Cá nhân hóa)' : 'Personal & Portfolio (Creative, Personalized)',
+        healthcare: isVi ? 'Y tế & Sức khỏe (Bảo mật, Tin cậy)' : 'Healthcare & HealthTech (Privacy, Reliability)',
+        logistics: isVi ? 'Vận tải & Logistics (Hiệu quả, Real-time)' : 'Logistics & Supply Chain (Efficiency, Real-time)',
+        other: isVi ? 'Phát triển chung' : 'General Development',
+        other: isVi ? 'Phát triển chung' : 'General Development'
+    };
+
+    const industryFocus = industryMap[industry] || industryMap.other;
+
+    const contentEn = `---
 trigger: always_on
 ---
 
@@ -321,7 +374,7 @@ Add your project-specific instructions here.
 *Generated by Google Antigravity*
 `;
 
-  const contentVi = `---
+    const contentVi = `---
 trigger: always_on
 ---
 
@@ -377,50 +430,50 @@ Thêm các hướng dẫn cụ thể cho dự án của bạn tại đây.
 *Được tạo bởi Google Antigravity*
 `;
 
-  return isVi ? contentVi : contentEn;
+    return isVi ? contentVi : contentEn;
 }
 
 function printSuccessMessage(projectName, config) {
-  console.log('\n');
-  console.log(gradient.rainbow('━'.repeat(60)));
-  console.log(gradient.morning.multiline('  ✓ SUCCESS! Project Ready'));
-  console.log(gradient.rainbow('━'.repeat(60)));
-  
-  // Concise config display
-  console.log('');
-  console.log(chalk.bold('📋 Config'));
-  console.log(chalk.gray('  Project:   ') + gradient.cristal(projectName));
-  console.log(chalk.gray('  Template:  ') + chalk.cyan(config.template));
-  console.log(chalk.gray('  Skills:    ') + chalk.cyan(config.skillCategories?.join(', ') || 'none'));
-  
-  // AI Activation Instructions (NEW)
-  console.log('');
-  console.log(gradient.pastel('━'.repeat(60)));
-  console.log(chalk.bold.cyan(config.language === 'vi' ? '🤖 Kích hoạt AI Agent' : '🤖 AI Agent Activation'));
-  console.log('');
-  
-  if (config.language === 'vi') {
-    console.log(chalk.gray('  1. Mở dự án:      ') + chalk.white(`cd ${projectName}`));
-    console.log(chalk.gray('  2. Mở khung chat: ') + chalk.white('(Claude, Gemini, v.v...)'));
-    console.log(chalk.gray('  3. Kích hoạt:     ') + chalk.green('Đọc nội dung .agent/GEMINI.md'));
-  } else {
-    console.log(chalk.gray('  1. Open project:  ') + chalk.white(`cd ${projectName}`));
-    console.log(chalk.gray('  2. Open AI chat:  ') + chalk.white('(Claude, Gemini, etc.)'));
-    console.log(chalk.gray('  3. Activate:      ') + chalk.green('Read .agent/START_HERE.md'));
-  }
-  
-  // Stats Display
-  console.log('');
-  console.log(gradient.pastel('  ✨ Installed: ') + chalk.white('20+ Master Skills') + chalk.gray(' • ') + chalk.white('15+ Agents') + chalk.gray(' • ') + chalk.white('13 Shared Modules'));
-  
-  console.log('');
-  console.log(chalk.dim(config.language === 'vi' ? '     AI sẽ tự động tải các kỹ năng và quy tắc.' : '     The AI will load all skills and rules automatically.'));
-  console.log(gradient.pastel('━'.repeat(60)));
-  console.log('');
-  console.log(chalk.gray('  Developed with 💡 by Dokhacgiakhoa'));
-  console.log('');
+    console.log('\n');
+    console.log(gradient.rainbow('━'.repeat(60)));
+    console.log(gradient.morning.multiline('  ✓ SUCCESS! Project Ready'));
+    console.log(gradient.rainbow('━'.repeat(60)));
+
+    // Concise config display
+    console.log('');
+    console.log(chalk.bold('📋 Config'));
+    console.log(chalk.gray('  Project:   ') + gradient.cristal(projectName));
+    console.log(chalk.gray('  Template:  ') + chalk.cyan(config.template));
+    console.log(chalk.gray('  Skills:    ') + chalk.cyan(config.skillCategories?.join(', ') || 'none'));
+
+    // AI Activation Instructions (NEW)
+    console.log('');
+    console.log(gradient.pastel('━'.repeat(60)));
+    console.log(chalk.bold.cyan(config.language === 'vi' ? '🤖 Kích hoạt AI Agent' : '🤖 AI Agent Activation'));
+    console.log('');
+
+    if (config.language === 'vi') {
+        console.log(chalk.gray('  1. Mở dự án:      ') + chalk.white(`cd ${projectName}`));
+        console.log(chalk.gray('  2. Mở khung chat: ') + chalk.white('(Claude, Gemini, v.v...)'));
+        console.log(chalk.gray('  3. Kích hoạt:     ') + chalk.green('Đọc nội dung .agent/GEMINI.md'));
+    } else {
+        console.log(chalk.gray('  1. Open project:  ') + chalk.white(`cd ${projectName}`));
+        console.log(chalk.gray('  2. Open AI chat:  ') + chalk.white('(Claude, Gemini, etc.)'));
+        console.log(chalk.gray('  3. Activate:      ') + chalk.green('Read .agent/START_HERE.md'));
+    }
+
+    // Stats Display
+    console.log('');
+    console.log(gradient.pastel('  ✨ Installed: ') + chalk.white('20+ Master Skills') + chalk.gray(' • ') + chalk.white('15+ Agents') + chalk.gray(' • ') + chalk.white('13 Shared Modules'));
+
+    console.log('');
+    console.log(chalk.dim(config.language === 'vi' ? '     AI sẽ tự động tải các kỹ năng và quy tắc.' : '     The AI will load all skills and rules automatically.'));
+    console.log(gradient.pastel('━'.repeat(60)));
+    console.log('');
+    console.log(chalk.gray('  Developed with 💡 by Dokhacgiakhoa'));
+    console.log('');
 }
 
 module.exports = {
-  createProject
+    createProject
 };
