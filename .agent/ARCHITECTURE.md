@@ -9,7 +9,7 @@
 Antigravity Kit is a modular system consisting of:
 
 - **20 Specialist Agents** - Role-based AI personas
-- **22 Master Kits** - Consolidating 550+ domain-specific modules
+- **22 Master Skills** - Consolidating 550+ capabilities & patterns
 - **11 Workflows** - Slash command procedures
 
 ---
@@ -271,7 +271,7 @@ For details, see [scripts/README.md](scripts/README.md)
 | Metric | Value |
 | ------ | ----- |
 | **Total Agents** | 20 |
-| **Total Master Kits** | 22 (Covering 550+ domains) |
+| **Total Master Skills** | 22 (Covering 550+ capabilities) |
 | **Total Workflows** | 11 |
 | **Total Scripts** | 2 (master) + 18 (skill-level) |
 | **Coverage** | ~90% web/mobile development |
