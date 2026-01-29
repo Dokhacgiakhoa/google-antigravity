@@ -44,10 +44,10 @@ async function setup() {
 
     // 2. Ask for Engine Mode
     console.log('\n🛠️ Select Engine Mode / Chọn Chế độ Động cơ:');
-    console.log('   1. Standard (Node.js) - Lightweight, Zero-Config [Mặc định]');
-    console.log('   2. Advanced (Python) - Professional, Requires Python installed');
+    console.log('   1. Standard (Node.js) - Gọn nhẹ, Không cần cấu hình [Mặc định]');
+    console.log('   2. Advanced (Python) - Chuyên nghiệp, Yêu cầu đã cài đặt Python');
     const engineMode = await new Promise(resolve => {
-        rl.question('👉 Choice / Lựa chọn (1/2) [1]: ', (answer) => {
+        rl.question('👉 Choice / Lựa chọn của sếp (1/2) [1]: ', (answer) => {
             resolve(answer === '2' ? 'advanced' : 'standard');
         });
     });
@@ -75,15 +75,15 @@ async function setup() {
             } else {
                 execSync(`mkdir -p "${dest}" && cp -R "${src}/"* "${dest}/"`, { stdio: 'inherit' });
             }
-            console.log(`✅ Synced ${folder} to Global.`);
+            console.log(`✅ Đã đồng bộ ${folder} vào hệ thống toàn cục.`);
         }
     });
 
     // 3. Localize Workflows
     localizeWorkflows(lang);
 
-    console.log('\n✨ Setup Complete! Your IDE is now Globalized.');
-    console.log(`Global storage: ${GLOBAL_DIR}`);
+    console.log('\n✨ Thiết lập Hoàn tất! IDE của sếp hiện đã được Toàn cầu hóa.');
+    console.log(`Thư mục lưu trữ toàn cục: ${GLOBAL_DIR}`);
     
     rl.close();
 }

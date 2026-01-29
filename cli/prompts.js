@@ -129,10 +129,10 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     {
       type: 'select',
       name: 'engineMode',
-      message: (prev, values) => values.language === 'vi' ? 'Chọn Agent Engine:' : 'Select Agent Engine:',
+      message: (prev, values) => values.language === 'vi' ? 'Chọn Loại Động cơ Agent (Engine):' : 'Select Agent Engine:',
       choices: (prev, values) => values.language === 'vi' ? [
-        { title: '⚡ Standard (Node.js) - Nhanh, nhẹ, không cấu hình', value: 'standard' },
-        { title: '🧠 Advanced (Python) - Hỗ trợ AI sâu, Khoa học dữ liệu', value: 'advanced' },
+        { title: '⚡ Standard (Node.js) - Tốc độ cao, gọn nhẹ, không cần cấu hình', value: 'standard' },
+        { title: '🧠 Advanced (Python) - Tối ưu lập trình AI chuyên sâu & Khoa học dữ liệu', value: 'advanced' },
       ] : [
         { title: '⚡ Standard (Node.js) - Fast, Lightweight, Zero-Config', value: 'standard' },
         { title: '🧠 Advanced (Python) - Deep AI, Data Science support', value: 'advanced' },
@@ -142,9 +142,9 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     {
       type: 'text',
       name: 'agentName',
-      message: (prev, values) => values.language === 'vi' ? 'Đặt tên cho AI Agent của sếp (ví dụ: Jarvis, Antigravity):' : 'Choose a name for your AI Agent (e.g., Jarvis, Antigravity):',
+      message: (prev, values) => values.language === 'vi' ? 'Đặt tên định danh cho AI Agent của sếp (Ví dụ: Jarvis, Antigravity):' : 'Choose a name for your AI Agent (e.g., Jarvis, Antigravity):',
       initial: 'Antigravity',
-      validate: (value) => value.length < 2 ? 'Name must be at least 2 characters long' : true
+      validate: (value) => value.length < 2 ? (process.env.LANG?.includes('vi') ? 'Tên Agent phải có ít nhất 2 ký tự' : 'Name must be at least 2 characters long') : true
     },
     {
       type: 'select',
