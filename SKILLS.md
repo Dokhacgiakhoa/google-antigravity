@@ -267,7 +267,7 @@ Instructions, examples, and best practices...
 ## 🎯 Next Steps
 
 1. Browse skills in `.agent/skills/` directory
-2. See [GEMINI.md](./GEMINI.md) for Gemini-specific usage
+2. See [GEMINI_GUIDE.md](./GEMINI_GUIDE.md) for Gemini-specific usage
 3. Check examples in `/lab` directory
 4. Read skill documentation for detailed guides
 
