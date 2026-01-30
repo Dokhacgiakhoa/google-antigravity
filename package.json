@@ -33,6 +33,22 @@
     "prompts": "^2.4.2",
     "shelljs": "^0.8.5"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dokhacgiakhoa/google-antigravity.git"
+  },
+  "keywords": [
+    "antigravity",
+    "antigravity-ide",
+    "cli",
+    "rules",
+    "agent",
+    "ai",
+    "productivity",
+    "workflow",
+    "automation",
+    "llm"
+  ],
   "author": "Dokhacgiakhoa",
   "license": "MIT"
 }
