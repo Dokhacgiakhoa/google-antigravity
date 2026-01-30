@@ -1,5 +1,4 @@
----
-description: Sửa lỗi thông minh, tối ưu code
+description: Gặp lỗi khó sửa? Để AI soi log và sửa giúp bạn.
 ---
 
 # /debug - Systematic Problem Investigation

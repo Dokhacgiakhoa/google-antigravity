@@ -1,5 +1,4 @@
----
-description: Nâng cấp, sửa đổi giao diện/logic
+description: Muốn sửa màu, thêm nút, sửa logic nhỏ? Vào đây.
 ---
 
 # /enhance - Update Application

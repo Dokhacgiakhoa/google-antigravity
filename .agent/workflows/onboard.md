@@ -1,4 +1,4 @@
-description: Hướng dẫn thành viên mới
+description: Người mới vào team? Hướng dẫn họ tự động.
 ---
 
 # /onboard - Team Onboarding

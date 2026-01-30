@@ -1,4 +1,4 @@
-description: Thiết kế giao diện đỉnh cao (Linear/Magic UI)
+description: Muốn giao diện đẹp (Linear/Magic UI)? Bấm vào đây.
 ---
 
 

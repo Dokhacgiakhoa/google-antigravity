@@ -1,5 +1,4 @@
----
-description: Điều phối Đa Agent (Tác vụ phức tạp)
+description: Task quá chua? Gọi cả hội đồng chuyên gia vào làm.
 ---
 
 # Multi-Agent Orchestration

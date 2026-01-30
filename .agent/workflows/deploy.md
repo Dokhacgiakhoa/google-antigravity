@@ -1,4 +1,4 @@
-description: Phát hành ứng dụng (Vercel/Docker)
+description: Code xong rồi? Đẩy lên Server/Vercel thôi.
 ---
 
 # /deploy - Production Deployment

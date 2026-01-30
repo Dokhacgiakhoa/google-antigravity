@@ -1,4 +1,4 @@
-description: Giám sát vận hành & Logging
+description: Server có ổn không? Cài giám sát ngay.
 ---
 
 # /monitor - DevOps & Observability

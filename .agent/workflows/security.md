@@ -1,4 +1,4 @@
-description: Bảo mật chuyên sâu & Hardening
+description: Sợ bị hack? Quét lỗ hổng và bảo mật ngay.
 ---
 
 # /security - Security Hardening

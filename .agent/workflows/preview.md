@@ -1,5 +1,4 @@
----
-description: Quản lý server, xem trước dự án, khởi động/dừng
+description: Muốn xem trước web chạy thế nào? Bật Preview.
 ---
 
 # /preview - Preview Management

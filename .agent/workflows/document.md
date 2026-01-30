@@ -1,4 +1,4 @@
-description: Tự động viết/cập nhật tài liệu
+description: Lười viết docs? Để AI tự viết cho.
 ---
 
 # /document - Auto Documentation

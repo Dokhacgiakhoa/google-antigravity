@@ -1,4 +1,4 @@
-description: Tạo tính năng mới (Full-stack)
+description: Muốn tạo tính năng mới từ A-Z? Dùng cái này.
 ---
 
 # /create - Create Application

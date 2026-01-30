@@ -1,4 +1,4 @@
-description: Tổng kiểm tra chất lượng (Security, SEO)
+description: Sắp bàn giao khách? Kiểm tra lại toàn diện cho chắc.
 ---
 
 # /audit - Comprehensive Quality Check

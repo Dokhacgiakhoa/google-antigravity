@@ -1,4 +1,4 @@
-description: Kiểm thử tự động (Unit/E2E)
+description: Sợ bug khi sửa code? Viết test tự động.
 ---
 
 # /test - Test Generation and Execution
