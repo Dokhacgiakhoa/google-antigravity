@@ -28,7 +28,7 @@ npx antigravity-ide my_project
 npx antigravity-ide
 ```
 
-### ✨ Setup Wizard Features (v3.5.30)
+### ✨ Setup Wizard Features (v3.5.54)
 The new interactive CLI puts you in control with a **Premium Developer Experience**:
 
 1.  **Interactive & Visual**:

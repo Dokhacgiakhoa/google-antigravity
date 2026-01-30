@@ -27,7 +27,7 @@ npx antigravity-ide ten_du_an
 npx antigravity-ide
 ```
 
-### ✨ Tính năng Setup Wizard (v3.5.30)
+### ✨ Tính năng Setup Wizard (v3.5.54)
 Trải nghiệm dòng lệnh (CLI) đẳng cấp Premium:
 
 1.  **Tương tác & Mãn nhãn**:
