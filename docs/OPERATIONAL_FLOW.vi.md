@@ -1,103 +1,147 @@
-# Hướng dẫn Phối hợp Chuyên sâu: Rules (@) vs Workflows (/)
+# Hướng dẫn Chiến dịch (Operational Flow) 📘
 
-> **Triết lý Antigravity**:
-> - **/ (Workflow)**: Là **Tổng tư lệnh** (Ra lệnh bắt đầu chiến dịch).
-> - **@ (Rule)**: Là **Tham mưu trưởng** (Cung cấp chiến thuật chuyên môn).
-
-Tài liệu này cung cấp **6 Kịch bản Thực chiến** cho các quy mô và lĩnh vực khác nhau để bạn hình dung rõ cách phối hợp.
+> **Lời mở đầu**: Làm phần mềm là một **cuộc hội thoại dài** giữa Sếp (User) và Nhân viên (AI). Tài liệu này không nói lý thuyết, nó cung cấp **Biên bản hội thoại mẫu (Transcripts)** của 5 dự án thực tế để bạn copy-paste và học cách "ra lệnh" chuẩn chỉ.
 
 ---
 
-## 1. Kịch bản 1: Portfolio Cá nhân (Freelancer/Dev) 🎨
-**Mục tiêu**: Làm web giới thiệu bản thân, blog, tối ưu SEO để kiếm việc.
-**Quy mô**: Personal | **Lĩnh vực**: Personal Portfolio.
+## 🎯 Case Study 1: Sàn Thương mại Điện tử (Web Fullstack) 🛒
+**Độ khó**: Cao | **Thời gian**: 2 tuần quy đổi | **Trọng tâm**: Database, API, State Management.
 
-| Bước | User gõ lệnh (Prompt) | Giải thích cơ chế |
-| :--- | :--- | :--- |
-| **1. Khởi tạo** | `/create` | Chọn template "Personal", Industry "Personal". AI tự cài `@seo`, `@ui-ux-pro-max`. |
-| **2. Kế hoạch** | `/brainstorm` | AI gợi ý các section: About Me, Skills, Projects, Blog. |
-| **3. Giao diện** | "Tạo Hero section thật ấn tượng, hiệu ứng gõ chữ" <br> `Context: @ui-ux-pro-max` | AI dùng thư viện animation xịn, thiết kế tối giản, dark mode. |
-| **4. Nội dung** | "Viết code trang Blog hỗ trợ Markdown" <br> `Context: @frontend` | AI dùng Next.js MDX, tối ưu load bài viết. |
-| **5. Tối ưu** | `/seo` | AI quét thẻ meta, sitemap, check tốc độ tải trang (Lighthouse). |
-| **6. Phát hành** | `/deploy` | Đẩy thẳng lên Vercel miễn phí. |
+### Giai đoạn 1: Khởi động & Móng nhà (10%)
+> **Sếp**: `/create` (chọn SME, Industry F&B)
+>
+> **Sếp**: `/plan`
+> **Prompt**: "Anh muốn làm một trang bán giày Sneaker. Cần có trang chủ, trang chi tiết, giỏ hàng, và Admin Dashboard. Phân tích giúp anh cần những bảng (Table) nào trong Database?"
+>
+> **Sếp**: *Duyệt plan xong* -> "Ok, chốt plan. Tạo cấu trúc thư mục đi."
 
----
+### Giai đoạn 2: Xây dựng Backend & Database (30%)
+> **Sếp**: "Bây giờ thiết kế Schema Database nhé. Dùng PostgreSQL."
+> **Context**: `@database-architect`
+> **Prompt**: "Tạo file `schema.sql`. Cần bảng `Users`, `Products` (có size, color), `Orders`, `OrderItems`. Nhớ thêm Index vào cột `price` để sau này lọc cho nhanh."
+>
+> **Sếp**: "Giờ viết API đăng ký/đăng nhập."
+> **Context**: `@backend` `@security`
+> **Prompt**: "Tạo API POST `/auth/register`. Validate email kỹ vào. Password phải hash bằng Bcrypt. Trả về JWT Token nhé."
+>
+> **Sếp**: *Test thử thấy lỗi* -> `/debug`
+> **Prompt**: "Nãy anh gửi request Login mà nó báo lỗi 500. Log đây: `Cannot read property 'hash' of undefined`. Fix gấp."
+> **Context**: `@debug`
 
-## 2. Kịch bản 2: E-commerce Startup (SME) 🛒
-**Mục tiêu**: Sàn bán lẻ thời trang, có giỏ hàng, thanh toán.
-**Quy mô**: SME | **Lĩnh vực**: F&B / Retail.
+### Giai đoạn 3: Xây dựng Frontend (40%)
+> **Sếp**: "Quay sang làm giao diện. Dùng Next.js."
+> **Context**: `@frontend` `@ui-ux-pro-max`
+> **Prompt**: "Tạo Component `ProductCard`. Yêu cầu: Ảnh to, tên đậm, giá tiền màu đỏ. Khi hover vào thì thẻ nổi lên (elevation) và đổ bóng."
+>
+> **Sếp**: "Làm trang Giỏ hàng (Cart)."
+> **Context**: `@frontend`
+> **Prompt**: "Tạo trang `/cart`. Sử dụng Zustand để quản lý state giỏ hàng. Cần hiển thị list sản phẩm, nút tăng giảm số lượng, và tổng tiền tạm tính."
+>
+> **Sếp**: "Xấu quá, chỉnh lại CSS đi."
+> **Context**: `@ui-ux-pro-max`
+> **Prompt**: "Cái nút 'Thanh toán' nhìn phèn quá. Đổi sang gradient màu cam-tím, bo tròn góc, thêm icon Shopping Bag vào."
 
-| Bước | User gõ lệnh (Prompt) | Giải thích cơ chế |
-| :--- | :--- | :--- |
-| **1. Khởi tạo** | `/create` | Chọn "SME", Industry "F&B/Retail". AI cài `@database`, `@backend` chuẩn. |
-| **2. Cấu trúc DB** | "Thiết kế Schema cho Product và Order" <br> `Context: @database-architect` | AI tạo bảng SQL chuẩn 3NF, có indexing tối ưu tra cứu. |
-| **3. API** | "Viết API đặt hàng (Checkout)" <br> `Context: @backend` | AI viết API Node.js, xử lý transaction an toàn. |
-| **4. Tích hợp** | "Gắn cổng thanh toán Stripe/Momo" <br> `Context: @security` | AI xử lý token thanh toán, tuyệt đối không lưu thẻ tín dụng. |
-| **5. Giao diện** | `/enhance` -> "Thêm hiệu ứng bay vào giỏ hàng" | Cập nhật UI nhỏ mà không làm hỏng logic cũ. |
-| **6. Vận hành** | `/monitor` | Cài đặt log theo dõi đơn hàng lỗi. |
-
----
-
-## 3. Kịch bản 3: Ngân hàng số / Fintech (Enterprise) �
-**Mục tiêu**: App ví điện tử, yêu cầu bảo mật tuyệt đối.
-**Quy mô**: Enterprise | **Lĩnh vực**: Finance.
-
-| Bước | User gõ lệnh (Prompt) | Giải thích cơ chế |
-| :--- | :--- | :--- |
-| **1. Khởi tạo** | `/create` | Chọn "Enterprise", Industry "Finance". AI kích hoạt `@security`, `@compliance`, `@audit`. |
-| **2. Bảo mật** | `/plan` -> "Lập kế hoạch kiến trúc Zero Trust" | AI đề xuất kiến trúc chia tách network, mã hóa 2 lớp. |
-| **3. Core Auth** | "Code module đăng nhập xác thực 2 bước (2FA)" <br> `Context: @security @backend` | AI dùng thư viện Auth chuẩn, hash password bằng Argon2/Bcrypt. |
-| **4. Kiểm thử** | `/test` | Chạy bộ test chuyên sâu (E2E) giả lập tấn công (Penetration Test). |
-| **5. Rà soát** | `/audit` <br> `Context: @compliance` | Quét mã nguồn xem có vi phạm chuẩn GDPR/PCI-DSS không. |
-| **6. Bàn giao** | `/document` | Viết tài liệu kỹ thuật chi tiết cho team vận hành. |
-
----
-
-## 4. Kịch bản 4: Mobile Game 2D (Indie Game) 🎮
-**Mục tiêu**: Game xếp hình đơn giản, chạy mượt trên điện thoại.
-**Quy mô**: Personal/SME | **Lĩnh vực**: Game/Mobile.
-
-| Bước | User gõ lệnh (Prompt) | Giải thích cơ chế |
-| :--- | :--- | :--- |
-| **1. Khởi tạo** | `/create` | Chọn Industry "Mobile & Game". AI cài `@mobile`, `@performance`. |
-| **2. Logic Game** | "Viết hàm xử lý va chạm và tính điểm" <br> `Context: @backend` | AI viết logic tối ưu thuật toán, tránh lag. |
-| **3. Đồ họa** | "Tạo màn hình Menu chính có nhạc nền" <br> `Context: @ui-ux-pro-max @mobile` | AI thiết kế UI to rõ cho ngón tay chạm (Touch targets). |
-| **4. Hiệu năng** | `/debug` -> "Game bị giật khi nổ hiệu ứng" <br> `Context: @performance` | AI soi heap memory, tối ưu lại vòng lặp render. |
-| **5. Đa ngữ** | `/plan` -> "Thêm tiếng Việt và Anh" <br> `Context: @i18n` | Tách string ra file json để dịch. |
+### Giai đoạn 4: Tích hợp & Hoàn thiện (20%)
+> **Sếp**: "Giờ ghép API vào Frontend."
+> **Prompt**: "Ở trang Login, khi user bấm Submit thì gọi API `/auth/login`. Nếu thành công thì lưu token vào localStorage và chuyển hướng về trang chủ."
+>
+> **Sếp**: "Check lại hiệu năng xem sao."
+> **Context**: `@performance`
+> **Prompt**: "Chạy Lighthouse audit trang chủ xem điểm số thế nào. Tối ưu ảnh và lazy load mấy cái component nặng giúp anh."
 
 ---
 
-## 5. Kịch bản 5: CRM Nội bộ Doanh nghiệp (Corporate) 🏢
-**Mục tiêu**: Quản lý nhân sự, chấm công, dashboard báo cáo.
-**Quy mô**: SME | **Lĩnh vực**: Other (Corporate Tool).
+## 🎯 Case Study 2: Game Mobile "Flappy Clone" (Indie Game) 🎮
+**Độ khó**: Trung bình | **Trọng tâm**: Logic, Physics, Performance.
 
-| Bước | User gõ lệnh (Prompt) | Giải thích cơ chế |
-| :--- | :--- | :--- |
-| **1. Khởi tạo** | `/create` | Chọn Template "Dashboard". |
-| **2. Cấu trúc** | `/plan` -> "Sơ đồ module Nhân viên và Phòng ban" | AI vẽ sơ đồ quan hệ thực thể (ERD). |
-| **3. Import** | "Viết script import danh sách từ Excel" <br> `Context: @backend @data` | AI viết script Python/Node xử lý file lớn an toàn. |
-| **4. Dashboard** | "Vẽ biểu đồ tròn thống kê nhân sự" <br> `Context: @frontend` | Dùng thư viện Chart.js/Recharts. |
-| **5. Hướng dẫn** | `/onboard` | Tạo tài liệu hướng dẫn nhân viên mới cách dùng tool. |
+### Giai đoạn 1: Logic cốt lõi
+> **Sếp**: `/create` (chọn Mobile & Game)
+>
+> **Sếp**: "Viết logic trọng lực cho con chim."
+> **Context**: `@game-development`
+> **Prompt**: "Tạo class `Bird`. Có hàm `update()`. Mỗi khung hình thì `y` tăng dần (rơi xuống). Khi gọi `flap()` thì `velocity` nảy lên. Tinh chỉnh số liệu sao cho cảm giác giống Flappy Bird thật."
 
----
+### Giai đoạn 2: Gameplay loop
+> **Sếp**: "Làm chướng ngại vật (Pipe)."
+> **Prompt**: "Tạo class `PipeManager`. Cứ 2 giây sinh ra một cặp ống (trên/dưới). Ống di chuyển từ phải sang trái. Nếu chim va chạm (collision) với ống thì Game Over."
 
-## 6. Kịch bản 6: AI Research Lab (Advanced) 🧠
-**Mục tiêu**: Xây dựng mô hình dự đoán, xử lý dữ liệu lớn.
-**Quy mô**: Enterprise | **Lĩnh vực**: AI/Data.
-
-| Bước | User gõ lệnh (Prompt) | Giải thích cơ chế |
-| :--- | :--- | :--- |
-| **1. Khởi tạo** | `/create` | **Chọn Engine: Advanced (Python)**. AI cài `@ai-engineer`, `@data`. |
-| **2. Môi trường** | `/check` (Tính năng mới) | AI nhắc cài Python 3.13, CUDA nếu cần. |
-| **3. Dữ liệu** | "Viết pipeline làm sạch dữ liệu raw" <br> `Context: @data` | AI viết Pandas/NumPy script chau chuốt. |
-| **4. Model** | "Dựng khung mô hình RAG với LangChain" <br> `Context: @ai-engineer` | AI setup Vector DB, Embeddings flow. |
-| **5. Tối ưu** | "Giảm thời gian train model" <br> `Context: @performance` | AI gợi ý kỹ thuật lượng tử hóa (Quantization) hoặc Cache. |
+### Giai đoạn 3: Polish (Đánh bóng)
+> **Sếp**: "Thêm âm thanh vào."
+> **Prompt**: "Khi chim bay thì phát `sfx_wing.mp3`. Khi chết phát `sfx_hit.mp3`."
+>
+> **Sếp**: `/debug` (Game bị giật)
+> **Context**: `@performance`
+> **Prompt**: "Anh thấy chơi lâu thì game bị lag. Nghi là do tạo object nhiều quá mà không xóa. Check xem có memory leak ở chỗ `PipeManager` không?"
 
 ---
 
-## ⚡ Tổng kết Chiến thuật
+## 🎯 Case Study 3: Hệ thống Tài chính (Fintech Enterprise) 🏦
+**Độ khó**: Cực khó | **Trọng tâm**: Bảo mật, Audit, Compliance.
 
-*   Dùng **/ (Workflow)** khi bạn muốn chuyển trạng thái dự án (Bắt đầu -> Code -> Test -> Release).
-*   Dùng **@ (Rule)** khi bạn muốn "mai mối" đúng chuyên gia cho công việc (Việc UI gọi ông Frontend, việc DB gọi ông Database).
+### Giai đoạn 1: Hardening (Gia cố)
+> **Sếp**: `/create` (chọn Enterprise, Finance)
+>
+> **Sếp**: "Thiết kế kiến trúc bảo mật."
+> **Context**: `@security-auditor`
+> **Prompt**: "Review file `server.js`. Đảm bảo mình đã setup Helmet, Rate Limiting, và CORS chặt chẽ. Không cho phép IP lạ gọi Admin API."
 
-> **Mẹo**: Nếu bạn lười gõ `@`, cũng không sao. Hệ thống Antigravity đủ thông minh để tự đoán dựa trên từ khóa (ví dụ nói "sửa CSS" nó tự hiểu là `@frontend`). Nhưng gõ rõ `@` thì AI sẽ làm chính xác và nghiêm túc hơn 200%.
+### Giai đoạn 2: Nghiệp vụ nhạy cảm
+> **Sếp**: "Viết hàm chuyển tiền."
+> **Context**: `@backend` `@database-architect`
+> **Prompt**: "Viết function `transferMoney`. BẮT BUỘC dùng Database Transaction. Tiền trừ bên A và cộng bên B phải xảy ra đồng thời. Nếu lỗi phải Rollback ngay. Log lại mọi thao tác vào bảng Audit."
+
+### Giai đoạn 3: Rà soát (Audit)
+> **Sếp**: `/audit`
+> **Context**: `@compliance`
+> **Prompt**: "Quét toàn bộ code xem có chỗ nào log nhầm thông tin nhạy cảm (Số thẻ, SĐT) ra console không? Dự án này phải tuân thủ PCI-DSS."
+
+---
+
+## 🎯 Case Study 4: Blog Cá nhân (Personal Brand) ✍️
+**Độ khó**: Dễ | **Trọng tâm**: SEO, Tốc độ, Nội dung.
+
+> **Sếp**: `/create` (Personal)
+>
+> **Sếp**: "Viết trang Home giới thiệu bản thân."
+> **Context**: `@seo-expert-kit`
+> **Prompt**: "Viết nội dung giới thiệu anh là Kỹ sư AI 5 năm kinh nghiệm. Nhúng thêm mấy từ khóa như 'AI Consultant', 'Machine Learning' để dễ lên Top Google."
+>
+> **Sếp**: "Thêm tính năng Dark Mode."
+> **Context**: `@frontend`
+> **Prompt**: "Thêm nút chuyển đổi Sáng/Tối ở góc phải. Lưu setting vào máy người dùng."
+>
+> **Sếp**: `/deploy` -> "Đẩy lên Vercel giúp anh."
+
+---
+
+## 🎯 Case Study 5: Tool Xử lý Data (Python AI Lab) 🐍
+**Độ khó**: Chuyên sâu | **Trọng tâm**: Python, Data, Charts.
+
+> **Sếp**: `/create` (chọn Advanced - Python)
+> **Sếp**: *Thấy cảnh báo thiếu Python* -> "Ok, copy lệnh cài Python chạy terminal cái đã."
+>
+> **Sếp**: "Viết script đọc file Excel."
+> **Context**: `@data-engineer`
+> **Prompt**: "Dùng thư viện `pandas` đọc file `sales.xlsx`. Làm sạch dữ liệu: Xóa các dòng trống, điền giá trị 0 vào ô thiếu tiền."
+>
+> **Sếp**: "Vẽ biểu đồ."
+> **Context**: `@ai-engineer`
+> **Prompt**: "Dùng `matplotlib` vẽ biểu đồ đường doanh thu theo tháng. Xuất ra file `chart.png`."
+
+---
+
+## 📝 Tổng kết các "Câu thần chú" (Prompt Patterns)
+
+1.  **Mô hình "Vai trò - Nhiệm vụ - Tiêu chuẩn"**:
+    *   *Sai*: "Viết code login đi." (Sơ sài)
+    *   *Đúng*: "Đóng vai `@security`, viết API Login (`Nhiệm vụ`), yêu cầu hash password và chặn Brute Force (`Tiêu chuẩn`)."
+
+2.  **Mô hình "Debug dựa trên bằng chứng"**:
+    *   *Sai*: "Code lỗi rồi, sửa đi." (AI không biết lỗi gì)
+    *   *Đúng*: "Gọi `/debug`. Anh nhận được lỗi `Error: connection refused` ở dòng 50 file `db.js`. Phân tích xem do config sai port hay do DB chưa bật?"
+
+3.  **Mô hình "Tinh chỉnh từng bước" (Iterative)**:
+    *   Vòng 1: "Tạo giao diện cơ bản trước."
+    *   Vòng 2: "Thêm CSS cho đẹp."
+    *   Vòng 3: "Tối ưu code cho gọn."
+    *   *(Đừng bắt AI làm hoàn hảo ngay từ lệnh đầu tiên)*.
