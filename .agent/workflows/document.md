@@ -1,3 +1,4 @@
+---
 description: Lười viết docs? Để AI tự viết cho.
 ---
 

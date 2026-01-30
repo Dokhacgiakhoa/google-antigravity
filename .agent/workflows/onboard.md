@@ -1,3 +1,4 @@
+---
 description: Người mới vào team? Hướng dẫn họ tự động.
 ---
 
