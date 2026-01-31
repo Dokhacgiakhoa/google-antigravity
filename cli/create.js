@@ -280,15 +280,21 @@ trim_trailing_whitespace = true
 [*.md]
 trim_trailing_whitespace = false
 `;
-  fs.writeFileSync(path.join(projectPath, '.editorconfig'), editorConfig);
+        fs.writeFileSync(editorconfigPath, editorConfig);
+        console.log(chalk.green('  ✓ Created .editorconfig'));
+    }
 
-  // Generate .gitattributes
-  const gitAttributes = `* text=auto eol=lf
+    // Generate .gitattributes only if it doesn't exist
+    const gitAttributesPath = path.join(projectPath, '.gitattributes');
+    if (!fs.existsSync(gitAttributesPath)) {
+        const gitAttributes = `* text=auto eol=lf
 *.js text eol=lf
 *.sh text eol=lf
 bin/* text eol=lf
 `;
-  fs.writeFileSync(path.join(projectPath, '.gitattributes'), gitAttributes);
+        fs.writeFileSync(gitAttributesPath, gitAttributes);
+        console.log(chalk.green('  ✓ Created .gitattributes'));
+    }
 }
 
 function generateGeminiMd(rules, language = 'en', industry = 'other', agentName = 'Antigravity') {
@@ -318,7 +324,6 @@ function generateGeminiMd(rules, language = 'en', industry = 'other', agentName 
         personal: isVi ? 'Cá nhân & Portfolio (Sáng tạo, Cá nhân hóa)' : 'Personal & Portfolio (Creative, Personalized)',
         healthcare: isVi ? 'Y tế & Sức khỏe (Bảo mật, Tin cậy)' : 'Healthcare & HealthTech (Privacy, Reliability)',
         logistics: isVi ? 'Vận tải & Logistics (Hiệu quả, Real-time)' : 'Logistics & Supply Chain (Efficiency, Real-time)',
-        other: isVi ? 'Phát triển chung' : 'General Development',
         other: isVi ? 'Phát triển chung' : 'General Development'
     };
 
@@ -493,6 +498,6 @@ function printSuccessMessage(projectName, config) {
 }
 
 module.exports = {
-  createProject,
-  generateGeminiMd
+    createProject,
+    generateGeminiMd
 };
