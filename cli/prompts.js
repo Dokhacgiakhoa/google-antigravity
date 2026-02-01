@@ -196,8 +196,34 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     other: ['create', 'debug', 'enhance']
   };
 
+  // Determine Engine Mode and Workflows based on Scale
+  let engineMode = 'standard';
+  let selectedSkillCategories = [];
+  let scaleBasedWorkflows = [];
+
+  // SCALE LOGIC
+  if (responses.scale === 'flexible') { 
+      // PERSONAL: JS only, Minimal
+      engineMode = 'standard'; 
+      selectedSkillCategories = ['webdev', 'ai']; 
+      scaleBasedWorkflows = ['plan', 'debug', 'enhance']; 
+  } else if (responses.scale === 'balanced') { 
+      // TEAM: JS + Python, Hybrid
+      engineMode = 'advanced'; 
+      selectedSkillCategories = ['webdev', 'mobile', 'ai', 'growth', 'devops'];
+      scaleBasedWorkflows = ['plan', 'status', 'debug', 'enhance', 'test', 'document', 'onboard'];
+  } else { 
+      // ENTERPRISE: Full Power
+      engineMode = 'advanced'; 
+      selectedSkillCategories = Object.keys(skillCategories); 
+      scaleBasedWorkflows = ['plan', 'status', 'debug', 'enhance', 'test', 'document', 'onboard', 'security', 'audit', 'monitor', 'orchestrate', 'deploy'];
+  }
+
   const specificWorkflows = industryWorkflows[responses.industryDomain] || ['create', 'debug', 'enhance'];
-  
+  const finalWorkflows = new Set(scaleBasedWorkflows);
+
+  // Add industry-specific workflows
+  // Filter to ensure we only include workflows that actually exist in the whitelist
   const availableWorkflows = [
     'audit', 'brainstorm', 'create', 'debug', 'deploy', 'document', 'enhance', 
     'monitor', 'onboard', 'orchestrate', 'plan', 'preview', 'security', 'seo', 
@@ -205,9 +231,6 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     'explain', 'visually', 'mobile', 'performance', 'compliance', 'api', 'realtime', 'blog', 'portfolio'
   ];
 
-  const finalWorkflows = new Set(['plan', 'status', 'brainstorm', 'debug', 'enhance']);
-
-  // Add industry-specific workflows
   if (specificWorkflows && Array.isArray(specificWorkflows)) {
     specificWorkflows.forEach(w => {
       if (availableWorkflows.includes(w)) {
@@ -216,7 +239,7 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     });
   }
 
-  // Logic based on Industry and implicit skills
+  // Implicit industry workflows
   if (responses.industryDomain === 'personal' || responses.industryDomain === 'fnb') {
     finalWorkflows.add('ui-ux-pro-max');
   }
@@ -232,11 +255,11 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     rules: responses.scale,
     workflows: Array.from(finalWorkflows),
     packageManager: 'npm',
-    engineMode: 'standard' // Default since prompt was removed
+    engineMode: engineMode
   };
   
   // Return configuration with presets
-  return { ...responses, ...settings, skillCategories: Object.keys(skillCategories) };
+  return { ...responses, ...settings, skillCategories: selectedSkillCategories };
 }
 
 function getSkillsForCategories(categories) {

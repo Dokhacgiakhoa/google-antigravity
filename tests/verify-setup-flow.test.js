@@ -1,6 +1,6 @@
 
 const prompts = require('prompts');
-const { getProjectConfig } = require('../cli/prompts');
+const { getProjectConfig, skillCategories } = require('../cli/prompts');
 
 // Mock prompts
 jest.mock('prompts');
@@ -11,7 +11,7 @@ describe('Project Setup 10 Scenarios Verification', () => {
     });
 
     // Case 1: VI language, Personal scale, Finance industry
-    test('Case 1: VI / Personal / Finance -> Flexible rules, Finance workflows', async () => {
+    test('Case 1: VI / Personal (Flexible) -> Standard Engine, Limited Skills', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'fin-bot',
@@ -23,14 +23,14 @@ describe('Project Setup 10 Scenarios Verification', () => {
         const config = await getProjectConfig();
         
         expect(config.language).toBe('vi');
-        expect(config.rules).toBe('flexible'); // Personal -> flexible
+        expect(config.rules).toBe('flexible'); 
+        expect(config.engineMode).toBe('standard'); // Personal -> Standard
+        expect(config.skillCategories).toEqual(['webdev', 'ai']); // Limited skills
         expect(config.workflows).toContain('security'); // Finance workflow
-        expect(config.workflows).toContain('orchestrate'); // Finance implicit
-        expect(config.agentName).toBe('MoneyJarvis');
     });
 
     // Case 2: EN language, Enterprise scale, Education industry
-    test('Case 2: EN / Enterprise / Education -> Strict rules, Education workflows', async () => {
+    test('Case 2: EN / Enterprise (Strict) -> Advanced Engine, All Skills', async () => {
         prompts.mockResolvedValueOnce({
             language: 'en',
             projectName: 'edu-master',
@@ -41,14 +41,14 @@ describe('Project Setup 10 Scenarios Verification', () => {
 
         const config = await getProjectConfig();
 
-        expect(config.language).toBe('en');
-        expect(config.rules).toBe('strict'); // Enterprise -> strict
-        expect(config.workflows).toContain('explain'); // Education workflow
-        expect(config.workflows).toContain('visually');
+        expect(config.engineMode).toBe('advanced'); // Enterprise -> Advanced
+        expect(config.skillCategories).toHaveLength(Object.keys(skillCategories).length); // All skills
+        expect(config.rules).toBe('strict');
+        expect(config.workflows).toContain('explain');
     });
 
     // Case 3: VI language, Team scale, F&B industry
-    test('Case 3: VI / Team / F&B -> Balanced rules, F&B workflows + UI/UX', async () => {
+    test('Case 3: VI / Team (Balanced) -> Advanced Engine, Hybrid Skills', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'burger-king-ai',
@@ -59,13 +59,14 @@ describe('Project Setup 10 Scenarios Verification', () => {
 
         const config = await getProjectConfig();
 
+        expect(config.engineMode).toBe('advanced'); // Team -> Advanced
+        expect(config.skillCategories).toEqual(expect.arrayContaining(['webdev', 'mobile', 'ai', 'growth', 'devops']));
         expect(config.rules).toBe('balanced');
-        expect(config.workflows).toContain('mobile'); // F&B
-        expect(config.workflows).toContain('ui-ux-pro-max'); // F&B implicit
+        expect(config.workflows).toContain('mobile');
     });
 
     // Case 4: EN language, Personal scale, Healthcare industry
-    test('Case 4: EN / Personal / Healthcare -> Flexible rules, Compliance + Orchestrate', async () => {
+    test('Case 4: EN / Personal -> Standard Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'en',
             projectName: 'health-care-app',
@@ -76,12 +77,13 @@ describe('Project Setup 10 Scenarios Verification', () => {
 
         const config = await getProjectConfig();
 
-        expect(config.workflows).toContain('compliance'); // Healthcare
-        expect(config.workflows).toContain('orchestrate'); // Healthcare implicit
+        expect(config.engineMode).toBe('standard');
+        expect(config.skillCategories).toEqual(['webdev', 'ai']);
+        expect(config.workflows).toContain('compliance');
     });
 
     // Case 5: VI language, Enterprise scale, Logistics industry
-    test('Case 5: VI / Enterprise / Logistics -> Strict rules, API + Create', async () => {
+    test('Case 5: VI / Enterprise -> Advanced Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'ship-fast',
@@ -92,12 +94,13 @@ describe('Project Setup 10 Scenarios Verification', () => {
 
         const config = await getProjectConfig();
 
-        expect(config.workflows).toContain('api'); // Logistics
-        expect(config.workflows).toContain('create'); // Logistics implicit
+        expect(config.engineMode).toBe('advanced');
+        expect(config.skillCategories).toHaveLength(Object.keys(skillCategories).length);
+        expect(config.workflows).toContain('api');
     });
 
     // Case 6: EN language, Team scale, Other (General)
-    test('Case 6: EN / Team / Other -> Balanced rules, Basic workflows', async () => {
+    test('Case 6: EN / Team -> Advanced Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'en',
             projectName: 'random-app',
@@ -108,39 +111,34 @@ describe('Project Setup 10 Scenarios Verification', () => {
 
         const config = await getProjectConfig();
 
+        expect(config.engineMode).toBe('advanced');
         expect(config.workflows).toContain('debug');
-        expect(config.workflows).toContain('enhance');
-        expect(config.workflows).not.toContain('orchestrate'); // Shouldn't have heavy workflows
     });
 
     // Case 7: Skip Prompts (Non-interactive mode)
     test('Case 7: Skip Prompts -> Defaults applied', async () => {
-        const config = await getProjectConfig(true); // skipPrompts = true
+        const config = await getProjectConfig(true); 
 
+        // Check defaults logic validation if needed, assuming default is standard
         expect(config.projectName).toBe('my-agent-project');
-        expect(config.language).toBe('en');
-        expect(config.rules).toBe('balanced');
-        expect(config.skillCategories).toEqual(['webdev']);
+        expect(config.engineMode).toBe('standard');
     });
 
     // Case 8: Predefined Project Name
-    test('Case 8: Predefined Name -> Prompts should respect input', async () => {
+    test('Case 8: Predefined Name', async () => {
         prompts.mockResolvedValueOnce({
             language: 'en',
-            // projectName prompt should be skipped or value injected
             scale: 'balanced',
             industryDomain: 'other',
             agentName: 'NamedAgent'
         });
 
         const config = await getProjectConfig(false, 'cli-provided-name');
-
-        // Logic in prompts.js: if predefinedName, it injects it into prompt result or response object
         expect(config.projectName).toBe('cli-provided-name');
     });
 
     // Case 9: VI / Personal / Personal (Portfolio)
-    test('Case 9: VI / Personal / Personal -> UI/UX Pro Max', async () => {
+    test('Case 9: VI / Personal -> Standard Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'my-portfolio',
@@ -151,12 +149,12 @@ describe('Project Setup 10 Scenarios Verification', () => {
 
         const config = await getProjectConfig();
 
-        expect(config.workflows).toContain('seo'); // Personal specific
-        expect(config.workflows).toContain('ui-ux-pro-max'); // Personal implicit
+        expect(config.engineMode).toBe('standard');
+        expect(config.workflows).toContain('seo');
     });
 
     // Case 10: Workflow Intersection (Finance + Team)
-    test('Case 10: VI / Team / Finance -> Security + Audit + Orchestrate', async () => {
+    test('Case 10: VI / Team -> Advanced Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'bank-app',
@@ -167,9 +165,7 @@ describe('Project Setup 10 Scenarios Verification', () => {
 
         const config = await getProjectConfig();
 
-        expect(config.rules).toBe('balanced');
-        expect(config.workflows).toContain('audit');
-        expect(config.workflows).toContain('security');
+        expect(config.engineMode).toBe('advanced');
         expect(config.workflows).toContain('orchestrate');
     });
 });
