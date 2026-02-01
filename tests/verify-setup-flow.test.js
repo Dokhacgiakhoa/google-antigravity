@@ -10,13 +10,15 @@ describe('Project Setup 10 Scenarios Verification', () => {
         jest.clearAllMocks();
     });
 
-    // Case 1: VI language, Personal scale, Finance industry
-    test('Case 1: VI / Personal (Flexible) -> Standard Engine, Limited Skills', async () => {
+
+
+// Case 1: VI language, Personal scale, Web App (Default Industry: Other/All)
+    test('Case 1: VI / Personal (Flexible) / Web App -> Standard Engine, Limited Skills', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'fin-bot',
             scale: 'flexible',
-            industryDomain: 'finance',
+            productType: 'web_app',
             agentName: 'MoneyJarvis'
         });
 
@@ -24,106 +26,111 @@ describe('Project Setup 10 Scenarios Verification', () => {
         
         expect(config.language).toBe('vi');
         expect(config.rules).toBe('flexible'); 
-        expect(config.engineMode).toBe('standard'); // Personal -> Standard
-        expect(config.skillCategories).toEqual(['webdev', 'ai']); // Limited skills
-        expect(config.workflows).toContain('security'); // Finance workflow
+        expect(config.engineMode).toBe('standard'); 
+        expect(config.skillCategories).toContain('webdev');
+        expect(config.skillCategories).toContain('ai');
+        expect(config.skillCategories).not.toContain('mobile');
+        expect(config.industryDomain).toBe('other');
+        expect(config.workflows).toContain('security'); // From 'other' = all
     });
 
-    // Case 2: EN language, Enterprise scale, Education industry
-    test('Case 2: EN / Enterprise (Strict) -> Advanced Engine, All Skills', async () => {
+    // Case 2: EN language, Enterprise scale, Mobile App
+    test('Case 2: EN / Enterprise (Strict) / Mobile App -> Advanced Engine, All Skills', async () => {
         prompts.mockResolvedValueOnce({
             language: 'en',
             projectName: 'edu-master',
             scale: 'strict',
-            industryDomain: 'education',
+            productType: 'mobile_app',
             agentName: 'TeacherAI'
         });
 
         const config = await getProjectConfig();
 
-        expect(config.engineMode).toBe('advanced'); // Enterprise -> Advanced
-        expect(config.skillCategories).toHaveLength(Object.keys(skillCategories).length); // All skills
+        expect(config.engineMode).toBe('advanced'); 
+        expect(config.skillCategories).toContain('mobile');
+        expect(config.skillCategories).toContain('security');
         expect(config.rules).toBe('strict');
-        expect(config.workflows).toContain('explain');
+        expect(config.workflows).toContain('explain'); // From 'other' = all
     });
 
-    // Case 3: VI language, Team scale, F&B industry
-    test('Case 3: VI / Team (Balanced) -> Advanced Engine, Hybrid Skills', async () => {
+    // Case 3: VI language, Team scale, Game (Device)
+    test('Case 3: VI / Team (Balanced) / Game -> Advanced Engine, Mobile Skills', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
-            projectName: 'burger-king-ai',
+            projectName: 'game-ai',
             scale: 'balanced',
-            industryDomain: 'fnb',
+            productType: 'game',
             agentName: 'ChefBot'
         });
 
         const config = await getProjectConfig();
 
-        expect(config.engineMode).toBe('advanced'); // Team -> Advanced
-        expect(config.skillCategories).toEqual(expect.arrayContaining(['webdev', 'mobile', 'ai', 'growth', 'devops']));
+        expect(config.engineMode).toBe('advanced'); 
+        expect(config.skillCategories).toContain('mobile'); 
+        expect(config.skillCategories).toContain('ai');
+        expect(config.skillCategories).toContain('devops');
+        
         expect(config.rules).toBe('balanced');
-        expect(config.workflows).toContain('mobile');
+        expect(config.workflows).toContain('mobile'); 
     });
 
-    // Case 4: EN language, Personal scale, Healthcare industry
-    test('Case 4: EN / Personal -> Standard Engine', async () => {
+    // Case 4: EN language, Personal scale, CLI Tool
+    test('Case 4: EN / Personal / CLI Tool -> Standard Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'en',
-            projectName: 'health-care-app',
+            projectName: 'cli-app',
             scale: 'flexible',
-            industryDomain: 'healthcare',
+            productType: 'cli_tool',
             agentName: 'DrStrange'
         });
 
         const config = await getProjectConfig();
 
         expect(config.engineMode).toBe('standard');
-        expect(config.skillCategories).toEqual(['webdev', 'ai']);
-        expect(config.workflows).toContain('compliance');
+        expect(config.skillCategories).toContain('devops'); 
+        expect(config.workflows).toContain('create'); 
+        expect(config.workflows).toContain('orchestrate'); // From 'other' = all
     });
 
-    // Case 5: VI language, Enterprise scale, Logistics industry
-    test('Case 5: VI / Enterprise -> Advanced Engine', async () => {
+    // Case 5: VI language, Enterprise scale, API Service
+    test('Case 5: VI / Enterprise / API Service -> Advanced Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'ship-fast',
             scale: 'strict',
-            industryDomain: 'logistics',
+            productType: 'api_service',
             agentName: 'LogiBot'
         });
 
         const config = await getProjectConfig();
 
         expect(config.engineMode).toBe('advanced');
-        expect(config.skillCategories).toHaveLength(Object.keys(skillCategories).length);
-        expect(config.workflows).toContain('api');
+        expect(config.skillCategories).toContain('devops');
+        expect(config.workflows).toContain('api'); 
     });
 
-    // Case 6: EN language, Team scale, Other (All Fields)
-    test('Case 6: EN / Team -> Advanced Engine, All Workflows', async () => {
+    // Case 6: EN language, Team scale, Desktop App
+    test('Case 6: EN / Team / Desktop App -> Advanced Engine, All Workflows', async () => {
         prompts.mockResolvedValueOnce({
             language: 'en',
             projectName: 'random-app',
             scale: 'balanced',
-            industryDomain: 'other',
+            productType: 'desktop',
             agentName: 'Helper'
         });
 
         const config = await getProjectConfig();
 
         expect(config.engineMode).toBe('advanced');
-        // Now 'other' should include everything
+        expect(config.skillCategories).toContain('webdev'); 
         expect(config.workflows).toContain('debug');
-        expect(config.workflows).toContain('explain'); // From Education
-        expect(config.workflows).toContain('security'); // From Finance
-        expect(config.workflows).toContain('mobile'); // From F&B
+        expect(config.workflows).toContain('mobile'); 
     });
 
     // Case 7: Skip Prompts (Non-interactive mode)
     test('Case 7: Skip Prompts -> Defaults applied', async () => {
         const config = await getProjectConfig(true); 
 
-        // Check defaults logic validation if needed, assuming default is standard
         expect(config.projectName).toBe('my-agent-project');
         expect(config.engineMode).toBe('standard');
     });
@@ -133,7 +140,7 @@ describe('Project Setup 10 Scenarios Verification', () => {
         prompts.mockResolvedValueOnce({
             language: 'en',
             scale: 'balanced',
-            industryDomain: 'other',
+            productType: 'web_app',
             agentName: 'NamedAgent'
         });
 
@@ -141,35 +148,36 @@ describe('Project Setup 10 Scenarios Verification', () => {
         expect(config.projectName).toBe('cli-provided-name');
     });
 
-    // Case 9: VI / Personal / Personal (Portfolio)
-    test('Case 9: VI / Personal -> Standard Engine', async () => {
+    // Case 9: VI / Personal / Template
+    test('Case 9: VI / Personal / Template -> Standard Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'my-portfolio',
             scale: 'flexible',
-            industryDomain: 'personal',
+            productType: 'template',
             agentName: 'MeBot'
         });
 
         const config = await getProjectConfig();
 
         expect(config.engineMode).toBe('standard');
-        expect(config.workflows).toContain('seo');
+        expect(config.skillCategories).toContain('webdev'); 
+        expect(config.workflows).toContain('seo'); // From 'other' = all
     });
 
-    // Case 10: Workflow Intersection (Finance + Team)
-    test('Case 10: VI / Team -> Advanced Engine', async () => {
+    // Case 10: VI / Team / Web App
+    test('Case 10: VI / Team / Web App -> Advanced Engine', async () => {
         prompts.mockResolvedValueOnce({
             language: 'vi',
             projectName: 'bank-app',
             scale: 'balanced',
-            industryDomain: 'finance',
+            productType: 'web_app',
             agentName: 'Banker'
         });
 
         const config = await getProjectConfig();
 
         expect(config.engineMode).toBe('advanced');
-        expect(config.workflows).toContain('orchestrate');
+        expect(config.workflows).toContain('orchestrate'); // From 'other' = all
     });
 });

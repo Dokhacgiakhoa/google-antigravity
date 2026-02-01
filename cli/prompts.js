@@ -144,26 +144,50 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     },
     {
       type: 'select',
-      name: 'industryDomain',
-      message: (prev, values) => values.language === 'vi' ? 'Lĩnh vực dự án (Industry):' : 'Select Industry Domain:',
+      name: 'productType',
+      message: (prev, values) => values.language === 'vi' ? 'Loại sản phẩm (Product Type):' : 'Select Product Type:',
       choices: (prev, values) => values.language === 'vi' ? [
-        { title: '💰 Finance (Tài chính - Fintech)', value: 'finance' },
-        { title: '🎓 Education (Giáo dục - EdTech)', value: 'education' },
-        { title: '🍔 F&B / Restaurant (Nhà hàng)', value: 'fnb' },
-        { title: '👤 Personal / Portfolio (Cá nhân)', value: 'personal' },
-        { title: '🏥 Healthcare (Y tế - HealthTech)', value: 'healthcare' },
-        { title: '🚚 Logistics (Vận tải)', value: 'logistics' },
-        { title: '🔮 Other (Khác - Tất cả lĩnh vực)', value: 'other' }
+        { title: '──────── USER APPS ────────', disabled: true },
+        { title: '🌐 Web App (Dashboard, SaaS, SME)', value: 'web_app' },
+        { title: '⚡ PWA (App giả lập trên Web)', value: 'pwa' },
+        { title: '🖥️ Desktop App (Windows/MacOS)', value: 'desktop' },
+        { title: '📱 Mobile App (iOS/Android)', value: 'mobile_app' },
+        { title: '🧩 Browser Extension (Chrome/Edge)', value: 'extension' },
+        
+        { title: '──────── DEV TOOLS ────────', disabled: true },
+        { title: '⌨️ CLI Tool (Terminal Command)', value: 'cli_tool' },
+        { title: '📦 Library / Package (NPM)', value: 'library' },
+        { title: '🔌 API Service (Backend Only)', value: 'api_service' },
+
+        { title: '──────── AI AGENTS ────────', disabled: true },
+        { title: '💬 Chatbot / Assistant (Telegram/Discord)', value: 'chatbot' },
+        { title: '🤖 Autonomous Agent (Tự động hóa)', value: 'ai_agent' },
+
+        { title: '──────── ASSETS ────────', disabled: true },
+        { title: '🎮 Interactive Game (Web/Mobile)', value: 'game' },
+        { title: '🎨 Template / Theme', value: 'template' }
       ] : [
-        { title: '💰 Finance (Fintech)', value: 'finance' },
-        { title: '🎓 Education (EdTech)', value: 'education' },
-        { title: '🍔 F&B / Restaurant', value: 'fnb' },
-        { title: '👤 Personal / Portfolio', value: 'personal' },
-        { title: '🏥 Healthcare (HealthTech)', value: 'healthcare' },
-        { title: '🚚 Logistics', value: 'logistics' },
-        { title: '🔮 Other (General / All Fields)', value: 'other' }
+        { title: '──────── USER APPS ────────', disabled: true },
+        { title: '🌐 Web App (SaaS, Dashboard)', value: 'web_app' },
+        { title: '⚡ PWA (Progressive Web App)', value: 'pwa' },
+        { title: '🖥️ Desktop App (Electron/Tauri)', value: 'desktop' },
+        { title: '📱 Mobile App (iOS/Android)', value: 'mobile_app' },
+        { title: '🧩 Browser Extension', value: 'extension' },
+
+        { title: '──────── DEV TOOLS ────────', disabled: true },
+        { title: '⌨️ CLI Tool', value: 'cli_tool' },
+        { title: '📦 Library / Package', value: 'library' },
+        { title: '🔌 API Service (Backend)', value: 'api_service' },
+
+        { title: '──────── AI AGENTS ────────', disabled: true },
+        { title: '💬 Chatbot / Assistant', value: 'chatbot' },
+        { title: '🤖 Autonomous Agent', value: 'ai_agent' },
+
+        { title: '──────── ASSETS ────────', disabled: true },
+        { title: '🎮 Interactive Game', value: 'game' },
+        { title: '🎨 Template / Theme', value: 'template' }
       ],
-      initial: 6
+      initial: 1
     },
     {
       type: 'text',
@@ -183,11 +207,13 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     responses.projectName = predefinedName;
   }
 
+  // Default Industry to 'other' (General / All Fields) since prompt was removed
+  responses.industryDomain = 'other';
+
   // PRESETS CONFIGURATION
   const baseWorkflows = ['git', 'plan', 'status'];
   
   // Define available industry-specific workflows 
-  // (Whitelist to ensure we only include real files)
   const availableWorkflows = [
     'audit', 'brainstorm', 'create', 'debug', 'deploy', 'document', 'enhance', 
     'monitor', 'onboard', 'orchestrate', 'plan', 'preview', 'security', 'seo', 
@@ -207,25 +233,50 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
 
   // Determine Engine Mode and Workflows based on Scale
   let engineMode = 'standard';
-  let selectedSkillCategories = [];
+  let selectedSkillCategories = new Set(['ai']); // AI is always core
   let scaleBasedWorkflows = [];
 
   // SCALE LOGIC
   if (responses.scale === 'flexible') { 
       // PERSONAL: JS only, Minimal
       engineMode = 'standard'; 
-      selectedSkillCategories = ['webdev', 'ai']; 
       scaleBasedWorkflows = ['plan', 'debug', 'enhance']; 
   } else if (responses.scale === 'balanced') { 
       // TEAM: JS + Python, Hybrid
       engineMode = 'advanced'; 
-      selectedSkillCategories = ['webdev', 'mobile', 'ai', 'growth', 'devops'];
+      selectedSkillCategories.add('growth');
+      selectedSkillCategories.add('devops');
       scaleBasedWorkflows = ['plan', 'status', 'debug', 'enhance', 'test', 'document', 'onboard'];
   } else { 
       // ENTERPRISE: Full Power
       engineMode = 'advanced'; 
-      selectedSkillCategories = Object.keys(skillCategories); 
+      selectedSkillCategories.add('security');
+      selectedSkillCategories.add('growth');
+      selectedSkillCategories.add('devops');
       scaleBasedWorkflows = ['plan', 'status', 'debug', 'enhance', 'test', 'document', 'onboard', 'security', 'audit', 'monitor', 'orchestrate', 'deploy'];
+  }
+
+  // PRODUCT TYPE LOGIC
+  const type = responses.productType;
+  
+  // 1. User Applications
+  if (['web_app', 'pwa', 'desktop', 'extension', 'template'].includes(type)) {
+    selectedSkillCategories.add('webdev');
+  }
+  if (type === 'mobile_app' || type === 'game') {
+    selectedSkillCategories.add('mobile'); // 'game' falls under mobile skills (game-development)
+  }
+
+  // 2. Dev Tools
+  if (['cli_tool', 'library', 'api_service'].includes(type)) {
+    selectedSkillCategories.add('devops'); // Logic for publishing/CI
+    // Implicitly backend focused
+  }
+
+  // 3. AI Agents
+  if (['chatbot', 'ai_agent'].includes(type)) {
+    // Standard AI skills already added
+    // Maybe add more specific ones later
   }
 
   const specificWorkflows = industryWorkflows[responses.industryDomain] || ['create', 'debug', 'enhance'];
@@ -240,15 +291,21 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     });
   }
 
-  // Implicit industry workflows (Additional logic)
-  if (responses.industryDomain === 'personal' || responses.industryDomain === 'fnb') {
+  // Implicit industry/product workflows
+  if (responses.industryDomain === 'personal' || responses.industryDomain === 'fnb' || type === 'web_app' || type === 'pwa') {
     finalWorkflows.add('ui-ux-pro-max');
   }
-  if (responses.industryDomain === 'finance' || responses.industryDomain === 'healthcare') {
+  if (responses.industryDomain === 'finance' || responses.industryDomain === 'healthcare' || type === 'ai_agent' || type === 'chatbot') {
     finalWorkflows.add('orchestrate');
   }
-  if (responses.industryDomain === 'logistics' || responses.industryDomain === 'other') {
+  if (['logistics', 'other'].includes(responses.industryDomain) || ['cli_tool', 'api_service'].includes(type)) {
     finalWorkflows.add('create');
+  }
+  if (type === 'api_service') {
+    finalWorkflows.add('api');
+  }
+  if (type === 'mobile_app') {
+    finalWorkflows.add('mobile');
   }
 
   const settings = {
@@ -256,11 +313,12 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
     rules: responses.scale,
     workflows: Array.from(finalWorkflows),
     packageManager: 'npm',
-    engineMode: engineMode
+    engineMode: engineMode,
+    productType: responses.productType
   };
   
   // Return configuration with presets
-  return { ...responses, ...settings, skillCategories: selectedSkillCategories };
+  return { ...responses, ...settings, skillCategories: Array.from(selectedSkillCategories) };
 }
 
 function getSkillsForCategories(categories) {
