@@ -1,11 +1,13 @@
-/**
- * Interactive prompts for project configuration
- */
-
 const prompts = require('prompts');
 const chalk = require('chalk');
 const gradient = require('gradient-string');
 const packageJson = require('../package.json');
+
+// Import Logic Modules
+const { skillCategories, getSkillsForCategories } = require('./logic/skill-definitions');
+const { getScaleConfig } = require('./logic/scale-rules');
+const { getProductSkills } = require('./logic/product-skills');
+const { getWorkflows } = require('./logic/workflow-manager');
 
 // Display concise banner with gradient
 function displayBanner() {
@@ -24,61 +26,6 @@ function displayBanner() {
   console.log('');
 }
 
-const skillCategories = {
-  webdev: {
-    name: 'Web High-Performance',
-    skills: [
-      'modern-web-architect',
-      'full-stack-scaffold',
-      'api-documenter',
-      'i18n-localization'
-    ]
-  },
-  mobile: {
-    name: 'Mobile & Game',
-    skills: [
-      'mobile-design',
-      'game-development',
-      'i18n-localization'
-    ]
-  },
-  devops: {
-    name: 'DevOps & Cloud',
-    skills: [
-      'cloud-architect-master',
-      'deployment-engineer',
-      'incident-responder',
-      'mcp-builder'
-    ]
-  },
-  security: {
-    name: 'Security & Audit',
-    skills: [
-      'security-auditor',
-      'penetration-tester-master',
-      'production-code-audit',
-      'vulnerability-scanner'
-    ]
-  },
-  ai: {
-    name: 'AI & ML',
-    skills: [
-      'ai-engineer',
-      'geo-fundamentals',
-      'prompt-engineer'
-    ]
-  },
-  growth: {
-    name: 'Growth & Data',
-    skills: [
-      'cro-expert-kit',
-      'seo-expert-kit',
-      'database-migration',
-      'performance-engineer'
-    ]
-  }
-};
-
 async function getProjectConfig(skipPrompts = false, predefinedName = null) {
   if (skipPrompts) {
     return {
@@ -90,7 +37,9 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
       includeDashboard: false,
       language: 'en',
       packageManager: 'npm',
-      engineMode: 'standard'
+      engineMode: 'standard',
+      productType: 'web_app', // Default
+      industryDomain: 'other' // Default
     };
   }
 
@@ -102,7 +51,7 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
 
   /* 
     PHASE 1: BASIC INFORMATION
-    Order: Language -> Name -> Scale -> Industry -> Agent Name
+    Order: Language -> Name -> Scale -> ProductType -> Agent Name
   */
   const responses = await prompts([
     {
@@ -203,132 +152,43 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
   });
   
   // Inject predefined name if it exists (so logic downstream works)
+  console.log(`\n${chalk.green('✔')} Setup Complete! Generating Project Plan...`);
   if (predefinedName) {
     responses.projectName = predefinedName;
   }
 
-  // Default Industry to 'other' (General / All Fields) since prompt was removed
+  // Default Industry to 'other' (General / All Fields)
   responses.industryDomain = 'other';
 
-  // PRESETS CONFIGURATION
-  const baseWorkflows = ['git', 'plan', 'status'];
-  
-  // Define available industry-specific workflows 
-  const availableWorkflows = [
-    'audit', 'brainstorm', 'create', 'debug', 'deploy', 'document', 'enhance', 
-    'monitor', 'onboard', 'orchestrate', 'plan', 'preview', 'security', 'seo', 
-    'status', 'test', 'ui-ux-pro-max',
-    'explain', 'visually', 'mobile', 'performance', 'compliance', 'api', 'realtime', 'blog', 'portfolio'
-  ];
+  // --- LOGIC INTEGRATION START ---
 
-  const industryWorkflows = {
-    finance: ['security', 'audit', 'test'],
-    education: ['explain', 'visually', 'test'],
-    fnb: ['performance', 'mobile', 'deploy'],
-    personal: ['blog', 'portfolio', 'seo'],
-    healthcare: ['compliance', 'security', 'audit'],
-    logistics: ['api', 'realtime', 'deploy'],
-    other: availableWorkflows // 'Other' now means EVERYTHING (General / All Fields)
-  };
+  // 1. Get Scale Configuration (Engine, Rules, Core Skills)
+  const scaleConfig = getScaleConfig(responses.scale);
 
-  // Determine Engine Mode and Workflows based on Scale
-  let engineMode = 'standard';
-  let selectedSkillCategories = new Set(['ai']); // AI is always core
-  let scaleBasedWorkflows = [];
+  // 2. Get Product Skills
+  const productSkills = getProductSkills(responses.productType);
 
-  // SCALE LOGIC
-  if (responses.scale === 'flexible') { 
-      // PERSONAL: JS only, Minimal
-      engineMode = 'standard'; 
-      scaleBasedWorkflows = ['plan', 'debug', 'enhance']; 
-  } else if (responses.scale === 'balanced') { 
-      // TEAM: JS + Python, Hybrid
-      engineMode = 'advanced'; 
-      selectedSkillCategories.add('growth');
-      selectedSkillCategories.add('devops');
-      scaleBasedWorkflows = ['plan', 'status', 'debug', 'enhance', 'test', 'document', 'onboard'];
-  } else { 
-      // ENTERPRISE: Full Power
-      engineMode = 'advanced'; 
-      selectedSkillCategories.add('security');
-      selectedSkillCategories.add('growth');
-      selectedSkillCategories.add('devops');
-      scaleBasedWorkflows = ['plan', 'status', 'debug', 'enhance', 'test', 'document', 'onboard', 'security', 'audit', 'monitor', 'orchestrate', 'deploy'];
-  }
+  // 3. Combine Skills (Core + Product)
+  const allSkills = new Set([...scaleConfig.coreSkillCategories, ...productSkills]);
 
-  // PRODUCT TYPE LOGIC
-  const type = responses.productType;
-  
-  // 1. User Applications
-  if (['web_app', 'pwa', 'desktop', 'extension', 'template'].includes(type)) {
-    selectedSkillCategories.add('webdev');
-  }
-  if (type === 'mobile_app' || type === 'game') {
-    selectedSkillCategories.add('mobile'); // 'game' falls under mobile skills (game-development)
-  }
-
-  // 2. Dev Tools
-  if (['cli_tool', 'library', 'api_service'].includes(type)) {
-    selectedSkillCategories.add('devops'); // Logic for publishing/CI
-    // Implicitly backend focused
-  }
-
-  // 3. AI Agents
-  if (['chatbot', 'ai_agent'].includes(type)) {
-    // Standard AI skills already added
-    // Maybe add more specific ones later
-  }
-
-  const specificWorkflows = industryWorkflows[responses.industryDomain] || ['create', 'debug', 'enhance'];
-  const finalWorkflows = new Set(scaleBasedWorkflows);
-
-  // Add industry-specific workflows
-  if (specificWorkflows && Array.isArray(specificWorkflows)) {
-    specificWorkflows.forEach(w => {
-      if (availableWorkflows.includes(w)) {
-        finalWorkflows.add(w);
-      }
-    });
-  }
-
-  // Implicit industry/product workflows
-  if (responses.industryDomain === 'personal' || responses.industryDomain === 'fnb' || type === 'web_app' || type === 'pwa') {
-    finalWorkflows.add('ui-ux-pro-max');
-  }
-  if (responses.industryDomain === 'finance' || responses.industryDomain === 'healthcare' || type === 'ai_agent' || type === 'chatbot') {
-    finalWorkflows.add('orchestrate');
-  }
-  if (['logistics', 'other'].includes(responses.industryDomain) || ['cli_tool', 'api_service'].includes(type)) {
-    finalWorkflows.add('create');
-  }
-  if (type === 'api_service') {
-    finalWorkflows.add('api');
-  }
-  if (type === 'mobile_app') {
-    finalWorkflows.add('mobile');
-  }
+  // 4. Get Workflows (combined from Scale and Product/Industry)
+  const finalWorkflows = getWorkflows(
+      responses.industryDomain, 
+      responses.productType, 
+      scaleConfig.baseWorkflows
+  );
 
   const settings = {
     template: 'standard',
-    rules: responses.scale,
-    workflows: Array.from(finalWorkflows),
+    rules: scaleConfig.rulesMode,
+    workflows: finalWorkflows,
     packageManager: 'npm',
-    engineMode: engineMode,
+    engineMode: scaleConfig.engineMode,
     productType: responses.productType
   };
   
-  // Return configuration with presets
-  return { ...responses, ...settings, skillCategories: Array.from(selectedSkillCategories) };
-}
-
-function getSkillsForCategories(categories) {
-  const skills = [];
-  categories.forEach(category => {
-    if (skillCategories[category]) {
-      skills.push(...skillCategories[category].skills);
-    }
-  });
-  return skills;
+  // Return configuration
+  return { ...responses, ...settings, skillCategories: Array.from(allSkills) };
 }
 
 module.exports = {
