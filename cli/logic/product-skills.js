@@ -6,29 +6,30 @@
 function getProductSkills(productType) {
     const skillsToAdd = new Set();
 
-    // 1. User Applications
-    if (['web_app', 'pwa', 'desktop', 'extension', 'template'].includes(productType)) {
+    // 1. User Applications (Web/Mobile/Desktop)
+    if (productType === 'user_app') {
         skillsToAdd.add('webdev');
-    }
-    if (['web_app', 'pwa', 'desktop'].includes(productType)) {
-        skillsToAdd.add('testing'); // Apps need QA
-    }
-    if (productType === 'mobile_app' || productType === 'game') {
         skillsToAdd.add('mobile');
+        skillsToAdd.add('testing');
     }
 
-    // 2. Dev Tools
-    if (['cli_tool', 'library', 'api_service'].includes(productType)) {
+    // 2. Developer Tools (CLI/Lib/API)
+    if (productType === 'dev_tool') {
         skillsToAdd.add('devops');
-        skillsToAdd.add('testing'); // Tools need robust testing
+        skillsToAdd.add('testing');
     }
 
-    // 3. AI Agents
-    if (['chatbot', 'ai_agent'].includes(productType)) {
+    // 3. AI Agents (Chatbot/Auto)
+    if (productType === 'ai_agent') {
         skillsToAdd.add('ai');
+        skillsToAdd.add('maker');
     }
-    if (productType === 'chatbot') {
-        skillsToAdd.add('maker'); // For Telegram bot builder etc.
+
+    // 4. Digital Assets (Game/Template)
+    if (productType === 'digital_asset') {
+        skillsToAdd.add('mobile'); // For Game Dev skills
+        skillsToAdd.add('webdev'); // For Templates
+        skillsToAdd.add('growth'); // For SEO/Marketing
     }
 
     return Array.from(skillsToAdd);

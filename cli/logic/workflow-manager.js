@@ -33,22 +33,22 @@ function getWorkflows(industryDomain, productType, scaleWorkflows) {
     }
 
     // Implicit Product/Industry Workflows logic
-    if (industryDomain === 'personal' || industryDomain === 'fnb' || productType === 'web_app' || productType === 'pwa') {
+    if (industryDomain === 'personal' || industryDomain === 'fnb' || productType === 'user_app') {
         finalWorkflows.add('ui-ux-pro-max');
     }
-    if (industryDomain === 'finance' || industryDomain === 'healthcare' || productType === 'ai_agent' || productType === 'chatbot') {
+    if (industryDomain === 'finance' || industryDomain === 'healthcare' || productType === 'ai_agent') {
         finalWorkflows.add('orchestrate');
     }
-    if (['logistics', 'other'].includes(industryDomain) || ['cli_tool', 'api_service'].includes(productType)) {
+    if (['logistics', 'other'].includes(industryDomain) || productType === 'dev_tool') {
         finalWorkflows.add('create');
     }
-    if (productType === 'api_service') {
+    if (productType === 'dev_tool') {
         finalWorkflows.add('api');
     }
-    if (productType === 'mobile_app' || productType === 'game') {
+    if (productType === 'user_app' || productType === 'digital_asset') {
         finalWorkflows.add('mobile');
     }
-    if (productType === 'template') {
+    if (productType === 'digital_asset') {
         finalWorkflows.add('seo');
     }
 

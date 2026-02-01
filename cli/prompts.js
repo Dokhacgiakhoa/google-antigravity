@@ -38,7 +38,7 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
       language: 'en',
       packageManager: 'npm',
       engineMode: 'standard',
-      productType: 'web_app', // Default
+      productType: 'user_app', // Default
       industryDomain: 'other' // Default
     };
   }
@@ -96,47 +96,17 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
       name: 'productType',
       message: (prev, values) => values.language === 'vi' ? 'Loại sản phẩm (Product Type):' : 'Select Product Type:',
       choices: (prev, values) => values.language === 'vi' ? [
-        { title: '──────── USER APPS ────────', disabled: true },
-        { title: '🌐 Web App (Dashboard, SaaS, SME)', value: 'web_app' },
-        { title: '⚡ PWA (App giả lập trên Web)', value: 'pwa' },
-        { title: '🖥️ Desktop App (Windows/MacOS)', value: 'desktop' },
-        { title: '📱 Mobile App (iOS/Android)', value: 'mobile_app' },
-        { title: '🧩 Browser Extension (Chrome/Edge)', value: 'extension' },
-        
-        { title: '──────── DEV TOOLS ────────', disabled: true },
-        { title: '⌨️ CLI Tool (Terminal Command)', value: 'cli_tool' },
-        { title: '📦 Library / Package (NPM)', value: 'library' },
-        { title: '🔌 API Service (Backend Only)', value: 'api_service' },
-
-        { title: '──────── AI AGENTS ────────', disabled: true },
-        { title: '💬 Chatbot / Assistant (Telegram/Discord)', value: 'chatbot' },
-        { title: '🤖 Autonomous Agent (Tự động hóa)', value: 'ai_agent' },
-
-        { title: '──────── ASSETS ────────', disabled: true },
-        { title: '🎮 Interactive Game (Web/Mobile)', value: 'game' },
-        { title: '🎨 Template / Theme', value: 'template' }
+        { title: '📱 User Application (App/Web/Mobile/Desktop)', value: 'user_app' },
+        { title: '🛠️ Developer Tool (CLI/Library/API)', value: 'dev_tool' },
+        { title: '🤖 AI Agent (Chatbot/Automation)', value: 'ai_agent' },
+        { title: '🎨 Digital Asset (Game/Template/Media)', value: 'digital_asset' }
       ] : [
-        { title: '──────── USER APPS ────────', disabled: true },
-        { title: '🌐 Web App (SaaS, Dashboard)', value: 'web_app' },
-        { title: '⚡ PWA (Progressive Web App)', value: 'pwa' },
-        { title: '🖥️ Desktop App (Electron/Tauri)', value: 'desktop' },
-        { title: '📱 Mobile App (iOS/Android)', value: 'mobile_app' },
-        { title: '🧩 Browser Extension', value: 'extension' },
-
-        { title: '──────── DEV TOOLS ────────', disabled: true },
-        { title: '⌨️ CLI Tool', value: 'cli_tool' },
-        { title: '📦 Library / Package', value: 'library' },
-        { title: '🔌 API Service (Backend)', value: 'api_service' },
-
-        { title: '──────── AI AGENTS ────────', disabled: true },
-        { title: '💬 Chatbot / Assistant', value: 'chatbot' },
-        { title: '🤖 Autonomous Agent', value: 'ai_agent' },
-
-        { title: '──────── ASSETS ────────', disabled: true },
-        { title: '🎮 Interactive Game', value: 'game' },
-        { title: '🎨 Template / Theme', value: 'template' }
+        { title: '📱 User Application (App/Web/Mobile/Desktop)', value: 'user_app' },
+        { title: '🛠️ Developer Tool (CLI/Library/API)', value: 'dev_tool' },
+        { title: '🤖 AI Agent (Chatbot/Automation)', value: 'ai_agent' },
+        { title: '🎨 Digital Asset (Game/Template/Media)', value: 'digital_asset' }
       ],
-      initial: 1
+      initial: 0
     },
     {
       type: 'text',
