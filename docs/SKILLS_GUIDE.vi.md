@@ -19,7 +19,7 @@ Hệ thống **KHÔNG** nạp tất cả 22 chuyên gia cùng lúc (vì sẽ qu�
 ---
 
 ## 1.5. Phân Bổ Thông Minh (Smart Allocation)
-(Cập nhật v3.5.71)
+(Cập nhật v3.5.73)
 
 Hệ thống không còn cài đặt "đại trà". Thay vào đó, "Vũ khí" được cấp phát dựa trên **2 Yếu Tố**:
 
@@ -29,10 +29,10 @@ Hệ thống không còn cài đặt "đại trà". Thay vào đó, "Vũ khí" �
 *   **🏢 Enterprise**: Full Security, Audit, Deep Orchestration.
 
 ### B. Theo Loại Sản Phẩm (Product Type)
-*   📱 **User Apps** (Web/Mobile): Tự động nạp `webdev`, `mobile`.
-*   🛠️ **Dev Tools** (CLI/Library): Tự động nạp `devops`, `testing`.
-*   🤖 **AI Agents** (Chatbot): Tự động nạp `ai`, `maker`.
-*   🎨 **Assets** (Game/Template): Tự động nạp `game-development`, `seo`.
+*   📱 **User Application** (App/Web/Mobile): Tự động nạp `webdev`, `mobile`, `testing`.
+*   🛠️ **Developer Tool** (CLI/Library): Tự động nạp `devops`, `testing`.
+*   🤖 **AI Agent** (Chatbot/Auto): Tự động nạp `ai`, `maker`.
+*   🎨 **Digital Asset** (Game/Template): Tự động nạp `game-development`, `webdev`, `seo`.
 
 ---
 
