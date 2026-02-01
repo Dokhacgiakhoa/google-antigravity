@@ -18,6 +18,27 @@ Hệ thống **KHÔNG** nạp tất cả 22 chuyên gia cùng lúc (vì sẽ qu�
 
 ---
 
+## 1.5. Phân Bổ Theo Quy Mô (Scale-Based Allocation)
+
+Từ v3.5.61, số lượng Skills được cài đặt sẽ phụ thuộc vào **Quy mô dự án** để tối ưu tài nguyên:
+
+*   **👤 Cá nhân (Personal)**:
+    *   **Engine**: Standard (Node.js).
+    *   **Skills**: Tinh gọn. Chỉ gồm nhóm **WebDev** và **AI**.
+    *   **Mục tiêu**: Nhanh, nhẹ, không rườm rà.
+
+*   **👥 Team (Nhóm)**:
+    *   **Engine**: Advanced (Node.js + Python).
+    *   **Skills**: Hybrid. Thêm **Mobile**, **DevOps**, **Growth**.
+    *   **Mục tiêu**: Đủ công cụ để collab và deploy sản phẩm hoàn chỉnh.
+
+*   **🏢 Doanh nghiệp (Enterprise)**:
+    *   **Engine**: Advanced (Full Power).
+    *   **Skills**: **FULL**. Kích hoạt toàn bộ Security, Audit, Big Data.
+    *   **Mục tiêu**: Bảo mật, Tuân thủ, và Khả năng mở rộng tối đa.
+
+---
+
 ## 2. Danh Sách Các Chuyên Gia (Master Skills)
 
 ### 💻 Nhóm Phát Triển (Development)

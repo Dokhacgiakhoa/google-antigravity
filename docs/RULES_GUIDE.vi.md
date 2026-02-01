@@ -4,6 +4,18 @@
 
 ---
 
+## 0. Phân Loại Quy Mô Dự Án (Project Scale)
+
+Từ phiên bản **v3.5.61**, mức độ nghiêm ngặt của Luật (Rules) được tự động cấu hình dựa trên quy mô dự án bạn chọn lúc cài đặt:
+
+| Quy Mô (Scale) | Chế độ Luật (Rule Mode) | Đặc điểm | Phù hợp với |
+| :--- | :--- | :--- | :--- |
+| **👤 Cá nhân** | **Flexible** (Linh hoạt) | Tự do sáng tạo. Ít cảnh báo. Tối ưu tốc độ dev. | Portfolio, Blog, Test Project. |
+| **👥 Team** | **Balanced** (Cân bằng) | Cảnh báo khi sửa file gốc. Bắt buộc test cơ bản. | Startup, SME, MVP. |
+| **🏢 Enterprise** | **Strict** (Nghiêm ngặt) | Quy trình Audit/Security chặt chẽ. Cấm sửa core nếu không có Plan. | Fintech, Y tế, Hệ thống lớn. |
+
+---
+
 ## 1. Phân Loại Rules
 
 ### 🤖 Nhóm Tự Động (Auto-Active)
