@@ -120,7 +120,7 @@ Antigravity IDE organizes intelligence into **26 high-density Master Skills**. E
 
 **Security**
 - `security-auditor` - DevSecOps and vulnerability assessment
-- `malware-analyst` - Threat intelligence and analysis
+- `malware-analyst` - Threat intelligence, Phishing detection, and URL scanning
 - `threat-modeling-expert` - STRIDE, security architecture
 - **Penetration Testing** (20+ skills): Active Directory, Cloud, Web vulnerabilities
 

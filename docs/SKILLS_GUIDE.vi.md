@@ -47,6 +47,7 @@ Vũ khí (Skills) được cấp phát thông minh dựa trên **Quy mô dự á
 
 ### 🛡️ Nhóm Bảo Mật (Security)
 *   **`security-auditor`**: Soát xét code tìm lỗ hổng OWASP Top 10.
+*   **`malware-analyst`**: Quét mã độc, phát hiện Phishing và phân tích URL độc hại.
 *   **`penetration-tester`**: Đóng vai hacker mũ trắng tấn công thử nghiệm.
 
 ### 🤖 Nhóm Trí Tuệ Nhân Tạo (AI Agent)

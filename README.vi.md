@@ -9,7 +9,7 @@
 
 **Google Antigravity** không chỉ là một bộ skill, mà là một **Khung vận hành (Orchestration Framework)** toàn diện. Nó cung cấp một môi trường "Phòng tác chiến AI" giúp các AI Agent phối hợp theo dây chuyền sản xuất chuyên nghiệp (PDCA), đảm bảo mọi dòng code ra đời đều qua thẩm định và tối ưu hóa.
 
-| **26** Bộ Kỹ năng (Skills) | **15** Agent Chuyên gia | **17** Quy trình (Workflows) | **17** Mô-đun DNA (Shared) |
+| **27** Bộ Kỹ năng (Skills) | **15** Agent Chuyên gia | **18** Quy trình (Workflows) | **17** Mô-đun DNA (Shared) |
 | :---: | :---: | :---: | :---: |
 | Chứa 600+ Năng lực | Role-Based Personas | Chu kỳ PDCA | Tri thức nghiệp vụ mẫu |
 
@@ -53,6 +53,10 @@ Trải nghiệm dòng lệnh (CLI) đẳng cấp Premium với **Cơ chế Thíc
     - Đặt tên riêng cho trợ lý (ví dụ: *Jarvis, Friday*) để tạo "linh hồn" cho AI.
     - Phối hợp đa Agent (lên đến 15 chuyên gia) qua một bộ chỉ huy thống nhất.
 
+5.  **Hệ thống Bảo vệ & Cập nhật Thông minh (Mới)**:
+    - **🛡️ Malware Protection**: Tự động rà soát link độc hại và mã độc trước khi tải tài nguyên bên ngoài.
+    - **🔄 Auto-Update Chat**: Agent chủ động kiểm tra phiên bản mới nhất trên NPM và hỏi ý kiến bạn để nâng cấp hệ thống ngay trong khung chat.
+
 ### 🤖 Hướng dẫn Kích hoạt (Activation Protocol)
 Sau khi cài đặt xong, hãy "đánh thức" bộ não AI trong **IDE AI Chat** của bạn:
 
@@ -86,6 +90,7 @@ Kích hoạt các Workflow chuyên sâu ngay trong khung chat:
 - `/create`: Xây dựng cấu trúc nền móng dự án.
 - `/ui-ux-pro-max`: Thiết kế giao diện cao cấp & Micro-interactions.
 - `/orchestrate`: Điều phối đa Agent giải quyết bài toán phức tạp.
+- `/update`: Kiểm tra và nâng cấp Antigravity IDE lên bản mới nhất.
 
 ### Cập nhật hệ thống
 Để cập nhật bộ não Antigravity lên bản mới nhất mà không mất các cấu hình custom:

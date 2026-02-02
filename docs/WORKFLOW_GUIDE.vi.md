@@ -72,6 +72,10 @@
 - **Khi nào dùng**: Để trang web lên Top Google. Tạo Sitemap, Schema JSON-LD.
 - **Cách dùng**: `/seo audit`
 
+### `/update` - Cập nhật Antigravity IDE
+- **Khi nào dùng**: Kiểm tra và cập nhật phiên bản Antigravity IDE mới nhất.
+- **Cách dùng**: `/update`
+
 ---
 
 ## 5. Nhóm Vận hành & Con người (Ops & Team)
