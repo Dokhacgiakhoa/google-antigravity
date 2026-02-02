@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.2] - 2026-02-02
+### Added
+- **Feature**: Automatic Error Logging System - AI tracks all errors to `ERRORS.md` for learning
+- **Rule**: New `error-logging.md` rule that auto-captures errors during development
+- **Workflow**: New `/log-error` workflow for systematic error tracking
+- **File**: `ERRORS.md` central error repository with statistics and prevention tips
+- **Test**: Error logging test suite to verify the tracking system
+
+### Changed
+- Updated `RULES_GUIDE.vi.md` with error-logging rule
+- Updated `WORKFLOW_GUIDE.vi.md` with /log-error workflow
+- Enhanced AI's ability to learn from mistakes and prevent recurring errors
+
 ## [4.0.1] - 2026-02-02
 ### Added
 - **Security**: New `malware-analyst` skill for threat intelligence and malicious URL scanning.

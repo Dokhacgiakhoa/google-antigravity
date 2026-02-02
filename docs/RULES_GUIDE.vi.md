@@ -33,6 +33,7 @@ Trong kiến trúc mới, mọi luật lệ đều xoay quanh 2 trục chính:
 | :--- | :--- | :--- |
 | **`security`** | **Luôn luôn** | Chặn hardcode API Key, SQL Injection, XSS. |
 | **`malware-protection`** | **Luôn luôn** | Chống virus, link độc hại và kiểm soát package. |
+| **`error-logging`** | **Luôn luôn** | Tự động ghi lại mọi lỗi vào ERRORS.md để học tập. |
 | **`frontend`** | File `.js`, `.css`, `.tsx` | Chuẩn hóa UI, Spacing, Responsive. |
 | **`backend`** | File `.py`, `.go`, `.sql` | Chuẩn Clean Architecture, API Response. |
 | **`gemini`** | **Luôn luôn** | Cấu hình lõi, tính cách Agent. |

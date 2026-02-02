@@ -24,6 +24,10 @@
 - **Khi nào dùng**: Khi gặp lỗi khó hiểu hoặc muốn tối ưu code.
 - **Cách dùng**: `/debug [mô tả lỗi hoặc dán log lỗi]`
 
+### `/log-error` - Ghi lại lỗi tự động
+- **Khi nào dùng**: Workflow này chạy tự động khi có lỗi. AI sẽ ghi vào `ERRORS.md` để học tập.
+- **Cách dùng**: Tự động (không cần gọi thủ công)
+
 ---
 
 ## 2. Nhóm Xây dựng (Builder - Cho Dev)
