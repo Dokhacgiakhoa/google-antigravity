@@ -8,12 +8,35 @@
 
 Dưới đây là danh sách các nhân viên ảo sẽ phục vụ bạn:
 
-| Nhóm | Các Agent thành viên | Trọng tâm |
-|------|--------------------|-----------|
-| **1. Engineering Core** | `backend-specialist`, `frontend-specialist`, `database-architect`, `mobile-developer`, `devops-engineer`, `cloud-architect`, `performance-optimizer` | Phát triển tính năng, tối ưu hệ thống, hạ tầng. |
-| **2. Product & Strategy** | `project-planner`, `product-manager`, `product-owner`, `orchestrator` | Lập kế hoạch, quản lý backlog, điều phối tổng thể. |
-| **3. Quality & Security** | `quality-inspector`, `security-auditor`, `penetration-tester`, `qa-automation-engineer`, `test-engineer` | Kiểm thử tự động, rà soát lỗ hổng, đảm bảo chất lượng. |
-| **4. Support & Analysis** | `documentation-writer`, `seo-specialist`, `game-developer`, `explorer-agent`, `code-archaeologist`, `debugger` | Viết tài liệu, SEO, Game Dev, nghiên cứu mã nguồn. |
+### 1. Nhóm Kỹ Thuật Cốt Lõi (Engineering Core)
+*   **`backend-specialist`**: Chuyên gia xây dựng API, System Architecture và xử lý Logic Server.
+*   **`frontend-specialist`**: Chuyên gia UI/UX, React/Next.js và tối ưu trải nghiệm người dùng.
+*   **`database-architect`**: Thiết kế Schema, tối ưu truy vấn SQL/NoSQL và Data Modeling.
+*   **`mobile-developer`**: Phát triển ứng dụng iOS/Android đa nền tảng (React Native/Flutter).
+*   **`devops-engineer`**: Quản lý Docker, CI/CD Pipeline, Kubernetes và hạ tầng Cloud.
+*   **`cloud-architect`**: Thiết kế kiến trúc đám mây (AWS/Azure), Serverless và Scalability.
+*   **`performance-optimizer`**: Chuyên gia tối ưu tốc độ tải trang, giảm độ trễ và Memory Leak.
+
+### 2. Nhóm Sản Phẩm & Chiến Lược (Product & Strategy)
+*   **`orchestrator`**: Tổng chỉ huy, điều phối các Agent khác phối hợp nhịp nhàng.
+*   **`product-manager`**: Quản lý lộ trình sản phẩm (Roadmap), ưu tiên tính năng.
+*   **`product-owner`**: Đại diện tiếng nói người dùng, định nghĩa yêu cầu nghiệp vụ (User Stories).
+*   **`project-planner`**: Lập kế hoạch thực thi, chia nhỏ task và ước lượng thời gian.
+
+### 3. Nhóm Chất Lượng & Bảo Mật (Quality & Security)
+*   **`security-auditor`**: Rà soát mã nguồn, phát hiện lỗ hổng bảo mật (OWASP).
+*   **`penetration-tester`**: Tấn công thử nghiệm (Red Team) để tìm điểm yếu hệ thống.
+*   **`quality-inspector`**: Kiểm tra tiêu chuẩn code (Linting, Convention) và độ ổn định.
+*   **`test-engineer`**: Viết và chạy các kịch bản kiểm thử (Unit/Integration Test).
+*   **`qa-automation-engineer`**: Tự động hóa quy trình kiểm thử E2E (Playwright/Selenium).
+
+### 4. Nhóm Hỗ Trợ & Phân Tích (Support & Analysis)
+*   **`documentation-writer`**: Soạn thảo tài liệu kỹ thuật, API Docs và Hướng dẫn sử dụng.
+*   **`seo-specialist`**: Tối ưu hóa công cụ tìm kiếm, Meta tags và cấu trúc nội dung.
+*   **`game-developer`**: Chuyên gia phát triển Logic Game, Physics và Đồ họa.
+*   **`explorer-agent`**: Thám hiểm các công nghệ mới, tìm kiếm giải pháp sáng tạo.
+*   **`code-archaeologist`**: "Nhà khảo cổ" chuyên đọc và giải thích các mã nguồn cũ (Legacy Code).
+*   **`debugger`**: Thám tử điều tra lỗi, phân tích Log và tìm nguyên nhân gốc rễ.
 
 ### 🤝 Giao thức Phối hợp (Ecosystem Protocol)
 Mỗi Agent hiện nay không làm việc cô lập. Họ tuân thủ:

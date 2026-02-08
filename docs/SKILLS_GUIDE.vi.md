@@ -46,17 +46,21 @@ Vũ khí (Skills) được cấp phát thông minh dựa trên **Quy mô dự á
 *   **`github-mcp`** *(Official)*: Quản lý Git Repo, Issue, PR chuẩn MCP.
 *   **`game-development`**: WebGL, Canvas, Mobile Game Logic.
 *   **`frontend-design`** *(Mới)*: UI/UX design thinking, component design.
-*   **`tailwind-patterns`** *(Mới)*: Tailwind CSS v4, design systems.
-*   **`rust-pro`** *(Mới)*: Rust Systems Programming (Async, Memory Safety).
+*   **`tailwind-patterns`**: Tailwind CSS v4, design systems.
+*   **`rust-pro`**: Rust Systems Programming (Async, Memory Safety).
+*   **`full-stack-scaffold`**: Tạo khung dự án Fullstack (Node/Python/Rust/Mobile).
+*   **`git-collaboration-master`**: Quy trình Git Flow làm việc nhóm chuyên nghiệp.
 
 ### 🏗️ Nhóm Kiến Trúc & Thiết Kế *(Mới)*
 *   **`architecture`** *(Mới)*: Architectural decision-making, ADR.
 *   **`api-patterns`** *(Mới)*: REST vs GraphQL vs tRPC, API design.
 *   **`database-design`** *(Mới)*: Schema design, indexing strategy.
 *   **`postgres-mcp`** *(Official)*: Truy vấn & Kiểm tra Schema PostgreSQL an toàn.
-*   **`postgres-best-practices`** *(Mới)*: Tối ưu hóa Supabase/PostgreSQL (Index, RLS).
-*   **`app-builder`** *(Mới)*: Full-stack scaffolding từ natural language.
-*   **`clean-code`** *(Mới)*: Pragmatic coding standards, SOLID.
+*   **`postgres-best-practices`**: Tối ưu hóa Supabase/PostgreSQL (Index, RLS).
+*   **`app-builder`**: Full-stack scaffolding từ natural language.
+*   **`clean-code`**: Pragmatic coding standards, SOLID.
+*   **`database-migration`**: Chiến lược migration DB an toàn, không downtime.
+*   **`strategic-research`**: Nghiên cứu chiến lược công nghệ và đối thủ.
 
 ### ☁️ Nhóm Hạ Tầng (DevOps & Testing)
 *   **`devops-engineer`**: Docker, CI/CD, Kubernetes.
@@ -66,8 +70,10 @@ Vũ khí (Skills) được cấp phát thông minh dựa trên **Quy mô dự á
 *   **`tdd-master-workflow`**: Quy trình Test-Driven Development chuẩn chỉ.
 *   **`tdd-workflow`** *(Mới)*: RED-GREEN-REFACTOR cycle.
 *   **`testing-patterns`** *(Mới)*: Unit, integration, mocking strategies.
-*   **`webapp-testing`** *(Mới)*: E2E, Playwright, deep audit.
-*   **`server-management`** *(Mới)*: Process management, monitoring.
+*   **`webapp-testing`**: E2E, Playwright, deep audit.
+*   **`server-management`**: Process management, monitoring.
+*   **`cloud-architect-master`**: Thiết kế kiến trúc Cloud đa nền tảng (AWS/GCP/Azure).
+*   **`deployment-engineer`**: Kỹ sư triển khai hạ tầng chuyên nghiệp.
 
 ### 🛡️ Nhóm Bảo Mật & Kiểm Định (Security & Audit)
 *   **`security-auditor`**: Soát xét code tìm lỗ hổng OWASP Top 10.
@@ -104,15 +110,15 @@ Vũ khí (Skills) được cấp phát thông minh dựa trên **Quy mô dự á
 *   **`performance-profiling`**: Đo lường và phân tích hiệu năng.
 *   **`performance-engineer`**: Tối ưu hóa ứng dụng đa lớp.
 *   **`modern-web-performance`** *(Mới)*: Kỹ nghệ Web hiệu năng cao.
+*   **`api-documenter`**: Viết tài liệu API chuẩn OpenAPI 3.1.
+*   **`notion-mcp`** *(Official)*: Quản lý Workspace Notion qua AI.
 
 ### 📈 Nhóm Growth & Marketing (SEO/GEO)
 *   **`seo-expert-kit`** *(Mới)*: Bộ công cụ SEO Master toàn diện.
 *   **`seo-fundamentals`**: E-E-A-T, Core Web Vitals.
 *   **`geo-fundamentals`** *(Mới)*: Tối ưu hóa cho AI Search (ChatGPT, Claude Search).
-*   **`cro-expert-kit`** *(Mới)*: Tối ưu hóa tỷ lệ chuyển đổi (CRO).
-*   **`copywriting-master`**: Viết nội dung bán hàng đỉnh cao.
-*   **`paid-ads-specialist`**: Tối ưu quảng cáo chuyển đổi.
-*   **`ui-ux-pro-max`**: Thiết kế giao diện Visuals Premium.
+*   **`cro-expert-kit`**: Tối ưu hóa tỷ lệ chuyển đổi (CRO).
+*   **`ui-ux-pro-max-skill`**: Thiết kế giao diện Visuals Premium.
 
 ---
 
