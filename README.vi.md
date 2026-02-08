@@ -6,6 +6,9 @@
 
 Vibe thoải mái, Code thảnh thơi. Một lệnh duy nhất cân cả thế giới. 🛰️🚀
 
+| **15** Quy tắc | **22** Agent | **72** Chuyên gia | **164+** Kỹ năng | **30** Quy trình | **52** Thư viện DNA |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+
 **Trang chủ chính thức**: [antigravity-ide-cli.vercel.app](https://antigravity-ide-cli.vercel.app/)
 
 > [!IMPORTANT]
