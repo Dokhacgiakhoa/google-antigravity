@@ -38,31 +38,25 @@ Nếu bạn dự định sử dụng các tính năng cao cấp (Advanced AI, Da
 
 ---
 
-## 3. Khởi động AntiGravity IDE
-Sau khi đã có `npx`, bạn chỉ cần chạy lệnh sau để bắt đầu "Vibe Coding" (Hệ thống sẽ tự động kiểm tra và cập nhật bản mới nhất cho bạn):
+## 3. Khởi độnɡ AntiGravity IDE (Tất cả tronɡ một)
+Bạn chỉ cần một lệnh duy nhất để xử lý mọi tình huốnɡ (Tạo mới, Cập nhật, Sửa lỗi, Đồng bộ):
 
 ```bash
-# Tạo dự án mới trong thư mục 'my-vibe-app'
-npx antigravity-ide my-vibe-app
+npx antigravity-ide [tên_dự_án]
 ```
-
-Nếu bạn muốn cài đặt ngay vào thư mục hiện tại:
-```bash
-npx antigravity-ide .
-```
+- **Nếu thư mục chưa có gì**: Hệ thống sẽ tạo mới (Create).
+- **Nếu đã là dự án Antigravity**: Hệ thống sẽ tự động kiểm tra, sửa lỗi (Repair), cập nhật Rules mới nhất (Update) và đồng bộ DNA (Fix).
 
 ---
 
 ## 4. Tra cứu nhanh CLI (Quick Reference)
 
-| Lệnh (Command) | Ý nghĩa | Tùy chọn (Options) |
+| Tình huống | Lệnh (Command) | Ý nghĩa |
 | :--- | :--- | :--- |
-| `npx antigravity-ide init` | Khởi tạo Agent vào dự án có sẵn. | `-v` (Verbose) |
-| `npx antigravity-ide [name]` | Tạo dự án mới hoàn toàn. | `-t` (Template), `-s` (Skip Prompts) |
-| `npx antigravity-ide update` | Cưỡng bức cập nhật bản IDE mới nhất. | N/A |
-| `npx antigravity-ide init` | Khởi tạo Agent vào dự án có sẵn. | `--force`, `-v` |
-| `--version` / `-V` | Kiểm tra phiên bản hiện tại. | N/A |
-| `--help` / `-h` | Xem hướng dẫn sử dụng lệnh. | N/A |
+| **Cài lần đầu** | `npx antigravity-ide .` | Khởi tạo vào thư mục hiện tại. |
+| **Sửa lỗi/Update** | `npx antigravity-ide` | Tự động rà soát và vá lỗi (Repair Mode). |
+| **Đè lại toàn bộ** | `npx antigravity-ide --force` | Cưỡng bức khôi phục các Rule về bản gốc. |
+| **Check bản IDE** | `--version` / `-V` | Kiểm tra phiên bản Engine. |
 
 ### Tham số phổ biến:
 - **`-s, --skip-prompts`**: Khởi tạo thần tốc bằng các giá trị mặc định.

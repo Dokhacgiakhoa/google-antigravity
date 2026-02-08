@@ -10,27 +10,34 @@ const { execSync } = require('child_process');
 const { getProjectConfig, getSkillsForCategories, confirmOverwrite } = require('./prompts');
 const gradient = require('gradient-string');
 const { getRulesList, getAgentsList } = require('./logic/manifest-manager');
+const { repairProject } = require('./repair');
 
 async function createProject(projectName, options, predefinedConfig = null) {
     try {
         // Determine target directory
         const isCurrentDir = !projectName || projectName === '.';
+        const targetPath = isCurrentDir ? process.cwd() : path.resolve(process.cwd(), projectName);
         const targetName = isCurrentDir ? path.basename(process.cwd()) : projectName;
 
-        // Get configuration
-        const config = predefinedConfig || await getProjectConfig(options.skipPrompts, isCurrentDir ? targetName : projectName);
-        // Merge CLI options
+        // Get configuration (early for context)
+        const config = predefinedConfig || await getProjectConfig(options.skipPrompts, targetName);
+        config.projectName = targetName;
         config.force = options.force; 
         config.skipPrompts = options.skipPrompts;
 
-        // Resolve final project path
-        const projectPath = isCurrentDir ? process.cwd() : path.resolve(process.cwd(), config.projectName);
-        const finalProjectName = config.projectName;
+        // --- SMART ENTRY: REPAIR OR CREATE ---
+        if (fs.existsSync(path.join(targetPath, '.agent'))) {
+            // It's an existing project!
+            return await repairProject(targetPath, options, config);
+        }
 
-        // Check if directory exists
-        if (!isCurrentDir && fs.existsSync(projectPath)) {
-            console.error(chalk.red(`\n❌ Directory "${finalProjectName}" already exists.\n`));
-            process.exit(1);
+        const projectPath = targetPath;
+        const finalProjectName = targetName;
+
+        // Check if directory exists (but no .agent)
+        if (!isCurrentDir && fs.existsSync(projectPath) && fs.readdirSync(projectPath).length > 0) {
+            // Folder exists but it's not an Antigravity project - might be a normal repo
+            // We'll proceed but it will act like an 'init'
         }
 
         console.log('\n');
