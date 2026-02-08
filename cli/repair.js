@@ -7,7 +7,7 @@ const path = require('path');
 const chalk = require('chalk');
 const ora = require('ora');
 const { getRulesList, getAgentsList } = require('./logic/manifest-manager');
-const { generateGeminiMd } = require('./create'); // Re-use generator
+const { generateGeminiMd } = require('./logic/gemini-generator');
 
 async function repairProject(projectPath, options, config) {
     const spinner = ora('🔍 Analyzing project integrity...').start();
@@ -20,7 +20,7 @@ async function repairProject(projectPath, options, config) {
         spinner.text = 'Syncing Shared DNA (Standards & Security)...';
         const sharedSource = path.join(sourceAgentDir, '.shared');
         const sharedDest = path.join(agentDir, '.shared');
-        if (fs.existsSync(sharedSource)) {
+        if (fs.existsSync(sharedSource) && path.resolve(sharedSource) !== path.resolve(sharedDest)) {
             await fs.copy(sharedSource, sharedDest, { overwrite: true });
         }
         spinner.succeed('Shared DNA synchronized to v' + require('../package.json').version);

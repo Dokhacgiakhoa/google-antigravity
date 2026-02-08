@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.12] - 2026-02-08
+### Fixed
+- **Critical Fix**: Resolved circular dependency in `cli/repair.js` causing `generateGeminiMd` to be undefined during project repair/initialization.
+
 ## [4.0.11] - 2026-02-08
 ### Changed
 - **NPM Package**: Enhanced package description to list ALL project assets (Rules, Agents, Master Skills, Patterns, Workflows, DNA Libraries) for complete transparency.
