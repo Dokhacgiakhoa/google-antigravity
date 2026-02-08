@@ -2,7 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.0.10] - 2026-02-08
+## [4.0.11] - 2026-02-08
+### Changed
+- **NPM Package**: Enhanced package description to list ALL project assets (Rules, Agents, Master Skills, Patterns, Workflows, DNA Libraries) for complete transparency.
+
 ### Changed
 - **NPM Optimization**: Updated `package.json` description to include key statistics (72 Skills, 22 Agents) for better discoverability on npmjs.com.
 
