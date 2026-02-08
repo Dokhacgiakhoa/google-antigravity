@@ -23,6 +23,7 @@ const MANIFEST = {
             'backend.md',           // Critical for ops
             'security.md',          // Basic security
             'error-logging.md',     // Mandatory for ops
+            'runtime-watchdog.md',  // Safety first
             'system-update.md',     // Maintenance
             'testing-standard.md',  // Testing is key for SME
             'debug.md',
@@ -41,6 +42,7 @@ const MANIFEST = {
             'backend.md',
             'security.md',
             'error-logging.md',
+            'runtime-watchdog.md',
             'system-update.md',
             'testing-standard.md',
             'debug.md',

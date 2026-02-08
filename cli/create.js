@@ -468,7 +468,7 @@ Please utilize the appropriate skills for **${industryFocus}**.
 - Testing and debugging
 
 ## 📚 Shared Standards (Auto-Active)
-The following **13 Shared Modules** in \`.agent/.shared\` must be respected:
+The following **17 Shared Modules** in \`.agent/.shared\` must be respected:
 1.  **AI Master**: LLM patterns & RAG.
 2.  **API Standards**: OpenAPI & REST guidelines.
 3.  **Compliance**: GDPR/HIPAA protocols.
@@ -536,7 +536,7 @@ Vui lòng sử dụng các kỹ năng phù hợp nhất cho **${industryFocus}**
 - Kiểm thử và gỡ lỗi
 
 ## 📚 Tiêu chuẩn Dùng chung (Tự động Kích hoạt)
-**13 Module Chia sẻ** sau trong \`.agent/.shared\` phải được tuân thủ:
+**17 Module Chia sẻ** sau trong \`.agent/.shared\` phải được tuân thủ:
 1.  **AI Master**: Mô hình LLM & RAG.
 2.  **API Standards**: Chuẩn OpenAPI & REST.
 3.  **Compliance**: Giao thức GDPR/HIPAA.
