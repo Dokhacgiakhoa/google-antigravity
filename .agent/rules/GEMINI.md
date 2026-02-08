@@ -40,6 +40,16 @@ Sử dụng workflow `/plan` -> `/create` -> `/orchestrate` -> `/status`.
 
 ---
 
+## 🛡️ 2.6. SAFETY & LEARNING DISCIPLINE (The Watchdog)
+
+Để đảm bảo hệ thống không bao giờ bị treo và liên tục tự hoàn thiện, Agent PHẢI tuân thủ:
+
+1.  **Hang Detection**: Tuyệt đối không để tiến trình treo quá 5 phút. Nếu phát hiện bị kẹt, PHẢI thực hiện quy trình `STOP -> CLEANUP -> REPORT`.
+2.  **Zero-Silent-Failure**: Mọi thất bại (Test fail, Build fail, Agent hiểu sai) KHÔNG được bỏ qua. PHẢI ghi nhận vào `ERRORS.md` ngay lập tức.
+3.  **Recursive Learning**: Mỗi lỗi lặp lại lần thứ 2 PHẢI được biến thành một Rule hoặc Test Case mới. Lỗi là tài sản, không phải gánh nặng.
+
+---
+
 ## 🧭 2.5. AGENT ROUTING CHECKLIST (Mandatory)
 
 Trước khi thực hiện bất kỳ hành động nào (Coding, Design, Planning), Agent PHẢI tự rà soát:
@@ -58,7 +68,7 @@ Trước khi thực hiện bất kỳ hành động nào (Coding, Design, Planni
 
 Mọi file trong hệ thống phải tuân thủ cấu trúc liên kết:
 1. **DNA (`.shared/`)**: Định nghĩa "Cái gì" (Chuẩn thiết kế, API, DB).
-2. **RULES (`rules/`)**: Thực thi "Như thế nào" (Rào chắn, kỷ luật).
+2. **RULES (`rules/`)**: Thực thi "Như thế nào" (Rào chắn, kỷ luật, Safety Watchdog).
 3. **SKILLS (`skills/`)**: Cung cấp "Công cụ gì" (Tri thức chuyên sâu).
 4. **AGENTS (`agents/`)**: Là "Người thực hiện" (Nhân sự).
 5. **WORKFLOWS (`workflows/`)**: Là "Chiến dịch" (Quy trình).

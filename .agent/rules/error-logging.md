@@ -32,6 +32,17 @@ Agent PHẢI ghi lại lỗi vào file `ERRORS.md` trong các trường hợp sa
    - Type mismatch
    - Out of memory
 
+5. **Lỗi Tác nhân (Agent Error - QUAN TRỌNG)**:
+   - **Hiểu sai (Misinterpretation)**: Agent hiểu sai ý định người dùng hoặc hiểu sai tài liệu.
+   - **Thực hiện sai (Execution Error)**: Làm sai logic đã thống nhất trong Plan, xóa nhầm code, hoặc quên import.
+   - **Bị treo (Hang/Loop)**: Agent rơi vào vòng lặp vô hạn hoặc treo khi gọi tool.
+   - **Ảo giác (Hallucination)**: Đưa ra thông tin không có thực về codebase hoặc tài liệu.
+
+6. **Lỗi Quy trình & Kiểm thử (Process & Test Failure)**:
+   - **Test Fail**: BẤT KỲ khi nào một bản test (Unit, E2E, Regression) không vượt qua.
+   - **Build/Lint Fail**: Lỗi khi đóng gói hoặc kiểm tra chất lượng code.
+   - **Infrastructure Fail**: Lỗi môi trường, lỗi Docker, hoặc đầy bộ nhớ đĩa.
+
 ---
 
 ## 📝 2. FORMAT GHI LỖI
@@ -41,7 +52,7 @@ Mỗi lỗi PHẢI tuân thủ cấu trúc sau trong `ERRORS.md`:
 ```markdown
 ## [YYYY-MM-DD HH:MM] - Tiêu đề Lỗi Ngắn Gọn
 
-- **Type**: [Syntax/Logic/Integration/Runtime]
+- **Type**: [Syntax/Logic/Integration/Runtime/Agent/Process]
 - **Severity**: [Low/Medium/High/Critical]
 - **File**: `path/to/file.extension:line_number`
 - **Agent**: [Tên Agent thực hiện]

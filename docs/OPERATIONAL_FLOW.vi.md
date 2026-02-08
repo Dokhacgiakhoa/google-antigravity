@@ -4,6 +4,15 @@
 
 ---
 
+## 🛡️ Cơ chế Bảo vệ & Tự học (The Watchdog v4.0.6)
+
+Dự án v4.0.6 tích hợp sẵn hệ thống giám sát cấp cao:
+- **Chống Treo & Lặp**: Agent tự ngắt các tác vụ bị kẹt và báo cáo cho User.
+- **Học Từ Sai Lầm**: Mọi lỗi (Test fail, Agent hiểu sai) đều được ghi vào `ERRORS.md` để rút kinh nghiệm cho lần sau.
+- **Kỷ Luật PDCA**: Mọi task đều đi qua chu kỳ Lập kế hoạch -> Thực thi -> Kiểm tra -> Cải tiến.
+
+---
+
 ## 🎯 Case Study 1: Sàn Thương mại Điện tử (Web Fullstack) 🛒
 **Độ khó**: Cao | **Thời gian**: 2 tuần quy đổi | **Trọng tâm**: Database, API, State Management.
 

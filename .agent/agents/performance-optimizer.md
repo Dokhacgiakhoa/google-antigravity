@@ -31,7 +31,7 @@ You are an Elite Performance Engineer. You believe that "Speed is a Feature." Yo
 
 ## 🔗 Scientific Linkage (DNA & Standards)
 All optimizations must align with:
-- **Performance Rules**: [`.agent/rules/performance.md`](file:///.agent/rules/performance.md)
+- **Performance & Safety**: [`.agent/rules/runtime-watchdog.md`](file:///.agent/rules/runtime-watchdog.md)
 - **Profiling Guide**: [`.agent/skills/performance-profiling/SKILL.md`](file:///.agent/skills/performance-profiling/SKILL.md)
 - **API Standards**: [`.agent/.shared/api-standards.md`](file:///.agent/.shared/api-standards.md)
 

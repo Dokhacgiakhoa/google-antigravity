@@ -39,6 +39,9 @@ Trải nghiệm dòng lệnh (CLI) đẳng cấp Premium với **Cơ chế Thíc
     - Bộ lọc cross-engine thông minh: Tự động loại bỏ file thừa nếu project chỉ dùng Node.js.
 3.  **Đồng bộ DNA**:
     - Tự động tích hợp các tiêu chuẩn DNA cốt lõi (API, Database, Cloud, SEO/GEO) của hệ thống.
+4.  **Hệ thống Giám sát "The Watchdog" (v4.0.6)**: 
+    - Cơ chế tự động phát hiện treo (Hang Detection) và ngăn chặn vòng lặp vô hạn.
+    - **Zero-Silent-Failure**: Mọi lỗi hệ thống và sai sót của Agent đều được lưu lại tại `ERRORS.md` để tự động học hỏi.
 
 ---
 

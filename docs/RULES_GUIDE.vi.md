@@ -53,6 +53,7 @@ Các file trong thư mục `.agent/rules/` được thiết kế để phục v�
 | **`error-logging`** | **Học tập**: Tự động ghi lại lỗi vào ERRORS.md. | Hybrid |
 | **`docs-update`** | **Tài liệu**: Checklist tự động cập nhật docs khi có tính năng mới. | Hybrid |
 | **`system-update`** | **Hệ thống**: Tự động kiểm tra và nâng cấp Antigravity IDE. | Hybrid |
+| **`runtime-watchdog`** | **An toàn**: Chống treo, vòng lặp vô hạn và lỗi Agent phản hồi chậm. | Hybrid |
 
 ### 🛠️ Nhóm Theo Yêu Cầu (On-Demand / @Tags)
 *Chỉ chạy khi có ngữ cảnh phù hợp hoặc được bạn gọi đích danh.*
