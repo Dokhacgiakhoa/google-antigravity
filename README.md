@@ -6,7 +6,7 @@
 
 Easy Vibe, Lazy Code. One Command to Rule Them All. 🛰️🚀
 
-| **15** Rules | **22** Agents | **72** Master Skills | **164+** Skills | **30** Workflows | **52** DNA Libraries |
+| **15** Rules | **22** Agents | **72** Master Skills | **600+** AI Patterns | **30** Workflows | **52** DNA Libraries |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 
 **Official Website**: [antigravity-ide-cli.vercel.app](https://antigravity-ide-cli.vercel.app/)
