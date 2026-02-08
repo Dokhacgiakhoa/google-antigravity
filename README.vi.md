@@ -22,10 +22,11 @@ npx antigravity-ide@latest my-project --skip-prompts
 ```
 
 > [!TIP]
-> **Mới làm quen với npx?** Xem [Hướng dẫn Cài đặt NPX](file:///docs/INSTALL_NPX_GUIDE.vi.md) để bắt đầu từng bước.
+> **Mới làm quen với npx?** Xem [Hướng dẫn Cài đặt NPX](file:///docs/INSTALL_NPX_GUIDE.vi.md) để bắt đầu.
+> **Cần hỗ trợ?** Xem [FAQ](file:///docs/FAQ.vi.md) hoặc [Hướng dẫn Cập nhật](file:///docs/UPDATE_GUIDE.vi.md).
 
 > [!WARNING]
-> **Lưu ý quan trọng:** Không nên cài đặt Global (`npm install -g antigravity-ide`) vì sẽ gây xung đột phiên bản cũ/mới. Luôn dùng `npx ...@latest` để đảm bảo project được khởi tạo với Engine mới nhất.
+> **Lưu ý quan trọng:** Không nên cài đặt Global (`npm install -g antigravity-ide`) vì sẽ gây xung đột. Xem [Hướng dẫn Gỡ cài đặt](file:///docs/UNINSTALL_GUIDE.vi.md) nếu đã lỡ cài.
 
 ### ✨ Tính năng Setup Wizard (v4.0.5 - Big Update)
 Trải nghiệm dòng lệnh (CLI) đẳng cấp Premium với **Cơ chế Thích ứng theo Quy mô**:

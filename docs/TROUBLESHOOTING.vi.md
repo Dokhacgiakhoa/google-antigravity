@@ -16,6 +16,14 @@ Tổng hợp các vấn đề thường gặp khi sử dụng Antigravity IDE v�
     -   Mac/Linux: Thêm `sudo` trước lệnh.
     -   Windows: Chạy CMD/PowerShell dưới quyền Admin.
 
+### `Python not found` (Khi chọn Creative/SME Scale)
+-   **Nguyên nhân**: Bạn chọn quy mô dự án có dùng AI nâng cao nhưng máy chưa cài Python hoặc chưa đưa vào PATH.
+-   **Cách sửa**: Cài đặt Python 3.10+ từ `python.org` và tích chọn **"Add Python to PATH"**.
+
+### File "GEMINI.md" already exists (Lỗi dừng khi khởi tạo)
+-   **Nguyên nhân**: Đây không phải lỗi, đây là tính năng bảo vệ dữ liệu.
+-   **Cách sửa**: Nhập `y` để ghi đè, hoặc `n` để hệ thống tạo file `.new`. Nếu muốn bỏ qua hoàn toàn, dùng cờ `--force`.
+
 ## 🤖 Lỗi AI & Runtime
 
 ### "Agent is not responding" (Agent im lặng)

@@ -8,6 +8,7 @@ const chalk = require('chalk');
 const gradient = require('gradient-string');
 const boxen = require('boxen');
 const prompts = require('prompts');
+const packageJson = require('./package.json');
 
 const GLOBAL_DIR = path.join(os.homedir(), '.antigravity');
 const SOURCE_DIR = path.join(__dirname, '.agent');
@@ -30,7 +31,7 @@ async function setup() {
     
     console.log(gradient.rainbow.multiline(branding));
     console.log(gradient.atlas('━'.repeat(60)));
-    console.log(chalk.gray(`  Google Antigravity • Global Setup Wizard • v3.5.61`));
+    console.log(chalk.gray(`  Google Antigravity • Global Setup Wizard • v${packageJson.version}`));
     console.log(chalk.gray('  Developed with 💡 by Dokhacgiakhoa'));
     console.log(gradient.atlas('━'.repeat(60)) + '\n');
     console.log(chalk.bold.hex('#00ffee')('🚀 Antigravity Global Setup Starting...\n'));

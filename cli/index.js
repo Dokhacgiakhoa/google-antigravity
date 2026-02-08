@@ -24,6 +24,7 @@ const { checkAndApplyUpdates } = require('./lib/auto-update');
       .argument('[project-name]', 'Name of the project', '.')
       .option('-t, --template <type>', 'Project template (minimal, standard, full)', 'standard')
       .option('-s, --skip-prompts', 'Skip interactive prompts and use defaults')
+      .option('-f, --force', 'Overwrite existing configuration files')
       .action(async (projectName, options) => {
         await createProject(projectName, options);
       });

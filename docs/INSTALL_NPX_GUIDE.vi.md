@@ -60,6 +60,7 @@ npx antigravity-ide@latest
 | `npx antigravity-ide init` | Khởi tạo Agent vào dự án có sẵn. | `-v` (Verbose) |
 | `npx antigravity-ide [name]` | Tạo dự án mới hoàn toàn. | `-t` (Template), `-s` (Skip Prompts) |
 | `npx antigravity-ide update` | Cài đặt bản IDE mới nhất. | N/A |
+| `npx antigravity-ide init` | Khởi tạo Agent vào dự án có sẵn. | `--force`, `-v` |
 | `--version` / `-V` | Kiểm tra phiên bản hiện tại. | N/A |
 | `--help` / `-h` | Xem hướng dẫn sử dụng lệnh. | N/A |
 
@@ -85,6 +86,31 @@ npx antigravity-ide@latest my-quick-project --skip-prompts
 > - Quy mô: **Creative** (Full AI & Data features)
 > - Loại sản phẩm: **User Application**
 > - Tên Agent: **Agent**
+
+---
+
+---
+
+## 6. Xử lý Trùng lặp File (Conflict Resolution)
+Nếu bạn cài đặt vào một thư mục đã có sẵn các file cấu hình (như `GEMINI.md`, `package.json`), hệ thống sẽ hỏi bạn cách xử lý để bảo vệ dữ liệu cũ.
+
+### 🛡️ Cơ chế Tương tác (Mặc định)
+Hệ thống sẽ dừng lại và hỏi bạn từng file:
+```bash
+⚠️  File "GEMINI.md" already exists. Overwrite? / File đã tồn tại. Ghi đè? [y/N]
+```
+- **Yes (y)**: Ghi đè file cũ bằng file mới nhất.
+- **No (n)**: Tạo file backup an toàn (ví dụ: `GEMINI.new.md`) và giữ nguyên file cũ.
+
+### 🔥 Ghi đè Cưỡng bức (Force Overwrite)
+Nếu bạn muốn reset dự án và chấp nhận mất cấu hình cũ, hãy dùng cờ `--force`:
+```bash
+npx antigravity-ide@latest init --force
+```
+> **Tác dụng**: Bỏ qua tất cả câu hỏi và ghi đè toàn bộ file trùng lặp.
+
+### 🤖 Tự động Backup (Backup Mode)
+Nếu bạn dùng trong CI/CD hoặc script tự động, hãy dùng cờ `--skip-prompts`. Hệ thống sẽ tự động chọn giải pháp an toàn nhất (Tạo file backup `.new`) thay vì ghi đè.
 
 ---
 

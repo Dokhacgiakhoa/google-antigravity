@@ -12,21 +12,33 @@ Hãy dùng các từ khóa này để giao tiếp chính xác với AI.
 | :--- | :--- | :--- |
 | `/audit` | **Kiểm toán chất lượng** | Trước khi bàn giao, cần rà soát lỗi bảo mật/hiệu năng. |
 | `/brainstorm` | **Bão não ý tưởng** | Bí ý tưởng, cần AI gợi ý giải pháp/kiến trúc. |
-| `/create` | **Khởi tạo dự án** | Bắt đầu một dự án mới từ con số 0. |
-| `/debug` | **Gỡ lỗi** | Khi code chạy sai, quăng log lỗi cho AI phân tích. |
-| `/deploy` | **Triển khai** | Đóng gói và đẩy ứng dụng lên Server/Cloud. |
+| `/create` | **Khởi tạo tính năng** | Xây dựng module mới (FE + BE + DB). |
+| `/debug` | **Gỡ lỗi** | Phân tích log lỗi và tìm nguyên nhân. |
+| `/deploy` | **Triển khai** | Đẩy ứng dụng lên Server/Cloud. |
 | `/document` | **Viết tài liệu** | Tự động viết README, API Docs từ code. |
-| `/enhance` | **Nâng cấp** | Muốn sửa UI đẹp hơn, hoặc tối ưu code cũ. |
-| `/monitor` | **Giám sát** | Cài đặt công cụ theo dõi Server/Logs. |
-| `/onboard` | **Dẫn nhập** | Tạo tài liệu hướng dẫn cho thành viên mới (Newbie). |
-| `/orchestrate` | **Điều phối** | Gọi "Hội đồng chuyên gia" giải quyết bài toán lớn. |
-| `/plan` | **Lập kế hoạch** | Phân tích yêu cầu -> Ra file `implementation_plan.md`. |
-| `/preview` | **Xem trước** | Chạy thử web/app để xem giao diện. |
-| `/security` | **Quét bảo mật** | Kiểm tra lỗ hổng chuyên sâu (Penetration Test). |
-| `/seo` | **Tối ưu tìm kiếm** | Giúp web lên Top Google (Meta tags, Sitemap). |
-| `/status` | **Trạng thái** | Xem báo cáo tiến độ dự án. |
-| `/test` | **Kiểm thử** | Viết và chạy Unit Test/E2E Test. |
-| `/ui-ux-pro-max`| **Giao diện Đỉnh cao**| Thiết kế UI đẹp như tranh vẽ (Magic UI/Linear). |
+| `/enhance` | **Nâng cấp** | Thay đổi UI hoặc tối ưu logic nhỏ. |
+| `/monitor` | **Giám sát** | Setup công cụ theo dõi hệ thống. |
+| `/onboard` | **Dẫn nhập** | Hướng dẫn cho thành viên mới gia nhập team. |
+| `/orchestrate` | **Điều phối** | Phối hợp nhiều Agent cho task lớn. |
+| `/plan` | **Lập kế hoạch** | Phân tích yêu cầu và thiết kế giải pháp. |
+| `/preview` | **Xem trước** | Chạy thử sản phẩm trong sandbox. |
+| `/security` | **Quét bảo mật** | Kiểm tra lỗ hổng chuyên sâu. |
+| `/seo` | **Tối ưu tìm kiếm** | Đưa web lên Top Search Google/AI. |
+| `/status` | **Trạng thái** | Dashboard tiến độ thực hiện task. |
+| `/test` | **Kiểm thử** | Chạy Unit Test, E2E Test. |
+| `/ui-ux-pro-max`| **Giao diện Đỉnh cao**| Thiết kế UI Premium (Magic UI). |
+| `/update-docs` | **Đồng bộ tài liệu** | Tự động cập nhật /docs sau khi thay đổi code. |
+| `/release-version`| **Phát hành bản mới**| Chốt phiên bản, update stats và chuẩn bị release. |
+| `/api` | **Master API** | Thiết kế chuẩn OpenAPI 3.1. |
+| `/realtime` | **Thời gian thực** | Socket.io, WebRTC, SSE. |
+| `/compliance` | **Pháp lý** | Kiểm tra chuẩn GDPR/HIPAA. |
+| `/mobile` | **Di động** | Phát triển Native App & Optimization. |
+| `/portfolio` | **Trang cá nhân** | Xây dựng Landing Page cá nhân. |
+| `/blog` | **Hệ thống Blog** | Xây dựng module tin tức. |
+| `/visually` | **Trực quan hóa** | Vẽ biểu đồ, sơ đồ luồng. |
+| `/explain` | **Giải thích code** | Tìm hiểu logic sâu của từng module. |
+| `/update` | **Cập nhật Agent** | Tải bộ não mới nhất cho Agent. |
+| `/log-error` | **Nhật ký lỗi** | Tự động ghi lỗi vào ERRORS.md. |
 
 ---
 
@@ -47,23 +59,30 @@ Hãy dùng các từ khóa này để giao tiếp chính xác với AI.
 ---
 
 ## 3. Agents (Những nhân cách AI)
-*AI có thể tự đóng các vai này trong quá trình làm việc, hoặc bạn yêu cầu.*
+*Mỗi dự án v4.0 có 22 vai diễn chuyên gia:*
 
-*   **Orchestrator**: Nhạc trưởng, tổng chỉ huy.
-*   **Project Planner**: Người lập kế hoạch, chia việc.
-*   **Backend Specialist**: Chuyên Back-end.
-*   **Frontend Specialist**: Chuyên Front-end.
-*   **Mobile Developer**: Chuyên App (iOS/Android).
-*   **Game Developer**: Chuyên làm Game.
-*   **Cloud Architect**: Kiến trúc sư Cloud (AWS/GCP).
+*   **Orchestrator**: Nhạc trưởng điều phối đa agent.
+*   **Project Planner**: Lập kế hoạch & quản lý Backlog.
+*   **Product Manager**: Quản lý sản phẩm & lộ trình.
+*   **Product Owner**: Đại diện giá trị nghiệp vụ.
+*   **Backend Specialist**: Lập trình viên phía máy chủ.
+*   **Frontend Specialist**: Kiến trúc sư giao diện.
+*   **Mobile Developer**: Phát triển ứng dụng di động.
+*   **Game Developer**: Phát triển Game & Logic đồ họa.
+*   **Cloud Architect**: Kiến trúc sư hạ tầng đám mây.
+*   **DevOps Engineer**: Kỹ sư vận hành & CI/CD.
+*   **Database Architect**: Chuyên gia thiết kế dữ liệu.
+*   **Security Auditor**: Chuyên gia kiểm tra bảo mật.
+*   **Penetration Tester**: Hacker mũ trắng (Pentest).
+*   **Quality Inspector**: Giám sát tiêu chuẩn chất lượng.
+*   **QA Automation Engineer**: Kỹ sư kiểm thử tự động.
+*   **Test Engineer**: Kỹ sư kiểm tra tính năng.
 *   **Performance Optimizer**: Chuyên gia tối ưu tốc độ.
-*   **Security Auditor**: Chuyên gia rà soát bảo mật.
-*   **SEO Specialist**: Chuyên gia Marketing/SEO.
-*   **Quality Inspector**: Người kiểm tra chất lượng (QA).
-*   **Documentation Writer**: Thư ký viết tài liệu.
-*   **Test Engineer**: Kỹ sư kiểm thử.
-*   **Debugger**: Thám tử săn lỗi.
-*   **Codebase Expert**: Cuốn từ điển sống của dự án.
+*   **SEO Specialist**: Chuyên gia tối ưu tìm kiếm.
+*   **Documentation Writer**: Chuyên gia viết tài liệu.
+*   **Explorer Agent**: Agent nghiên cứu & thám hiểm code.
+*   **Code Archaeologist**: Chuyên gia phân tích code cũ.
+*   **Debugger**: Thám tử săn lỗi (Sherlock Holmes).
 
 ---
 

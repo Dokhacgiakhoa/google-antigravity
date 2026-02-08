@@ -8,12 +8,12 @@
 
 Dưới đây là danh sách các nhân viên ảo sẽ phục vụ bạn:
 
-| Nhóm | Các Agent tiêu biểu | Trọng tâm |
+| Nhóm | Các Agent thành viên | Trọng tâm |
 |------|--------------------|-----------|
-| **1. Engineering Core** | `frontend-specialist`, `backend-specialist`, `database-architect`, `devops-engineer`, `cloud-architect`, `mobile-developer`, `full-stack-architect`. | Tính toàn vẹn dữ liệu, UI/UX Core, Infrastructure-as-Code. |
-| **2. Security & Quality** | `security-auditor`, `penetration-tester`, `test-engineer`, `performance-optimizer`, `qa-automation-engineer`, `quality-inspector`, `malware-analyst`. | Gatekeeping, bảo mật thực chiến, cam kết chất lượng. |
-| **3. Product & Orchestration** | `project-planner`, `product-manager`, `product-owner`, `orchestrator`, `growth-strategist`. | Điều phối lộ trình, tối ưu ROI và giá trị sử dụng. |
-| **4. Specialized & Support** | `seo-specialist`, `game-developer`, `documentation-writer`, `explorer-agent`, `code-archaeologist`, `debugger`. | Chuyên môn sâu, phân tích mã nguồn và tra cứu tri thức. |
+| **1. Engineering Core** | `backend-specialist`, `frontend-specialist`, `database-architect`, `mobile-developer`, `devops-engineer`, `cloud-architect`, `performance-optimizer` | Phát triển tính năng, tối ưu hệ thống, hạ tầng. |
+| **2. Product & Strategy** | `project-planner`, `product-manager`, `product-owner`, `orchestrator` | Lập kế hoạch, quản lý backlog, điều phối tổng thể. |
+| **3. Quality & Security** | `quality-inspector`, `security-auditor`, `penetration-tester`, `qa-automation-engineer`, `test-engineer` | Kiểm thử tự động, rà soát lỗ hổng, đảm bảo chất lượng. |
+| **4. Support & Analysis** | `documentation-writer`, `seo-specialist`, `game-developer`, `explorer-agent`, `code-archaeologist`, `debugger` | Viết tài liệu, SEO, Game Dev, nghiên cứu mã nguồn. |
 
 ### 🤝 Giao thức Phối hợp (Ecosystem Protocol)
 Mỗi Agent hiện nay không làm việc cô lập. Họ tuân thủ:

@@ -11,34 +11,30 @@ Khi cần, Agent chỉ việc "copy-paste" ra dùng. Nhanh và Chuẩn.
 
 ---
 
-## 2. Danh mục 17 Kho Tàng (Modules)
+## 2. Danh mục 17 Kho Tàng (Modules) v4.0
 
-### 🧠 Cốt Lõi & AI
-*   **`ai-master`**: Chứa các Prompt mẫu, cấu hình RAG System.
-*   **`core`**: Cấu trúc dự án mẫu (Project Structure).
-
-### 🛡️ Bảo Mật & Tuân Thủ
-*   **`security-armor`**: Bộ quy tắc chống hack (OWASP), script quét lỗ hổng.
-*   **`compliance`**: Mẫu pháp lý (Privacy Policy, GDPR Checklists).
-*   **`api-standards`**: Chuẩn thiết kế API (RESTful, Error Codes).
-
-### 🎨 Giao Diện & Trải Nghiệm
-*   **`design-system`**: Bộ Token màu sắc, Typography chuẩn.
-*   **`ui-ux-pro-max`**: Các hiệu ứng động cao cấp (Motion Presets).
+### 🏢 Nhóm Cốt Lõi (Core DNA)
 *   **`design-philosophy`**: Triết lý thiết kế (Linear, Magic UI).
-
-### 🏗️ Hạ Tầng & Vận Hành
-*   **`infra-blueprints`**: File cấu hình Docker, Terraform, CI/CD.
-*   **`database-master`**: Các mẫu Schema DB (E-commerce, Social, SaaS).
-*   **`metrics`**: Cấu hình giám sát (Logging, Telemetry).
-*   **`resilience-patterns`**: Mẫu thiết kế chịu lỗi (Circuit Breaker).
-
-### 📈 Tăng Trưởng & Chất Lượng
-*   **`seo-master`**: Checklist SEO, mẫu JSON-LD.
-*   **`testing-master`**: Kịch bản test mẫu (E2E, Unit Test).
-*   **`vitals-templates`**: Tiêu chuẩn hiệu năng (Lighthouse Config).
-*   **`i18n-master`**: File ngôn ngữ mẫu (Đa ngôn ngữ).
 *   **`dx-toolkit`**: Công cụ hỗ trợ Dev (VSCode Settings, Linting).
+*   **`metrics`**: Cấu hình giám sát (Logging, Telemetry).
+*   **`vitals-templates`**: Tiêu chuẩn hiệu năng (Lighthouse Config).
+
+### 🛠️ Nhóm Kỹ Thuật (Technical Stack)
+*   **`ai-master`**: Prompt mẫu, cấu hình RAG System.
+*   **`api-standards`**: Chuẩn thiết kế API (RESTful, Error Codes).
+*   **`database-master`**: Các mẫu Schema DB (E-commerce, SaaS).
+*   **`design-system`**: Bộ Token màu sắc, Typography chuẩn.
+*   **`i18n-master`**: Hệ thống đa ngôn ngữ.
+*   **`resilience-patterns`**: Mẫu thiết kế chịu lỗi (Circuit Breaker).
+*   **`security-armor`**: Bộ quy tắc chống hack (OWASP).
+*   **`seo-master`**: Checklist SEO, mẫu JSON-LD.
+*   **`testing-master`**: Chiến lược kiểm thử toàn diện.
+*   **`ui-ux-pro-max`**: Hiệu ứng động cao cấp.
+
+### 🌐 Nhóm Chuyên Biệt (Vertical Blueprints)
+*   **`compliance`**: Mẫu pháp lý (GDPR, HIPAA).
+*   **`domain-blueprints`**: Kiến trúc mẫu theo từng ngành nghề.
+*   **`infra-blueprints`**: Cấu hình hạ tầng (Docker, Terraform).
 
 ---
 

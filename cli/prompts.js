@@ -184,8 +184,19 @@ async function getProjectConfig(skipPrompts = false, predefinedName = null) {
   return { ...responses, ...settings, skillCategories: Array.from(allSkills) };
 }
 
+async function confirmOverwrite(fileName) {
+  const response = await prompts({
+    type: 'confirm',
+    name: 'value',
+    message: chalk.yellow(`⚠️  File "${fileName}" already exists. Overwrite? / File đã tồn tại. Ghi đè?`),
+    initial: false
+  });
+  return response.value;
+}
+
 module.exports = {
   getProjectConfig,
   getSkillsForCategories,
-  skillCategories
+  skillCategories,
+  confirmOverwrite
 };

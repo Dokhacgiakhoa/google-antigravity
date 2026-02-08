@@ -7,7 +7,7 @@ const path = require('path');
 const chalk = require('chalk');
 const ora = require('ora');
 const { execSync } = require('child_process');
-const { getProjectConfig, getSkillsForCategories } = require('./prompts');
+const { getProjectConfig, getSkillsForCategories, confirmOverwrite } = require('./prompts');
 const gradient = require('gradient-string');
 const { getRulesList, getAgentsList } = require('./logic/manifest-manager');
 
@@ -19,6 +19,9 @@ async function createProject(projectName, options, predefinedConfig = null) {
 
         // Get configuration
         const config = predefinedConfig || await getProjectConfig(options.skipPrompts, isCurrentDir ? targetName : projectName);
+        // Merge CLI options
+        config.force = options.force; 
+        config.skipPrompts = options.skipPrompts;
 
         // Resolve final project path
         const projectPath = isCurrentDir ? process.cwd() : path.resolve(process.cwd(), config.projectName);
@@ -118,7 +121,17 @@ async function createProject(projectName, options, predefinedConfig = null) {
             config.productType, 
             finalProjectName
         );
-        fs.writeFileSync(path.join(projectPath, 'GEMINI.md'), geminiContent);
+        const rootGeminiPath = path.join(projectPath, 'GEMINI.md');
+        const rootGeminiDecision = await handleCoreFileConflict(rootGeminiPath, 'GEMINI.md', config.force, config.skipPrompts);
+        
+        if (rootGeminiDecision.shouldWrite) {
+            fs.writeFileSync(rootGeminiDecision.targetPath, geminiContent);
+            if (rootGeminiDecision.isBackup) {
+                console.log(chalk.yellow(`  ℹ️  Root GEMINI.md exists, created ${path.basename(rootGeminiDecision.targetPath)}`));
+            } else if (rootGeminiDecision.isOverwrite) {
+                console.log(chalk.green(`  ✓ Overwrote existing Root GEMINI.md`));
+            }
+        }
         
         const stats = {
             rules: rulesToInstall.length,
@@ -136,9 +149,21 @@ async function createProject(projectName, options, predefinedConfig = null) {
 }
 
 // Helper to handle core file conflicts (auto-create backup if exists)
-function handleCoreFileConflict(filePath, fileName) {
+async function handleCoreFileConflict(filePath, fileName, force = false, skipPrompts = false) {
     if (!fs.existsSync(filePath)) {
         return { shouldWrite: true, targetPath: filePath };
+    }
+
+    if (force) {
+        return { shouldWrite: true, targetPath: filePath, isOverwrite: true };
+    }
+
+    // Interactive Prompt (Only if prompts are allowed)
+    if (!skipPrompts) {
+        const shouldOverwrite = await confirmOverwrite(fileName);
+        if (shouldOverwrite) {
+            return { shouldWrite: true, targetPath: filePath, isOverwrite: true };
+        }
     }
 
     // File exists - create backup with .new extension
@@ -211,13 +236,15 @@ async function copyModularStructure(projectPath, config, rulesList, agentsList) 
 
     // 5. Copy GEMINI.md (Core file)
     const geminiPath = path.join(destAgentDir, 'GEMINI.md');
-    const geminiDecision = handleCoreFileConflict(geminiPath, 'GEMINI.md');
+    const geminiDecision = await handleCoreFileConflict(geminiPath, 'GEMINI.md', config.force, config.skipPrompts);
 
     if (geminiDecision.shouldWrite) {
         const geminiContent = generateGeminiMd(config.rules, config.language, config.industryDomain, config.agentName);
         fs.writeFileSync(geminiDecision.targetPath, geminiContent);
         if (geminiDecision.isBackup) {
             console.log(chalk.yellow(`  ℹ️  GEMINI.md exists, created ${path.basename(geminiDecision.targetPath)}`));
+        } else if (geminiDecision.isOverwrite) {
+             console.log(chalk.green(`  ✓ Overwrote existing GEMINI.md`));
         }
     }
 
@@ -225,27 +252,49 @@ async function copyModularStructure(projectPath, config, rulesList, agentsList) 
     const startHereSource = path.join(sourceAgentDir, 'START_HERE.md');
     if (fs.existsSync(startHereSource)) {
         const startHereDest = path.join(destAgentDir, 'START_HERE.md');
-        const decision = handleCoreFileConflict(startHereDest, 'START_HERE.md');
+        const decision = await handleCoreFileConflict(startHereDest, 'START_HERE.md', config.force, config.skipPrompts);
         if (decision.shouldWrite) {
             fs.copyFileSync(startHereSource, decision.targetPath);
+             if (decision.isOverwrite) {
+                 console.log(chalk.green(`  ✓ Overwrote existing START_HERE.md`));
+            }
         }
     }
 
     // 7. Copy README, .gitignore
     const files = ['README.md', '.gitignore'];
     const rootDir = path.join(__dirname, '..');
-    files.forEach(file => {
+    
+    for (const file of files) {
         const source = path.join(rootDir, file);
         const dest = path.join(projectPath, file);
-        if (fs.existsSync(source) && !fs.existsSync(dest)) {
-            fs.copyFileSync(source, dest);
+        
+        if (fs.existsSync(source)) {
+            const decision = await handleCoreFileConflict(dest, file, config.force, config.skipPrompts);
+            if (decision.shouldWrite) {
+                fs.copyFileSync(source, decision.targetPath);
+                if (decision.isBackup) {
+                    console.log(chalk.yellow(`  ℹ️  ${file} exists, created ${path.basename(decision.targetPath)}`));
+                } else if (decision.isOverwrite) {
+                    console.log(chalk.green(`  ✓ Overwrote existing ${file}`));
+                }
+            }
         }
-    });
+    }
 
     // 8. Copy RESOURCES.md to .agent/
     const resourcesSource = path.join(sourceAgentDir, 'RESOURCES.md');
     if (fs.existsSync(resourcesSource)) {
-         fs.copyFileSync(resourcesSource, path.join(destAgentDir, 'RESOURCES.md'));
+         const resourcesDest = path.join(destAgentDir, 'RESOURCES.md');
+         const decision = await handleCoreFileConflict(resourcesDest, 'RESOURCES.md', config.force, config.skipPrompts);
+         if (decision.shouldWrite) {
+             fs.copyFileSync(resourcesSource, decision.targetPath);
+             if (decision.isBackup) {
+                 console.log(chalk.yellow(`  ℹ️  RESOURCES.md exists, created ${path.basename(decision.targetPath)}`));
+             } else if (decision.isOverwrite) {
+                 console.log(chalk.green(`  ✓ Overwrote existing RESOURCES.md`));
+             }
+         }
     }
 }
 
@@ -288,10 +337,11 @@ async function copyWorkflows(projectPath, workflows) {
 }
 
 async function generateConfigs(projectPath, config) {
-    // Generate package.json only if it doesn't exist
+    // Generate package.json
     const packageJsonPath = path.join(projectPath, 'package.json');
+    const pkgDecision = await handleCoreFileConflict(packageJsonPath, 'package.json', config.force, config.skipPrompts);
 
-    if (!fs.existsSync(packageJsonPath)) {
+    if (pkgDecision.shouldWrite) {
         const packageJson = {
             name: config.projectName,
             version: '1.0.0',
@@ -307,26 +357,42 @@ async function generateConfigs(projectPath, config) {
         };
 
         fs.writeFileSync(
-            packageJsonPath,
+            pkgDecision.targetPath,
             JSON.stringify(packageJson, null, 2)
         );
-        console.log(chalk.green('  ✓ Created package.json'));
+        if (pkgDecision.isBackup) {
+             console.log(chalk.yellow(`  ℹ️  package.json exists, created ${path.basename(pkgDecision.targetPath)}`));
+        } else if (pkgDecision.isOverwrite || !fs.existsSync(packageJsonPath)) {
+             console.log(chalk.green('  ✓ Created package.json'));
+        }
     }
 
     // Generate .editorconfig
     const editorconfigPath = path.join(projectPath, '.editorconfig');
-    if (!fs.existsSync(editorconfigPath)) {
+    const ecDecision = await handleCoreFileConflict(editorconfigPath, '.editorconfig', config.force, config.skipPrompts);
+
+    if (ecDecision.shouldWrite) {
         const editorConfig = `root = true\n\n[*]\ncharset = utf-8\nend_of_line = lf\ninsert_final_newline = true\nindent_style = space\nindent_size = 2\ntrim_trailing_whitespace = true\n\n[*.md]\ntrim_trailing_whitespace = false\n`;
-        fs.writeFileSync(editorconfigPath, editorConfig);
-        console.log(chalk.green('  ✓ Created .editorconfig'));
+        fs.writeFileSync(ecDecision.targetPath, editorConfig);
+        if (ecDecision.isBackup) {
+             console.log(chalk.yellow(`  ℹ️  .editorconfig exists, created ${path.basename(ecDecision.targetPath)}`));
+        } else if (ecDecision.isOverwrite || !fs.existsSync(editorconfigPath)) {
+             console.log(chalk.green('  ✓ Created .editorconfig'));
+        }
     }
 
     // Generate .gitattributes
     const gitAttributesPath = path.join(projectPath, '.gitattributes');
-    if (!fs.existsSync(gitAttributesPath)) {
+    const gaDecision = await handleCoreFileConflict(gitAttributesPath, '.gitattributes', config.force, config.skipPrompts);
+
+    if (gaDecision.shouldWrite) {
         const gitAttributes = `* text=auto eol=lf\n*.js text eol=lf\n*.sh text eol=lf\nbin/* text eol=lf\n`;
-        fs.writeFileSync(gitAttributesPath, gitAttributes);
-        console.log(chalk.green('  ✓ Created .gitattributes'));
+        fs.writeFileSync(gaDecision.targetPath, gitAttributes);
+        if (gaDecision.isBackup) {
+             console.log(chalk.yellow(`  ℹ️  .gitattributes exists, created ${path.basename(gaDecision.targetPath)}`));
+        } else if (gaDecision.isOverwrite || !fs.existsSync(gitAttributesPath)) {
+             console.log(chalk.green('  ✓ Created .gitattributes'));
+        }
     }
 }
 

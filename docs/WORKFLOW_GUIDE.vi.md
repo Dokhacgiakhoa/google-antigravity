@@ -1,6 +1,6 @@
 # 📘 Hướng Dẫn Sử Dụng Hệ Thống Workflow (Quy Trình)
 
-> **Antigravity IDE** cung cấp **22 quy trình (Workflow)** chuyên biệt, tuân thủ nghiêm ngặt **Quy chuẩn Nhất thể (Unified Protocol)** với 4 giai đoạn: **Discovery → Planning → Execution → Audit**.
+> **Antigravity IDE** cung cấp **30 quy trình (Workflow)** chuyên biệt, tuân thủ nghiêm ngặt **Quy chuẩn Nhất thể (Unified Protocol)** với 4 giai đoạn: **Discovery → Planning → Execution → Audit**.
 
 ---
 
@@ -67,6 +67,9 @@
 - **Khi nào dùng**: Khi web chậm, cần đo Lighthouse và tối ưu tốc độ load.
 - **Cách dùng**: `/performance [URL/mô tả]`
 
+### `/compliance` - Pháp lý & Tuân thủ *(Mới)*
+- **Khi nào dùng**: Rà soát tiêu chuẩn an toàn dữ liệu (GDPR/HIPAA).
+
 ---
 
 ---
@@ -81,16 +84,17 @@
 ### `/seo` - Tối ưu tìm kiếm
 - **Khi nào dùng**: Để trang web lên Top Google. Tạo Sitemap, Schema JSON-LD.
 
-### `/portfolio` / `/blog` - Chuyên biệt nội dung *(Mới)*
-- **Khi nào dùng**: Tự động cấu hình cấu trúc Landing Page cá nhân hoặc hệ thống tin tức.
+### `/portfolio` - Tạo trang cá nhân *(Mới)*
+- **Khi nào dùng**: Tự động cấu hình cấu trúc Landing Page giới thiệu bản thân.
 
-### `/visually` / `/explain` - Trực quan hóa tri thức *(Mới)*
-- **Khi nào dùng**: Khi cần AI vẽ biểu đồ Logic hoặc giải thích code theo kiểu "Mindmap".
+### `/blog` - Hệ thống tin tức *(Mới)*
+- **Khi nào dùng**: Xây dựng module blog chuẩn SEO markdown.
 
----
+### `/visually` - Trực quan hóa *(Mới)*
+- **Khi nào dùng**: Vẽ biểu đồ luồng dữ liệu hoặc kiến trúc hệ thống.
 
-## 5. Nhóm Kỹ thuật Chuyên biệt (Verticals)
-*Dành cho các bài toán đặc thù theo ngành.*
+### `/explain` - Giải thích Code *(Mới)*
+- **Khi nào dùng**: Yêu cầu AI giải thích logic phức tạp dễ hiểu.
 
 ### `/api` - Master API Design *(Mới)*
 - **Khi nào dùng**: Thiết kế hệ thống API chuẩn OpenAPI 3.1, xử lý bảo mật Header.
@@ -98,14 +102,8 @@
 ### `/realtime` - Kết nối thời gian thực *(Mới)*
 - **Khi nào dùng**: Triển khai Socket.io, WebRTC hoặc Server-Sent Events.
 
-### `/compliance` - Pháp lý & Tuân thủ *(Mới)*
-- **Khi nào dùng**: Rà soát tiêu chuẩn an toàn dữ liệu (GDPR/HIPAA).
-
 ### `/mobile` - Phát triển Di động *(Mới)*
 - **Khi nào dùng**: Tối ưu hóa giao diện và trải nghiệm Native App.
-
-### `/performance` - Tối ưu hiệu năng
-- **Khi nào dùng**: Khi web chậm, cần đo Lighthouse và tối ưu tốc độ load.
 
 ### `/preview` - Xem trước dự án *(Mới)*
 - **Khi nào dùng**: Khởi chạy môi trường sandbox để kiểm tra kết quả ngay lập tức.
@@ -132,6 +130,9 @@
 
 ### `/deploy` - Phát hành
 - **Khi nào dùng**: Deploy lên Vercel, VPS, Docker.
+
+### `/update` - Nâng cấp Hệ thống
+- **Khi nào dùng**: Kiểm tra và nâng cấp bộ não của Antigravity IDE lên bản mới nhất.
 
 ### `/update` - Nâng cấp Hệ thống
 - **Khi nào dùng**: Kiểm tra và nâng cấp bộ não của Antigravity IDE lên bản mới nhất.
