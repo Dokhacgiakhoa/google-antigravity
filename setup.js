@@ -31,7 +31,7 @@ async function setup() {
     
     console.log(gradient.rainbow.multiline(branding));
     console.log(gradient.atlas('━'.repeat(60)));
-    console.log(chalk.gray(`  Google Antigravity • Global Setup Wizard • v${packageJson.version}`));
+    console.log(chalk.gray(`  Antigravity IDE • Global Setup Wizard • v${packageJson.version}`));
     console.log(chalk.gray('  Developed with 💡 by Dokhacgiakhoa'));
     console.log(gradient.atlas('━'.repeat(60)) + '\n');
     console.log(chalk.bold.hex('#00ffee')('🚀 Antigravity Global Setup Starting...\n'));
@@ -275,7 +275,7 @@ async function setup() {
     localizeWorkflows(lang);
 
     // FINAL SUMMARY (Premium Style)
-    console.log('\n' + gradient.pastel.multiline('📦 Configuring Google Antigravity Environment'));
+    console.log('\n' + gradient.pastel.multiline('📦 Configuring Antigravity IDE Environment'));
     console.log(gradient.atlas('━'.repeat(60)));
     
     console.log(chalk.green('√') + ' Global Rules Synced (Enterprise Standard)');

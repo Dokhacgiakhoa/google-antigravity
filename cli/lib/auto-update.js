@@ -16,7 +16,7 @@ async function checkAndApplyUpdates(packageJson, options = {}) {
   if (notifier.update) {
     const { latest, current } = notifier.update;
     console.log(chalk.yellow(`\n📦 New version detected: ${chalk.green(latest)} (Current: ${current})`));
-    console.log(chalk.cyan('🚀 Auto-updating Google Antigravity to ensure you have the latest features...'));
+    console.log(chalk.cyan('🚀 Auto-updating Antigravity IDE to ensure you have the latest features...'));
 
     try {
       // Use --no-save to avoid polluting local package.json if run in a project

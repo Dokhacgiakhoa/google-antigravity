@@ -1,6 +1,6 @@
 # 🔄 Agent Flow Architecture
 
-> **Google Antigravity** - Comprehensive AI Agent Workflow Documentation
+> **Antigravity IDE** - Comprehensive AI Agent Workflow Documentation (Enhanced Edition)
 
 ---
 
@@ -14,17 +14,17 @@
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    REQUEST CLASSIFICATION                        │
-│  • Analyze intent (build, debug, test, deploy, etc.)           │
-│  • Identify domain (frontend, backend, mobile, etc.)           │
-│  • Detect complexity (simple, medium, complex)                  │
+│  • Analyze intent (build, debug, test, deploy, etc.)            │
+│  • Check for Unified Command Pattern (init vs update vs repair)  │
+│  • Detect complexity (Instant, Creative, SME Scale)              │
 └────────────────────────────┬────────────────────────────────────┘
                              │
                 ┌────────────┴────────────┐
                 │                         │
                 ▼                         ▼
     ┌───────────────────┐      ┌──────────────────┐
-    │ WORKFLOW COMMAND  │      │  DIRECT AGENT    │
-    │  (Slash Command)  │      │  ASSIGNMENT      │
+    │ UNIFIED COMMAND   │      │  DIRECT AGENT    │
+    │ (npx antigravity) │      │  ASSIGNMENT      │
     └─────────┬─────────┘      └────────┬─────────┘
               │                         │
               ▼                         ▼
@@ -100,6 +100,12 @@
          │  • Provide explanations             │
          │  • Suggest next steps               │
          └─────────────────────────────────────┘
+          ┌─────────────────────────────────────┐
+          │      THE WATCHDOG (v4.0.7)          │
+          │  • Real-time Hang Detection         │
+          │  • Loop Prevention Protocol         │
+          │  • Error Log (ERRORS.md) Logging     │
+          └─────────────────────────────────────┘
 ```
 
 ---
@@ -526,20 +532,19 @@ User Request: "Build a Next.js dashboard with authentication"
 ┌──────────────────────────────────────────────────────────┐
 │                    SYSTEM CAPABILITIES                    │
 ├──────────────────────────────────────────────────────────┤
-│ Total Agents:              20                            │
-│ Total Skills:              36                            │
-│ Total Workflows:           11                            │
-│ Master Scripts:            2 (checklist, verify_all)     │
-│ Skill-Level Scripts:       18                            │
-│ Coverage:                  ~90% web/mobile development   │
+│ Total Agents:              22                            │
+│ Total Master Skills:       72                            │
+│ Total Workflows:           30                            │
+│ Shared Standards (DNA):    17                            │
+│ Supported Scales:          Instant, Creative, SME        │
 │                                                          │
 │ Supported Frameworks:                                    │
-│ ├─ Frontend: React, Next.js, Vue, Nuxt, Astro          │
-│ ├─ Backend: Node.js, NestJS, FastAPI, Express          │
-│ ├─ Mobile: React Native, Flutter                        │
-│ ├─ Database: Prisma, TypeORM, Sequelize                │
-│ ├─ Testing: Jest, Vitest, Playwright, Cypress          │
-│ └─ DevOps: Docker, Vercel, AWS, GitHub Actions         │
+│ ├─ Frontend: React, Next.js 15, Tailwind v4, Nuxt, Astro │
+│ ├─ Backend: Node.js, Python 3.13, FastAPI, NestJS        │
+│ ├─ Mobile: React Native, Flutter, Expo                   │
+│ ├─ Database: Prisma, Drizzle, PostgreSQL, Supabase       │
+│ ├─ Testing: Vitest, Playwright, TDD Master               │
+│ └─ DevOps: Docker, Vercel, AWS, Cloud Architect          │
 └──────────────────────────────────────────────────────────┘
 ```
 
@@ -598,5 +603,5 @@ User Request: "Build a Next.js dashboard with authentication"
 
 ---
 
-**Last Updated**: 2026-01-26
-**Version**: 2.0.1
+**Last Updated**: 2026-02-08
+**Version**: 4.0.7 (Standardized Edition)

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Google Antigravity CLI
+ * Antigravity IDE CLI
  * Create AI Agent projects with interactive setup
  */
 

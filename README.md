@@ -35,6 +35,9 @@ Experience a single command to manage your entire project lifecycle:
     - Intelligent cross-engine filtering (Python vs Node.js projects).
 3.  **DNA Synchronization**:
     - Automatically pulls core enterprise DNA (API, DB, Cloud, SEO) standards.
+4.  **The Watchdog System (v4.0.7)**:
+    - Automatic **Hang Detection** and infinite loop prevention.
+    - **Zero-Silent-Failure**: Every system error or Agent mistake is logged in \`ERRORS.md\` for recursive learning.
 
 ---
 
@@ -59,7 +62,11 @@ Meet your new virtual team:
 
 ## 📈 Release History
 
-#### v4.0.6 (Full Docs & Workflow Sync)
+#### v4.0.7 (The Unified Command Update)
+- Implemented the **Unified God Command**: \`npx antigravity-ide\` now handles Create, Update, Repair, and Fix automatically.
+- Integrated **The Watchdog**: Real-time hang detection and loop prevention.
+- **Recursive Learning**: Automatic logging of Agent errors and test failures to \`ERRORS.md\` for behavior improvement.
+- Updated all core guides to reflect the unified workflow.
 - Synchronized all 30 Workflows and 22 Specialist Agents.
 - Added comprehensive FAQ, Update, and Uninstall guides.
 - Improved CLI conflict resolution with `--force` flag.
