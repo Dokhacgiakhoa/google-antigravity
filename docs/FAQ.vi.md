@@ -18,6 +18,9 @@
 ### Q: Tại sao lại cần Python?
 **A**: Chế độ "Advanced" sử dụng các thư viện Data Science và AI mạnh mẽ (như Pandas, Scikit-learn) chỉ có trên Python. Tuy nhiên, nếu bạn chỉ làm Web/App cơ bản (Standard Mode), bạn **KHÔNG** cần Python.
 
+### Q: 600+ Chiến thuật (AI Patterns) là gì?
+**A**: Đó không phải là 600 file, mà là tổng hợp các mẫu thiết kế (Design Patterns), Checklist kiểm thử, và Quy tắc bảo mật nằm *bên trong* 72 bộ Master Skills. Ví dụ: Skill "Mobile Design" chứa hơn 50 patterns về UX, Performance và Security cho iOS/Android.
+
 ### Q: File `GEMINI.md` là gì?
 **A**: Đó là "CMND/CCCD" của AI Agent. Nó chứa danh tính, nhiệm vụ và các quy tắc ứng xử. AI sẽ đọc file này đầu tiên để biết "mình là ai".
 
