@@ -2,7 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.0.8] - 2026-02-08
+## [4.0.10] - 2026-02-08
+### Changed
+- **NPM Optimization**: Updated `package.json` description to include key statistics (72 Skills, 22 Agents) for better discoverability on npmjs.com.
+
 ### Added
 - **Marketing**: New "One Command" slogan and high-contrast NPM badges.
 - **Documentation**: Synchronized all guides with 72 Master Skills and 600+ AI Patterns.
