@@ -154,3 +154,9 @@ Dự án v4.0.6 tích hợp sẵn hệ thống giám sát cấp cao:
     *   Vòng 2: "Thêm CSS cho đẹp."
     *   Vòng 3: "Tối ưu code cho gọn."
     *   *(Đừng bắt AI làm hoàn hảo ngay từ lệnh đầu tiên)*.
+
+4.  **Mô hình "Bảo trì Thần tốc"**:
+    *   Khi thấy Agent chạy chệch hướng hoặc Rules bị cũ: "Chạy `npx antigravity-ide` để **Repair & Sync** toàn bộ hệ thống ngay lập tức."
+
+---
+*Cẩm nang này sẽ được cập nhật liên tục theo các phiên bản mới của Antigravity IDE.*

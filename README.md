@@ -14,18 +14,18 @@ The First AI-Native IDE designed for Vibe Coding & Agentic Workflow. 🛰️🚀
 The recommended way to use Antigravity IDE is via **npx**. This ensures you always have the latest engine and master skills without messy global installs.
 
 ```sh
-# Initialize a new AI Agent project in current directory
-npx antigravity-ide init
+# UNIFIED COMMAND: Create, Update, Repair, and Sync
+npx antigravity-ide [project-name]
 
-# Initialize quickly with default settings in a new folder
-npx antigravity-ide my-project --skip-prompts
+# If run in an existing project, it automatically REPAIRS & UPDATES
+npx antigravity-ide .
 ```
 
 > [!TIP]
 > **New to npx?** Check our [NPX Installation Guide](file:///docs/INSTALL_NPX_GUIDE.vi.md) for a step-by-step setup.
 
-### ✨ Setup Wizard Features (v4.0.6 - Docs & CLI Upgrade)
-The new interactive CLI features a **Modular Installation Engine** that adapts to your exact needs:
+### ✨ Unified God Command (v4.0.7 - Smart Repair)
+Experience a single command to manage your entire project lifecycle:
 
 1.  **Scale-Adaptive Architecture**: 
     - Choose between **Instant (MVP)**, **Creative (Full AI)**, and **SME (Enterprise Ready)**.

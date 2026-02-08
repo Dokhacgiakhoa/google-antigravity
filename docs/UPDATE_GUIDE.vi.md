@@ -8,14 +8,15 @@ AntiGravity IDE có cơ chế cập nhật "kép" độc đáo. Bạn cần hi�
 Đây là việc cập nhật bản thân công cụ `npx antigravity-ide`.
 
 ### Cách làm:
-Chỉ cần chạy lệnh khởi tạo thông thường, hệ thống sẽ tự động phát hiện và hỏi bạn có muốn nâng cấp lên bản mới nhất không:
+Chỉ cần chạy lệnh "vạn năng" trong thư mục dự án của bạn:
 ```bash
-npx antigravity-ide init
+npx antigravity-ide
 ```
-Nếu bạn muốn cưỡng bức cập nhật khi nghi ngờ cache bị lỗi:
-```bash
-npx antigravity-ide update
-```
+Hệ thống sẽ tự động khởi động **Repair & Update Mode**:
+1.  **Check**: Kiểm tra tính toàn vẹn của dự án.
+2.  **Update**: Cập nhật Engine và Rules mới nhất từ NPM.
+3.  **Repair**: Khôi phục các file hệ thống bị hỏng hoặc mất.
+4.  **Sync**: Đồng bộ DNA chuẩn v4.0.7 mới nhất.
 
 ### Kiểm tra phiên bản hiện tại:
 ```bash

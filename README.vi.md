@@ -14,11 +14,11 @@ IDE đầu tiên được thiết kế dành riêng cho "Vibe Coding" và Quy tr
 Cách tốt nhất để sử dụng Antigravity IDE là thông qua **npx**. Điều này đảm bảo bạn luôn có Engine và Master Skills mới nhất mà không làm rác máy bởi các gói cài đặt global.
 
 ```sh
-# Khởi tạo dự án AI Agent mới trong thư mục hiện tại
-npx antigravity-ide init
+# LỆNH VẠN NĂNG (Tất cả trong một): Tạo mới, Update, Sửa lỗi, Đồng bộ
+npx antigravity-ide [tên-dự-án]
 
-# Khởi tạo nhanh với cấu hình mặc định trong thư mục mới
-npx antigravity-ide my-project --skip-prompts
+# Nếu chạy trong thư mục dự án cũ, nó sẽ tự động REPAIR & UPDATE
+npx antigravity-ide .
 ```
 
 > [!TIP]
@@ -28,8 +28,8 @@ npx antigravity-ide my-project --skip-prompts
 > [!WARNING]
 > **Lưu ý quan trọng:** Không nên cài đặt Global (`npm install -g antigravity-ide`) vì sẽ gây xung đột. Xem [Hướng dẫn Gỡ cài đặt](file:///docs/UNINSTALL_GUIDE.vi.md) nếu đã lỡ cài.
 
-### ✨ Tính năng Setup Wizard (v4.0.6 - Build Update)
-Trải nghiệm dòng lệnh (CLI) đẳng cấp Premium với **Cơ chế Thích ứng theo Quy mô**:
+### ✨ Unified God Command (v4.0.7 - Smart Repair)
+Trải nghiệm một lệnh duy nhất để quản trị toàn bộ vòng đời dự án:
 
 1.  **Kiến trúc Thích ứng theo Quy mô (Scale-Adaptive)**: 
     - Chọn giữa các mức độ **Instant (MVP)**, **Creative (Toàn diện AI)**, và **SME (Chuẩn doanh nghiệp)**.
