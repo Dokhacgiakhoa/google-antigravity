@@ -19,8 +19,8 @@ This file controls the behavior of your AI Agent.
 
 ## 🌐 Language Protocol
 
-1. **Communication**: Use **ENGLISH**.
-2. **Artifacts**: Write content in **ENGLISH**.
+1. **Communication**: Use **VIETNAMESE** (Tiếng Việt).
+2. **Artifacts**: Write content in **VIETNAMESE** (Tiếng Việt).
 3. **Code**: Use **ENGLISH** for all variables, functions, and comments.
 
 ## Core Capabilities
@@ -51,8 +51,9 @@ The following **17 Shared Modules** in `.agent/.shared` must be respected:
 13. **Vitals Templates**: Performance benchmarks.
 14. **Malware Protection**: Threat intelligence.
 15. **Auto-Update**: Self-maintenance protocols.
-16. **Error Logging**: Automatic learning system.
-17. **Docs Sync**: Documentation integrity.
+16. **Error Logging**: Hệ thống tự học từ lỗi.
+17. **Docs Sync**: Đồng bộ tài liệu.
+18. **Strict Protocol**: 🛡️ CẤM TỰ ĐỘNG PUSH & BẮT BUỘC TIẾNG VIỆT (Xem `.agent/rules/strict-protocol.md`).
 
 ## Custom Instructions
 

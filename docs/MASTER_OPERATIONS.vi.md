@@ -33,8 +33,8 @@ AntiGravity hỗ trợ hai chế độ vận hành linh hoạt tùy theo nhu c�
 
 ---
 
-## 🧬 4. Kho tài nguyên DNA (`.shared/`)
-Đây là nơi lưu trữ "mã di truyền" của hệ thống, giúp Agent thông minh hơn theo từng phiên bản:
+## 🧬 4. Kho tài nguyên Core Library (`.shared/`)
+Đây là nơi lưu trữ "mã nguồn lõi" của hệ thống, giúp Agent thông minh hơn theo từng phiên bản:
 
 | Module | Trọng tâm trí tuệ |
 | :--- | :--- |

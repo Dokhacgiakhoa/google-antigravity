@@ -1,4 +1,4 @@
-<div align="center">
+
 
 # 🛰️ AntiGravity IDE
 ### *Phiên bản Nâng cao • v4.1.22 Meta-Engine*
@@ -21,29 +21,29 @@
 
 ### 📊 Ma trận Năng lực Hệ thống
 
-| **15** Quy tắc | **22** Chuyên gia | **573** Kỹ năng | **2977** Chiến thuật | **30** Quy trình | **135** DNA |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| *Quản trị* | *Virtual Agents* | *Công cụ lõi* | *Mẫu AI Nâng cao* | *Chuẩn hóa* | *DNA Dùng chung* |
+| **15** Quy tắc | **573** Kỹ năng | **2977** Chiến thuật | **30** Quy trình | **17** Core Libs |
+| :---: | :---: | :---: | :---: | :---: |
+| *Quản trị* | *Công cụ lõi* | *Mẫu AI Nâng cao* | *Chuẩn hóa* | *DNA Dùng chung* |
 
 </div>
 
 ---
 
-## ⚡ Cài đặt Toàn cầu (npx)
+## ⚡ Cơ Chế Cài Đặt Thông Minh (Smart Sync)
 
-Khuyến khích sử dụng thông qua **npx** để luôn nhận được Engine và Skills mới nhất mà không gây rác hệ thống.
+Antigravity sử dụng chiến lược **Dual-Scope Installation** để đảm bảo sự ổn định:
+
+1.  **Global Scope (Gốc Dự Án)**: Cài đặt `GEMINI.md` (Cấu hình định danh).
+2.  **Workspace Scope (Thư mục .agent)**: Cài đặt Rules, Skills, Workflows (Bộ não).
+
+**Giao thức Safe-Sync:**
+- 🟢 **File Thiếu**: Tự động bổ sung.
+- 🟡 **File Trùng**: Tự động bỏ qua (Giữ nguyên code bạn đã sửa).
+- 🔴 **Reset Force**: Chỉ ghi đè khi bạn dùng cờ `--force`.
 
 ```bash
-# 🔥 LỆNH VẠN NĂNG (GOD COMMAND)
-# Tạo mới, Cập nhật, Sửa lỗi và Đồng bộ - Tất cả trong 1.
+# MỘT LỆNH DUY NHẤT CHO TẤT CẢ
 npx antigravity-ide [ten-du-an]
-
-# Chạy trong dự án cũ:
-# Tự động phát hiện phiên bản, vá lỗi config và cập nhật docs.
-npx antigravity-ide .
-
-# Kiểm tra dự án theo chuẩn:
-npx antigravity-ide validate
 ```
 
 > [!TIP]
@@ -80,24 +80,21 @@ Kiến trúc chuẩn hóa, dễ dàng mở rộng và bảo trì.
 ```text
 du-an-cua-ban/
 ├── .agent/              # 🧠 BỘ NÃO (Fractal Core)
-│   ├── .shared/         # ⛩️ DNA (API/DB/Security Standards)
-│   ├── agents/          # 🎭 Chuyên gia (Lead, PM, Auditor)
+│   ├── .shared/         # ⛩️ Thư viện lõi (API/DB/Security Standards)
 │   ├── rules/           # ⚖️ Quản trị (Compliance, Context)
 │   ├── skills/          # 🛠️ Kỹ năng (573 Fractal Skills)
-│   ├── workflows/       # 🚀 Quy trình (/create, /debug, /audit)
-│   └── scripts/         # 🧪 Kiểm định & Validation
+│   └── workflows/       # 🚀 Quy trình (/create, /debug, /audit)
 └── (code của bạn)       # ⚡ Mã nguồn ứng dụng
 ```
+
+> [!NOTE]
+> **Định Nghĩa Phạm Vi (Scope)**:
+> - **Global (Toàn cầu)**: Bộ công cụ CLI (`npx antigravity-ide`) dùng để cài đặt & quản lý.
+> - **Workspace (Dự án)**: Toàn bộ Quy tắc (`.agent/rules`), Kỹ năng và Quy trình được cài đặt **Cục bộ** vào từng dự án riêng biệt. Đảm bảo trí tuệ của dự án này không bị rò rỉ sang dự án khác.
 
 ---
 
 ## 🧠 Hệ sinh thái Master
-
-### 🎭 Đội ngũ Tác nhân Chuyên gia
-- **Lead Developer**: Thiết kế hệ thống & Kiến trúc.
-- **Security Auditor**: Quét lỗ hổng bảo mật thời gian thực.
-- **Product Manager**: Lập kế hoạch Task thông minh.
-- *...và 19 nhân sự Senior khác.*
 
 ### 🛠️ Lĩnh vực Tác chiến Kỹ năng
 - **Web Hiệu năng cao**: Next.js 15, React 19, Tailwind v4.
@@ -107,7 +104,28 @@ du-an-cua-ban/
 
 ---
 
-## 📚 Tài liệu tham khảo
+## 🚀 Lệnh Nâng Cao (Power Commands)
+
+| Lệnh | Hành động | Logic Xử Lý |
+| :--- | :--- | :--- |
+| `npx antigravity-ide .` | **Sửa Chữa / Đồng Bộ** | Quét cả Global (`GEMINI.md`) & Workspace (`.agent`). Bù file thiếu. |
+| `npx antigravity-ide validate` | **Kiểm Tra Sức Khỏe** | Xác minh tính toàn vẹn của cả 2 phạm vi. |
+| `npx antigravity-ide update` | **Nâng Cấp** | Cập nhật Core DNA nhưng tôn trọng ranh giới Scope (không ghi đè ẩu). |
+
+---
+
+## ❓ Câu Hỏi Thường Gặp
+
+**Q: Đây có phải chỉ là AI wrapper nữa không?**
+A: Không. Wrapper thì vô tri (stateless). Antigravity cài đặt một **Hệ Thống Ký Ức Fractal** (thư mục .agent) trực tiếp vào dự án. Nó mang lại khả năng ghi nhớ dài hạn, nhận thức ngữ cảnh và tự sửa lỗi.
+
+**Q: "Pure Install" là gì?**
+A: Từ v4.1.23, chúng tôi loại bỏ hoàn toàn mã thừa. Không script nội bộ, không file rác. Bạn chỉ nhận được **đúng** những gì cần thiết để vận hành đội ngũ AI.
+
+**Q: Tôi có thể tùy chỉnh Agent không?**
+A: Có. Tất cả nhân sự ảo nằm trong `.agent/agents/`. Bạn có thể sửa prompt, dạy skill mới hoặc... sa thải họ. Bạn là sếp mà.
+
+---
 
 - **[Hướng dẫn Gemini](docs/GEMINI_USAGE.md)**: Cách cấu hình và sử dụng với Google Gemini.
 - **[Vận hành Master](docs/MASTER_OPERATIONS.vi.md)**: Tìm hiểu sâu về cơ chế cốt lõi.
@@ -115,20 +133,9 @@ du-an-cua-ban/
 
 ---
 
-## 🙏 Ghi nhận & Tham khảo
 
-Dự án này được phát triển độc lập bởi **Dokhacgiakhoa**.
 
-Chúng tôi xin trân trọng ghi nhận các dự án mã nguồn mở sau đây là **nguồn cảm hứng và tài liệu tham khảo** (Lưu ý: Các tác giả này không trực tiếp tham gia vào quá trình phát triển dự án này):
 
-- **[Agent Skills Standard](https://github.com/HoangNguyen0403/agent-skills-standard)**: Được áp dụng làm chuẩn kiến trúc cốt lõi cho AI.
-- **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)**: Nguồn cảm hứng cho khái niệm "Antigravity" và triết lý Meta-Engine.
-- **[Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills)**: Tham khảo về cấu trúc thư mục kỹ năng.
-- **[anthropics/skills](https://github.com/anthropics/skills)**: Tích hợp các kỹ năng chính thức từ Anthropic (Apache 2.0).
-
----
-
-<div align="center">
   Phát triển với 💡 bởi <strong>Dokhacgiakhoa</strong><br>
   <a href="LICENSE">MIT LICENSE</a>
 </div>

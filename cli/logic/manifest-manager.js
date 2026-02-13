@@ -51,30 +51,11 @@ const MANIFEST = {
         ]
     },
 
-    // 2. AGENTS MAPPING (Expertise Level)
+    // 2. AGENTS MAPPING (Removed for Single-Context Efficiency)
     agents: {
-        // 🍜 Instant (Solo Dev / Frontend)
-        instant: [
-            'project-planner.md',
-            'frontend-specialist.md',
-            'product-manager.md' // Basic PM for MVP
-        ],
-        // 🏢 SME (Full Stack Team)
-        sme: [
-            'project-planner.md',
-            'frontend-specialist.md',
-            'backend-specialist.md',
-            'database-architect.md',
-            'devops-engineer.md',
-            'test-engineer.md',
-            'quality-inspector.md',
-            'debugger.md'
-        ],
-        // 🎨 Creative (All Hands on Deck)
-        creative: [
-            // All Agents allowed
-            '*' 
-        ]
+        instant: [],
+        sme: [],
+        creative: []
     },
 
     // 3. PRODUCT SPECIFIC ADD-ONS

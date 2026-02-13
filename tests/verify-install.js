@@ -36,7 +36,7 @@ try {
   const requiredFiles = [
     'package.json',
     'README.md',
-    '.agent/GEMINI.md', 
+    'GEMINI.md', 
     '.gitignore'
   ];
   

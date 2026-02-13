@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const skillsDir = path.join(__dirname, '..', 'skills');
+const skillsDir = path.join(__dirname, '..', '..', '.agent', 'skills');
 const outputFile = path.join(__dirname, '..', '..', 'cli', 'logic', 'skill-definitions.js');
 
 // 1. Get all skill names

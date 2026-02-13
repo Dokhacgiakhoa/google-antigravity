@@ -62,17 +62,14 @@ async function runTest(testCase) {
 function verifyProject(projectPath, testCase) {
     const agentDir = path.join(projectPath, '.agent');
     const rules = fs.readdirSync(path.join(agentDir, 'rules'));
-    const agents = fs.readdirSync(path.join(agentDir, 'agents'));
-    
-    console.log(chalk.cyan(`    🔍 Audit: Rules: ${rules.length}, Agents: ${agents.length}`));
+    console.log(chalk.cyan(`    🔍 Audit: Rules: ${rules.length}`));
 
     // Validation logic based on manifest-manager.js
     if (testCase.scale === 'instant' && rules.length < 5) console.log(chalk.red('    ❌ Instant scale missing rules!'));
-    if (testCase.scale === 'creative' && agents.length < 20) console.log(chalk.red('    ❌ Creative scale missing agents (wildcard fail)!'));
     if (testCase.scale === 'sme' && !rules.includes('security.md')) console.log(chalk.red('    ❌ SME scale missing security!'));
     
     // Lang check in GEMINI.md
-    const gemini = fs.readFileSync(path.join(agentDir, 'GEMINI.md'), 'utf-8');
+    const gemini = fs.readFileSync(path.join(projectPath, 'GEMINI.md'), 'utf-8');
     const isVi = gemini.includes('Danh tính Agent');
     if (testCase.lang === 'vi' && !isVi) console.log(chalk.red('    ❌ GEMINI.md language mismatch!'));
     else if (testCase.lang === 'en' && isVi) console.log(chalk.red('    ❌ GEMINI.md language mismatch!'));

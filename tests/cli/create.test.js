@@ -1,4 +1,4 @@
-const { generateGeminiMd } = require('../../cli/create');
+const { generateGeminiMd } = require('../../cli/logic/gemini-generator');
 
 describe('CLI Create', () => {
     describe('generateGeminiMd', () => {
@@ -15,11 +15,11 @@ describe('CLI Create', () => {
         });
 
         it('should reflect strictness levels', () => {
-            const strict = generateGeminiMd('strict', 'en');
-            expect(strict).toContain('Auto-run Commands**: false');
+            const sme = generateGeminiMd('sme', 'en');
+            expect(sme).toContain('Auto-run Commands**: false');
             
-            const flexible = generateGeminiMd('flexible', 'en');
-            expect(flexible).toContain('Auto-run Commands**: true');
+            const instant = generateGeminiMd('instant', 'en');
+            expect(instant).toContain('Auto-run Commands**: true');
         });
     });
 });

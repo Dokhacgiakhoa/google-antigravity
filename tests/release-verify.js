@@ -32,10 +32,8 @@ try {
     const checks = [
         { path: 'GEMINI.md', required: true },
         { path: '.agent', required: true },
-        { path: '.agent/RESOURCES.md', required: true }, // The file user reported missing
         { path: '.agent/rules', required: true },
         { path: '.agent/skills', required: true },
-        { path: '.agent/agents', required: true },
         { path: '.agent/workflows', required: true },
     ];
 

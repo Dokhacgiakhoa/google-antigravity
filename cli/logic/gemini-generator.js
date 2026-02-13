@@ -92,6 +92,41 @@ The following **17 Shared Modules** in \`.agent/.shared\` must be respected:
 16. **Error Logging**: Automatic learning system.
 17. **Docs Sync**: Documentation integrity.
 
+94. 
+## ⌨️ Slash Commands (Auto-Active)
+Use these commands to trigger specialized workflows:
+
+- **/api**: API Design & Documentation (OpenAPI 3.1).
+- **/audit**: Comprehensive pre-delivery audit.
+- **/blog**: Personal or enterprise blogging system.
+- **/brainstorm**: Ideation & creative solutions.
+- **/compliance**: Legal compliance check (GDPR, HIPAA).
+- **/create**: Initialize new features or projects.
+- **/debug**: Deep bug fixing & log analysis.
+- **/deploy**: Deploy to Server/Vercel.
+- **/document**: Auto-generate technical documentation.
+- **/enhance**: UI upgrades & minor logic tweaks.
+- **/explain**: Code explanation & training.
+- **/log-error**: Log errors to tracking system.
+- **/mobile**: Native mobile app development.
+- **/monitor**: System monitoring & Pipeline setup.
+- **/onboard**: Onboard new team members.
+- **/orchestrate**: Coordinate complex multi-tasks.
+- **/performance**: Performance & speed optimization.
+- **/plan**: Development planning & roadmap.
+- **/portfolio**: Build personal portfolio sites.
+- **/preview**: Application Live Preview.
+- **/realtime**: Realtime integration (Socket/WebRTC).
+- **/release-version**: Version update & Changelog.
+- **/security**: Vulnerability scan & System hardening.
+- **/seo**: SEO & Generative Engine Optimization.
+- **/status**: View project status report.
+- **/test**: Write & Run automated tests (TDD).
+- **/ui-ux-pro-max**: High-end Visuals & Motion Design.
+- **/update**: Update AntiGravity to latest version.
+- **/update-docs**: Sync documentation with code.
+- **/visually**: Visualize logic & architecture.
+
 ## Custom Instructions
 
 Add your project-specific instructions here.
@@ -159,6 +194,40 @@ Vui lòng sử dụng các kỹ năng phù hợp nhất cho **${industryFocus}**
 15. **Auto-Update**: Giao thức tự bảo trì.
 16. **Error Logging**: Hệ thống tự học từ lỗi.
 17. **Docs Sync**: Đồng bộ tài liệu.
+
+## ⌨️ Hệ thống lệnh Slash Command (Tự động Kích hoạt)
+Sử dụng các lệnh sau để kích hoạt quy trình tác chiến chuyên sâu:
+
+- **/api**: Thiết kế API & Tài liệu hóa (OpenAPI 3.1).
+- **/audit**: Kiểm tra toàn diện trước khi bàn giao.
+- **/blog**: Hệ thống blog cá nhân hoặc doanh nghiệp.
+- **/brainstorm**: Tìm ý tưởng & giải pháp sáng tạo.
+- **/compliance**: Kiểm tra tuân thủ pháp lý (GDPR, HIPAA).
+- **/create**: Khởi tạo tính năng hoặc dự án mới.
+- **/debug**: Sửa lỗi & Phân tích log chuyên sâu.
+- **/deploy**: Triển khai lên Server/Vercel.
+- **/document**: Viết tài liệu kỹ thuật tự động.
+- **/enhance**: Nâng cấp giao diện & logic nhỏ.
+- **/explain**: Giải thích mã nguồn & đào tạo.
+- **/log-error**: Ghi log lỗi vào hệ thống theo dõi.
+- **/mobile**: Phát triển ứng dụng di động Native.
+- **/monitor**: Cài đặt giám sát hệ thống & Pipeline.
+- **/onboard**: Hướng dẫn thành viên mới.
+- **/orchestrate**: Điều phối đa tác vụ phức tạp.
+- **/performance**: Tối ưu hóa hiệu năng & tốc độ.
+- **/plan**: Lập kế hoạch & lộ trình development.
+- **/portfolio**: Xây dựng trang Portfolio cá nhân.
+- **/preview**: Xem trước ứng dụng (Live Preview).
+- **/realtime**: Tích hợp Realtime (Socket.io/WebRTC).
+- **/release-version**: Cập nhật phiên bản & Changelog.
+- **/security**: Quét lỗ hổng & Bảo mật hệ thống.
+- **/seo**: Tối ưu hóa SEO & Generative Engine.
+- **/status**: Xem báo cáo trạng thái dự án.
+- **/test**: Viết & Chạy kiểm thử tự động (TDD).
+- **/ui-ux-pro-max**: Thiết kế Visuals & Motion cao cấp.
+- **/update**: Cập nhật AntiGravity lên bản mới nhất.
+- **/update-docs**: Đồng bộ tài liệu với mã nguồn.
+- **/visually**: Trực quan hóa logic & kiến trúc.
 
 ## Hướng dẫn tùy chỉnh
 

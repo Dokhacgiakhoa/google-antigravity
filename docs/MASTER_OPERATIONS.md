@@ -1,4 +1,4 @@
-# 🛰️ AntiGravity IDE - Master Operations Guide
+
 **Version**: 4.1.22 (Stable Marketing & NPM)
 **Language**: English (Technical)
 

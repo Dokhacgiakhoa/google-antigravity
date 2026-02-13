@@ -1,4 +1,4 @@
-<div align="center">
+
 
 # 🛰️ AntiGravity IDE
 ### *Advanced Edition • v4.1.22 Meta-Engine*
@@ -21,29 +21,29 @@
 
 ### 📊 System Capability Matrix
 
-| **15** Rules | **22** Agents | **573** Skills | **2977** Patterns | **30** Flows | **135** DNA |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| *Governance* | *Specialists* | *Operational* | *Advanced AI* | *Standardized* | *Core Libraries* |
+| **15** Rules | **573** Skills | **2977** Patterns | **30** Flows | **17** Core Libs |
+| :---: | :---: | :---: | :---: | :---: |
+| *Governance* | *Operational* | *Advanced AI* | *Standardized* | *Core Libraries* |
 
 </div>
 
 ---
 
-## ⚡ Global Installation (npx)
+## ⚡ Smart Installation (npx)
 
-The recommended way to use Antigravity IDE is via **npx**. No global clutter, always the latest engine.
+Antigravity uses a **Dual-Scope Installation Strategy** to ensure stability:
+
+1.  **Global Scope (Project Root)**: Installs `GEMINI.md` (Configuration).
+2.  **Workspace Scope (.agent/)**: Installs Rules, Skills, and Workflows (The Brain).
+
+**Safe-Sync Protocol:**
+- 🟢 **Missing Files**: Automatically added.
+- 🟡 **Existing Files**: Skipped to preserve your customizations.
+- 🔴 **Reset Force**: Use `--force` if you want to overwrite everything.
 
 ```bash
-# 🔥 UNIFIED GOD COMMAND
-# Create, Update, Repair, and Sync - All in one.
+# ONE COMMAND TO RULE THEM ALL
 npx antigravity-ide [project-name]
-
-# If run inside an existing project:
-# Automatically detects version, repairs config, and syncs docs.
-npx antigravity-ide .
-
-# Validate project compliance:
-npx antigravity-ide validate
 ```
 
 > [!TIP]
@@ -80,24 +80,21 @@ A fracture-free, standardized architecture for scalable AI development.
 ```text
 your-project/
 ├── .agent/              # 🧠 THE BRAIN (Fractal Core)
-│   ├── .shared/         # ⛩️ DNA (API/DB/Security Standards)
-│   ├── agents/          # 🎭 Specialists (Lead, PM, Auditor)
+│   ├── .shared/         # ⛩️ Core Library (API/DB/Security Standards)
 │   ├── rules/           # ⚖️ Governance (Compliance, Context)
 │   ├── skills/          # 🛠️ Mastery (573 Fractal Skills)
-│   ├── workflows/       # 🚀 Ops (/create, /debug, /audit)
-│   └── scripts/         # 🧪 Continuous Validation
+│   └── workflows/       # 🚀 Ops (/create, /debug, /audit)
 └── (your app)           # ⚡ Your Source Code
 ```
 
+> [!NOTE]
+> **Scope Definition**: 
+> - **Global**: The CLI Tool (`npx antigravity-ide`) acts as the installer.
+> - **Workspace**: All Rules (`.agent/rules`), Skills, and Workflows are installed **Locally** into your project. This ensures total isolation—what happens in one project stays in that project.
+
 ---
 
-## 🧠 Master Ecosystem
-
-### 🎭 Virtual Specialist Team
-- **Lead Developer**: System Design & Architecture.
-- **Security Auditor**: Real-time vulnerability scanning.
-- **Product Manager**: Semantic task planning.
-- *...and 19 other senior industrial personas.*
+### 🧠 Master Ecosystem
 
 ### 🛠️ Strategic Skill Domains
 - **High-Perf Web**: Next.js 15, React 19, Tailwind v4.
@@ -107,7 +104,28 @@ your-project/
 
 ---
 
-## 📚 Documentation
+## 🚀 Power Commands
+
+| Command | Action | Logic |
+| :--- | :--- | :--- |
+| `npx antigravity-ide .` | **Repair / Sync** | Scans Global (`GEMINI.md`) & Workspace (`.agent`). Fills gaps. |
+| `npx antigravity-ide validate` | **Health Check** | Verifies integrity of both scopes. |
+| `npx antigravity-ide update` | **Upgrade** | Updates Core DNA while respecting Scope boundaries. |
+
+---
+
+## ❓ Frequent Questions
+
+**Q: Is this just another AI wrapper?**
+A: No. Wrappers are stateless. Antigravity installs a **Fractal Memory System** (.agent folder) directly into your project. It gives your AI long-term memory, context awareness, and self-correction capabilities.
+
+**Q: What is "Pure Install"?**
+A: Starting from v4.1.23, we stripped all bloat. No internal scripts, no dev dependencies. You get **only** the production artifacts needed to run your AI team.
+
+**Q: Can I customize the Agents?**
+A: Yes. All agents live in `.agent/agents/`. You can edit their prompts, give them new skills, or fire them. You are the boss.
+
+---
 
 - **[Gemini Usage Guide](docs/GEMINI_USAGE.md)**: How to configure and use with Google Gemini.
 - **[Master Operations](docs/MASTER_OPERATIONS.md)**: Deep dive into the IDE's core mechanics.
@@ -115,20 +133,9 @@ your-project/
 
 ---
 
-## 🙏 Credits & Acknowledgments
 
-This project is independently developed by **Dokhacgiakhoa**.
 
-We respectfully acknowledge the following open-source projects as **references and sources of inspiration** (Note: These authors are not directly involved in the development of this project):
 
-- **[Agent Skills Standard](https://github.com/HoangNguyen0403/agent-skills-standard)**: Adopted as the core architectural standard for AI engineering.
-- **[Antigravity Kit](https://github.com/vudovn/antigravity-kit)**: Inspiration for the "Antigravity" concept and meta-engine philosophy.
-- **[Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills)**: Reference for skill directory structure.
-- **[anthropics/skills](https://github.com/anthropics/skills)**: Official Anthropic skills integrated under Apache 2.0 license.
-
----
-
-<div align="center">
   Developed with 💡 by <strong>Dokhacgiakhoa</strong><br>
   <a href="LICENSE">MIT LICENSE</a>
 </div>

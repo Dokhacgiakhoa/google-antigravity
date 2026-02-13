@@ -1,0 +1,170 @@
+[
+  {
+    "name": "1. [EN] INSTANT-user_app-minimal",
+    "status": "✅",
+    "stats": "6R/278S/9W",
+    "cliStats": "6 Rules • 278 Skills • 9 Workflows • 17 Core Modules",
+    "time": "1970ms"
+  },
+  {
+    "name": "2. [EN] INSTANT-dev_tool-standard",
+    "status": "✅",
+    "stats": "7R/278S/9W",
+    "cliStats": "7 Rules • 278 Skills • 9 Workflows • 17 Core Modules",
+    "time": "1993ms"
+  },
+  {
+    "name": "3. [EN] INSTANT-ai_agent-full",
+    "status": "✅",
+    "stats": "8R/278S/9W",
+    "cliStats": "8 Rules • 278 Skills • 9 Workflows • 17 Core Modules",
+    "time": "2049ms"
+  },
+  {
+    "name": "4. [EN] INSTANT-digital_asset-minimal",
+    "status": "✅",
+    "stats": "7R/278S/9W",
+    "cliStats": "7 Rules • 278 Skills • 9 Workflows • 17 Core Modules",
+    "time": "2032ms"
+  },
+  {
+    "name": "5. [EN] CREATIVE-user_app-standard",
+    "status": "✅",
+    "stats": "15R/573S/30W",
+    "cliStats": "15 Rules • 573 Skills • 30 Workflows • 17 Core Modules",
+    "time": "4450ms"
+  },
+  {
+    "name": "6. [EN] CREATIVE-dev_tool-full",
+    "status": "✅",
+    "stats": "15R/573S/30W",
+    "cliStats": "15 Rules • 573 Skills • 30 Workflows • 17 Core Modules",
+    "time": "5309ms"
+  },
+  {
+    "name": "7. [EN] CREATIVE-ai_agent-minimal",
+    "status": "✅",
+    "stats": "15R/573S/30W",
+    "cliStats": "15 Rules • 573 Skills • 30 Workflows • 17 Core Modules",
+    "time": "5081ms"
+  },
+  {
+    "name": "8. [EN] CREATIVE-digital_asset-standard",
+    "status": "✅",
+    "stats": "15R/573S/30W",
+    "cliStats": "15 Rules • 573 Skills • 30 Workflows • 17 Core Modules",
+    "time": "2354ms"
+  },
+  {
+    "name": "9. [EN] SME-user_app-full",
+    "status": "✅",
+    "stats": "11R/217S/15W",
+    "cliStats": "11 Rules • 217 Skills • 15 Workflows • 17 Core Modules",
+    "time": "4132ms"
+  },
+  {
+    "name": "10. [EN] SME-dev_tool-minimal",
+    "status": "✅",
+    "stats": "11R/217S/15W",
+    "cliStats": "11 Rules • 217 Skills • 15 Workflows • 17 Core Modules",
+    "time": "1148ms"
+  },
+  {
+    "name": "11. [EN] SME-ai_agent-standard",
+    "status": "✅",
+    "stats": "12R/217S/15W",
+    "cliStats": "12 Rules • 217 Skills • 15 Workflows • 17 Core Modules",
+    "time": "2313ms"
+  },
+  {
+    "name": "12. [EN] SME-digital_asset-full",
+    "status": "✅",
+    "stats": "12R/217S/15W",
+    "cliStats": "12 Rules • 217 Skills • 15 Workflows • 17 Core Modules",
+    "time": "2383ms"
+  },
+  {
+    "name": "13. [VI] INSTANT-user_app-minimal",
+    "status": "✅",
+    "stats": "6R/278S/9W",
+    "cliStats": "6 Rules • 278 Skills • 9 Workflows • 17 Core Modules",
+    "time": "2711ms"
+  },
+  {
+    "name": "14. [VI] INSTANT-dev_tool-standard",
+    "status": "✅",
+    "stats": "7R/278S/9W",
+    "cliStats": "7 Rules • 278 Skills • 9 Workflows • 17 Core Modules",
+    "time": "3302ms"
+  },
+  {
+    "name": "15. [VI] INSTANT-ai_agent-full",
+    "status": "✅",
+    "stats": "8R/278S/9W",
+    "cliStats": "8 Rules • 278 Skills • 9 Workflows • 17 Core Modules",
+    "time": "1984ms"
+  },
+  {
+    "name": "16. [VI] INSTANT-digital_asset-minimal",
+    "status": "✅",
+    "stats": "7R/278S/9W",
+    "cliStats": "7 Rules • 278 Skills • 9 Workflows • 17 Core Modules",
+    "time": "3311ms"
+  },
+  {
+    "name": "17. [VI] CREATIVE-user_app-standard",
+    "status": "✅",
+    "stats": "15R/573S/30W",
+    "cliStats": "15 Rules • 573 Skills • 30 Workflows • 17 Core Modules",
+    "time": "4238ms"
+  },
+  {
+    "name": "18. [VI] CREATIVE-dev_tool-full",
+    "status": "✅",
+    "stats": "15R/573S/30W",
+    "cliStats": "15 Rules • 573 Skills • 30 Workflows • 17 Core Modules",
+    "time": "5158ms"
+  },
+  {
+    "name": "19. [VI] CREATIVE-ai_agent-minimal",
+    "status": "✅",
+    "stats": "15R/573S/30W",
+    "cliStats": "15 Rules • 573 Skills • 30 Workflows • 17 Core Modules",
+    "time": "4386ms"
+  },
+  {
+    "name": "20. [VI] CREATIVE-digital_asset-standard",
+    "status": "✅",
+    "stats": "15R/573S/30W",
+    "cliStats": "15 Rules • 573 Skills • 30 Workflows • 17 Core Modules",
+    "time": "5051ms"
+  },
+  {
+    "name": "21. [VI] SME-user_app-full",
+    "status": "✅",
+    "stats": "11R/217S/15W",
+    "cliStats": "11 Rules • 217 Skills • 15 Workflows • 17 Core Modules",
+    "time": "1359ms"
+  },
+  {
+    "name": "22. [VI] SME-dev_tool-minimal",
+    "status": "✅",
+    "stats": "11R/217S/15W",
+    "cliStats": "11 Rules • 217 Skills • 15 Workflows • 17 Core Modules",
+    "time": "1331ms"
+  },
+  {
+    "name": "23. [VI] SME-ai_agent-standard",
+    "status": "✅",
+    "stats": "12R/217S/15W",
+    "cliStats": "12 Rules • 217 Skills • 15 Workflows • 17 Core Modules",
+    "time": "3001ms"
+  },
+  {
+    "name": "24. [VI] SME-digital_asset-full",
+    "status": "✅",
+    "stats": "12R/217S/15W",
+    "cliStats": "12 Rules • 217 Skills • 15 Workflows • 17 Core Modules",
+    "time": "1150ms"
+  }
+]

@@ -87,7 +87,6 @@ createProject('.', { skipPrompts: true }, config).catch(err => {
             // Verify files
             const checks = {
                 rules: fs.existsSync(path.join(projectDir, '.agent', 'rules')) ? fs.readdirSync(path.join(projectDir, '.agent', 'rules')).length : 0,
-                agents: fs.existsSync(path.join(projectDir, '.agent', 'agents')) ? fs.readdirSync(path.join(projectDir, '.agent', 'agents')).length : 0,
                 skills: fs.existsSync(path.join(projectDir, '.agent', 'skills')) ? fs.readdirSync(path.join(projectDir, '.agent', 'skills')).length : 0,
                 workflows: fs.existsSync(path.join(projectDir, '.agent', 'workflows')) ? fs.readdirSync(path.join(projectDir, '.agent', 'workflows')).length : 0,
                 dna: (() => {
@@ -108,7 +107,6 @@ createProject('.', { skipPrompts: true }, config).catch(err => {
             // Assertions: Fail if resources are 0 when they shouldn't be
             let failureReason = null;
             if (checks.rules === 0) failureReason = 'Rules must not be 0';
-            if (checks.agents === 0) failureReason = 'Agents must not be 0';
             if (checks.dna === 0) failureReason = 'DNA must not be 0';
             if (scenario.config.template !== 'minimal' && scenario.config.skillCategories.length > 0 && checks.skills === 0) {
                 failureReason = `Skills expected but got 0 (Categories: ${scenario.config.skillCategories})`;
@@ -153,7 +151,7 @@ createProject('.', { skipPrompts: true }, config).catch(err => {
             summary.push({
                 name: scenario.name,
                 status: '✅',
-                stats: `${checks.rules}R/${checks.agents}A/${checks.skills}S/${checks.workflows}W`,
+                stats: `${checks.rules}R/${checks.skills}S/${checks.workflows}W`,
                 cliStats: statsLine,
                 time: `${duration}ms`
             });

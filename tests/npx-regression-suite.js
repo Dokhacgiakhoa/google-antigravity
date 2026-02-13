@@ -77,14 +77,7 @@ async function runTest(testCase) {
 function verifyProject(projectPath, testCase) {
     const agentDir = path.join(projectPath, '.agent');
     const rules = fs.readdirSync(path.join(agentDir, 'rules'));
-    const agents = fs.readdirSync(path.join(agentDir, 'agents'));
-    
-    console.log(chalk.cyan(`    🔍 Audit: Rules Count: ${rules.length}, Agents Count: ${agents.length}`));
-    
-    if (testCase.name.includes('creative')) {
-        if (agents.length >= 22) console.log(chalk.green('    ✓ Creative Wildcard passed.'));
-        else console.log(chalk.yellow('    ⚠ Creative Wildcard might be missing files.'));
-    }
+    console.log(chalk.cyan(`    🔍 Audit: Rules Count: ${rules.length}`));
 }
 
 async function main() {

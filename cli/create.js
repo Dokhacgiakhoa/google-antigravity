@@ -4,6 +4,7 @@
 
 const fs = require('fs-extra');
 const path = require('path');
+const os = require('os');
 const chalk = require('chalk');
 const ora = require('ora');
 const { execSync } = require('child_process');
@@ -66,6 +67,10 @@ async function createProject(projectName, options, predefinedConfig = null) {
 
         // 2. Copy Base Structure + Selective Rules/Agents
         await copyModularStructure(projectPath, config, rulesToInstall, agentsToInstall);
+        
+        // 2b. Global Sync (Dual-Scope Strategy)
+        await ensureGlobalSync(config, rulesToInstall, agentsToInstall);
+        
         spinner.succeed('Project structure created (Modular Mode)');
 
         // --- MODULAR INSTALLATION END ---
@@ -237,16 +242,9 @@ async function copyModularStructure(projectPath, config, rulesList, agentsList) 
         }
     }
 
-    // 3. Copy Agents (SELECTIVE)
-    const agentsDest = path.join(destAgentDir, 'agents');
-    fs.mkdirSync(agentsDest, { recursive: true });
-
-    for (const agent of agentsList) {
-        const srcAgent = path.join(sourceAgentDir, 'agents', agent);
-        if (fs.existsSync(srcAgent)) {
-            await fs.copy(srcAgent, path.join(agentsDest, agent));
-        }
-    }
+    // 3. Agents (Skipped - Single Context Optimization)
+    // const agentsDest = path.join(destAgentDir, 'agents');
+    // fs.mkdirSync(agentsDest, { recursive: true });
 
     // 4. Ensure 'skills' and 'workflows' dir exists
     fs.mkdirSync(path.join(destAgentDir, 'skills'), { recursive: true });
@@ -265,15 +263,7 @@ async function copyModularStructure(projectPath, config, rulesList, agentsList) 
         }
     }
 
-    // 6. Copy RESOURCES.md to .agent/ (Internal doc)
-    const resourcesSource = path.join(sourceAgentDir, 'RESOURCES.md');
-    if (fs.existsSync(resourcesSource)) {
-         const resourcesDest = path.join(destAgentDir, 'RESOURCES.md');
-         // No need for conflict check usually strictly internal, but safe to overwrite or skip
-         if (!fs.existsSync(resourcesDest) || config.force) {
-             fs.copyFileSync(resourcesSource, resourcesDest);
-         }
-    }
+
 }
 
 
@@ -328,7 +318,7 @@ function printSuccessMessage(projectName, config, stats = null) {
     console.log(chalk.bold('📋 Config'));
     console.log(chalk.gray('  Project:   ') + gradient.cristal(projectName));
     console.log(chalk.gray('  Template:  ') + chalk.cyan(config.template));
-    console.log(chalk.gray('  Scale:     ') + chalk.cyan(config.rules.toUpperCase()));
+    console.log(chalk.gray('  Scale:     ') + chalk.cyan((config.rules || 'N/A').toUpperCase()));
 
     // AI Activation Instructions
     console.log('');
@@ -353,16 +343,15 @@ function printSuccessMessage(projectName, config, stats = null) {
         console.log('');
         const statLine = [
             chalk.white(`${stats.rules} Rules`),
-            chalk.white(`${stats.agents} Agents`),
             chalk.white(`${stats.skills} Skills`),
             chalk.white(`${stats.workflows} Workflows`),
-            chalk.white(`${stats.shared} DNA`)
+            chalk.white(`${stats.shared} Core Modules`)
         ].join(chalk.gray(' • '));
         console.log(gradient.pastel('  ✨ Installed: ') + statLine);
     } else {
         // Fallback for non-modular runs
         console.log('');
-        console.log(gradient.pastel('  ✨ Installed: ') + chalk.white('Adaptive Rules') + chalk.gray(' • ') + chalk.white('Specialist Agents') + chalk.gray(' • ') + chalk.white('Enterprise DNA'));
+        console.log(gradient.pastel('  ✨ Installed: ') + chalk.white('Adaptive Rules') + chalk.gray(' • ') + chalk.white('Shared Core'));
     }
 
     console.log('');
@@ -371,6 +360,61 @@ function printSuccessMessage(projectName, config, stats = null) {
     console.log('');
     console.log(chalk.gray('  Developed with 💡 by Dokhacgiakhoa'));
     console.log('');
+}
+
+// Helper: Ensure Global Sync (~/.antigravity)
+async function ensureGlobalSync(config, rulesList, agentsList) {
+    try {
+        const globalDir = path.join(os.homedir(), '.antigravity');
+        const sourceAgentDir = path.join(__dirname, '..', '.agent');
+        const filter = getEngineFilter(config.engineMode);
+
+        // Ensure global dir exists
+        fs.ensureDirSync(globalDir);
+
+        // 1. Copy Shared
+        if (fs.existsSync(path.join(sourceAgentDir, '.shared'))) {
+            await fs.copy(path.join(sourceAgentDir, '.shared'), path.join(globalDir, '.shared'), { 
+                overwrite: false, 
+                filter 
+            });
+        }
+
+        // 2. Copy Rules
+        const rulesDest = path.join(globalDir, 'rules');
+        fs.ensureDirSync(rulesDest);
+        for (const rule of rulesList) {
+            const src = path.join(sourceAgentDir, 'rules', rule);
+            if (fs.existsSync(src)) {
+                await fs.copy(src, path.join(rulesDest, rule), { overwrite: false });
+            }
+        }
+
+        // 3. Agents (Skipped - Single Context Optimization)
+        // const agentsDest = path.join(globalDir, 'agents');
+
+        // 4. Copy Skills (All standard skills)
+        const skillsSource = path.join(sourceAgentDir, 'skills');
+        const skillsDest = path.join(globalDir, 'skills');
+        if (fs.existsSync(skillsSource)) {
+            // We copy ALL skills to global to ensure the full arsenal is available
+            await fs.copy(skillsSource, skillsDest, { 
+                overwrite: false, 
+                filter 
+            });
+        }
+
+        // 5. Copy Workflows
+        const workflowsSource = path.join(sourceAgentDir, 'workflows');
+        const workflowsDest = path.join(globalDir, 'workflows');
+        if (fs.existsSync(workflowsSource)) {
+            await fs.copy(workflowsSource, workflowsDest, { overwrite: false });
+        }
+
+    } catch (e) {
+        // Silent fail for global sync is acceptable to avoid breaking project flow
+        // console.error('Global sync warning:', e.message);
+    }
 }
 
 module.exports = {
