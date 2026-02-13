@@ -5,15 +5,15 @@
 
 <!-- BADGES: Spaced & Tightly Wrapped to prevent Underlines -->
 <p align="center">
-  <a href="https://www.npmjs.com/package/antigravity-ide"><img src="https://img.shields.io/npm/v/antigravity-ide?color=2ea44f&logo=npm" alt="npm version" /></a>&nbsp;&nbsp;&nbsp;
-  <a href="https://www.npmjs.com/package/antigravity-ide"><img src="https://img.shields.io/npm/dm/antigravity-ide?color=blueviolet&logo=npm" alt="npm downloads" /></a>&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/Dokhacgiakhoa/antigravity-ide/actions"><img src="https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?logo=github&label=BUILD" alt="Build Status" /></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.npmjs.com/package/antigravity-ide"><img src="https://img.shields.io/npm/v/antigravity-ide?color=2ea44f&logo=npm" alt="npm version" /></a>&nbsp;&nbsp;
+  <a href="https://www.npmjs.com/package/antigravity-ide"><img src="https://img.shields.io/npm/dm/antigravity-ide?color=blueviolet&logo=npm" alt="npm downloads" /></a>&nbsp;&nbsp;
+  <a href="https://github.com/Dokhacgiakhoa/antigravity-ide/actions"><img src="https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?logo=github&label=BUILD" alt="Build Status" /></a>&nbsp;&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/npm/l/antigravity-ide?color=orange" alt="License" /></a>
 </p>
 
 <!-- SECOND ROW: Stats -->
 <p align="center">
-  <a href="https://socket.dev/npm/package/antigravity-ide"><img src="https://socket.dev/api/badge/npm/package/antigravity-ide" alt="Socket Badge" /></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://socket.dev/npm/package/antigravity-ide"><img src="https://socket.dev/api/badge/npm/package/antigravity-ide" alt="Socket Badge" /></a>&nbsp;&nbsp;
   <a href="https://github.com/Dokhacgiakhoa/antigravity-ide"><img src="https://img.shields.io/github/languages/code-size/Dokhacgiakhoa/antigravity-ide?color=blue" alt="Code Size" /></a>
 </p>
 
