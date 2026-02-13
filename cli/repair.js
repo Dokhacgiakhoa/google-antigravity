@@ -128,7 +128,7 @@ async function repairProject(projectPath, options, config) {
                 if (fs.existsSync(srcSkill)) {
                     // Smart Repair: Merge folders (Add missing files, preserve existing) unless --force
                     // fs.copy with overwrite: false will copy MISSING files and SKIP existing ones. Perfect.
-                    await fs.copy(srcSkill, destSkill, { filter, overwrite: options.force });
+                    await fs.copy(srcSkill, destSkill, { filter: getEngineFilter('standard'), overwrite: options.force });
                     restoredSkills++;
                 }
             }
