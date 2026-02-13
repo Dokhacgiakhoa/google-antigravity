@@ -173,8 +173,12 @@ async function repairProject(projectPath, options, config) {
         if (!fs.existsSync(rootGeminiPath) || options.force) {
             fs.writeFileSync(rootGeminiPath, geminiContent);
         } else {
-            // If exists, save as .new to let user compare
-            fs.writeFileSync(path.join(projectPath, 'GEMINI.new.md'), geminiContent);
+            // Check if content is different before creating .new
+            const currentContent = fs.readFileSync(rootGeminiPath, 'utf8');
+            if (currentContent !== geminiContent) {
+                fs.writeFileSync(path.join(projectPath, 'GEMINI.new.md'), geminiContent);
+                console.log(chalk.yellow(`  ℹ️  Configuration updated: See GEMINI.new.md`));
+            }
         }
         spinner.succeed('Core Configuration applied (v' + require('../package.json').version + ')');
 

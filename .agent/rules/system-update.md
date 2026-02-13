@@ -46,4 +46,14 @@ Sau khi bump version, quy trình chuẩn để phát hành là:
 
 ---
 
+## 4. HUMAN-IN-THE-LOOP PROTOCOL (QUAN TRỌNG)
+
+> **Mệnh lệnh tối cao**: Tuyệt đối **KHÔNG** tự động đẩy version mới (git tag / npm publish) nếu chưa có hiệu lệnh rõ ràng từ User.
+
+1.  **Chế độ chờ**: Khi hoàn thành code, chỉ chạy test và báo cáo.
+2.  **Xin phép**: Hỏi "Bạn có muốn tôi release phiên bản mới (vX.Y.Z) không?".
+3.  **Thực thi**: Chỉ chạy `scripts/bump.js` và các lệnh git khi User trả lời "OK", "Push đi", "Duyệt".
+
+---
+
 > **Lưu ý**: Nếu người dùng phàn nàn về version cũ/mới, hãy kiểm tra ngay 5 file trong danh sách trên đầu tiên.

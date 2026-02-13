@@ -9,7 +9,10 @@
 
 ---
 
-## Pre-publish Checklist
+
+> **⚠️ QUAN TRỌNG**: Chỉ thực hiện quy trình này khi **ĐƯỢC NGƯỜI DÙNG YÊU CẦU**. Tuyệt đối không tự ý release.
+
+## 1. Pre-flight Checklist (Tự động)
 
 All steps completed:
 
