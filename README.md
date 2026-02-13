@@ -3,26 +3,23 @@
 # 🛰️ AntiGravity IDE
 ### *Advanced Edition • v4.1.7 Meta-Engine*
 
-[![npm version](https://img.shields.io/npm/v/antigravity-ide.svg?style=for-the-badge&color=2ea44f)](https://www.npmjs.com/package/antigravity-ide)
-[![npm downloads](https://img.shields.io/npm/dm/antigravity-ide.svg?style=for-the-badge&color=blueviolet)](https://www.npmjs.com/package/antigravity-ide)
-[![license](https://img.shields.io/npm/l/antigravity-ide.svg?style=for-the-badge&color=orange)](LICENSE)
+<!-- VISUAL BADGES -->
+[![npm version](https://img.shields.io/npm/v/antigravity-ide?style=for-the-badge&color=2ea44f&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
+[![npm downloads](https://img.shields.io/npm/dm/antigravity-ide?style=for-the-badge&color=blueviolet&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?style=for-the-badge&logo=github&label=BUILD)](https://github.com/Dokhacgiakhoa/antigravity-ide/actions)
+[![License](https://img.shields.io/npm/l/antigravity-ide?style=for-the-badge&color=orange)](LICENSE)
+
+<!-- SECURITY & QUALITY -->
+[![Socket Badge](https://socket.dev/api/badge/npm/package/antigravity-ide)](https://socket.dev/npm/package/antigravity-ide)
+[![Code Size](https://img.shields.io/github/languages/code-size/Dokhacgiakhoa/antigravity-ide?style=flat-square&color=blue)](https://github.com/Dokhacgiakhoa/antigravity-ide)
 
 **Easy Vibe, Lazy Code. One Command to Rule Them All.**
-## Acknowledgments
-
-This project adopts the **[Agent Skills Standard](https://github.com/HoangNguyen0403/agent-skills-standard)** for AI engineering practices.
-- **Goal**: Token Economy, High-Density Context, and Universal Compatibility.
-- **License**: MIT (Ref: HoangNguyen0403)
-
-We also integrate official skills from **[anthropics/skills](https://github.com/anthropics/skills)** (Apache 2.0).
-
-**
 
 [Explore Docs](https://antigravity-ide-cli.vercel.app/) • [Github](https://github.com/Dokhacgiakhoa/antigravity-ide) • [Report Bug](https://github.com/Dokhacgiakhoa/antigravity-ide/issues)
 
 ---
 
-### 📊 Project Mastery at a Glance
+### 📊 System Capability Matrix
 
 | **15** Rules | **22** Agents | **573** Skills | **2977** Patterns | **30** Flows | **135** DNA |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -36,21 +33,27 @@ We also integrate official skills from **[anthropics/skills](https://github.com/
 
 The recommended way to use Antigravity IDE is via **npx**. No global clutter, always the latest engine.
 
-# UNIFIED COMMAND: Create, Update, Repair, and Sync
+```bash
+# 🔥 UNIFIED GOD COMMAND
+# Create, Update, Repair, and Sync - All in one.
 npx antigravity-ide [project-name]
 
-# If run in an existing project, it automatically REPAIRS & UPDATES
+# If run inside an existing project:
+# Automatically detects version, repairs config, and syncs docs.
 npx antigravity-ide .
 
-# Validate your project against Agent Skills Standard
+# Validate project compliance:
 npx antigravity-ide validate
+```
 
 > [!TIP]
-> **New to npx?** Check our [NPX Installation Guide](file:///docs/INSTALL_NPX_GUIDE.vi.md) for a step-by-step setup.
+> **New to npx?** Check our [NPX Installation Guide](docs/INSTALL_NPX_GUIDE.vi.md) for a step-by-step setup.
 
 ---
 
-## ✨ The Premium Edge (v4.1.0)
+## ✨ The Premium Edge (v4.1.7)
+
+Why choose AntiGravity over standard AI wrappers?
 
 | Feature | **AntiGravity IDE** | Standard AI Wrappers |
 | :--- | :--- | :--- |
@@ -58,17 +61,21 @@ npx antigravity-ide validate
 | **🛡️ Watchdog System** | Real-time hang detection & error learning | Direct failures / Silent crashes |
 | **🌊 Scale Adaptive** | Modular DNA for Instant, Creative, or SME | One-size-fits-all |
 | **🛠️ Self-Healing** | Auto-repair logic via unified god command | Manual JSON debugging |
+| **🔒 Provenance** | NPM Signed Builds (Sigstore) | Unverified builds |
 
 ---
 
 ## 🎯 3 Steps to Your First App
-1. **Launch Terminal**: Open Command Prompt or Powershell.
-2. **Execute God Command**: `npx antigravity-ide my-app`
-3. **Talk to the Brain**: Interact with your new Virtual Team.
+
+1.  **Launch Terminal**: Open Command Prompt or Powershell.
+2.  **Execute God Command**: `npx antigravity-ide my-app`
+3.  **Talk to the Brain**: Interact with your new Virtual Team.
 
 ---
 
 ## 📂 Visual Brain Structure
+
+A fracture-free, standardized architecture for scalable AI development.
 
 ```text
 your-project/
@@ -100,12 +107,25 @@ your-project/
 
 ---
 
-## � Documentation
+## 📚 Documentation
+
 - **[Gemini Usage Guide](docs/GEMINI_USAGE.md)**: How to configure and use with Google Gemini.
 - **[Master Operations](docs/MASTER_OPERATIONS.md)**: Deep dive into the IDE's core mechanics.
 - **[Publishing Guide](docs/PUBLISHING_GUIDE.md)**: How to release your own Agent packages.
 
-## �🙏 Credits
-Authored by **Dokhacgiakhoa**. Inspired by [Antigravity Kit](https://github.com/vudovn/antigravity-kit), [Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills), [MCP](https://modelcontextprotocol.io/), and [Fabric](https://github.com/danielmiessler/fabric).
+---
 
-Developed with 💡 by **Dokhacgiakhoa** • [MIT LICENSE](LICENSE)
+## 🙏 Credits & Acknowledgments
+
+This project adopts the **[Agent Skills Standard](https://github.com/HoangNguyen0403/agent-skills-standard)** for AI engineering practices.
+- **Goal**: Token Economy, High-Density Context, and Universal Compatibility.
+- **License**: MIT (Ref: HoangNguyen0403)
+
+We also integrate official skills from **[anthropics/skills](https://github.com/anthropics/skills)** (Apache 2.0).
+
+---
+
+<div align="center">
+  Developed with 💡 by <strong>Dokhacgiakhoa</strong><br>
+  <a href="LICENSE">MIT LICENSE</a>
+</div>
