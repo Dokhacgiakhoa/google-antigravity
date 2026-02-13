@@ -1,43 +1,49 @@
----
-trigger: model_decision
-description: "Khi người dùng hỏi về cập nhật, phiên bản, hoặc update của gói antigravity-ide."
----
+# SYSTEM-UPDATE.MD - Version Control Protocol
 
-# UPDATE.MD - Quy trình Cập nhật Hệ thống
-
-> **Mục tiêu**: Đảm bảo người dùng luôn sử dụng phiên bản Antigravity IDE mới nhất và an toàn nhất.
+> **Mục tiêu**: Đảm bảo tính nhất quán tuyệt đối về phiên bản trên toàn bộ hệ thống.
 
 ---
 
-## 🔄 1. NHẬN DIỆN NHU CẦU
-Nếu người dùng sử dụng các từ khóa sau:
-- "kiểm tra cập nhật", "update", "phiên bản mới nhất", "có bản mới không?"
-- "phiên bản hiện tại là gì?", "check version"
+## 🚫 1. ZERO-DRIFT POLICY (Chính sách Không lệch)
+
+Khi người dùng yêu cầu "update", "nâng cấp", hoặc "đẩy phiên bản mới", Agent **BẮT BUỘC** phải cập nhật đồng bộ các file sau cùng một lúc:
+
+1.  **`package.json`**: Trường `version`.
+2.  **`README.md`**:
+    *   Header: `### *Advanced Edition • vX.Y.Z Meta-Engine*`
+    *   Section: `## ✨ The Premium Edge (vX.Y.Z)`
+3.  **`README.vi.md`**:
+    *   Header: `### *Phiên bản Nâng cao • vX.Y.Z Meta-Engine*`
+    *   Section: `## ✨ Điểm khác biệt (Phiên bản vX.Y.Z)`
+4.  **`docs/MASTER_OPERATIONS.md`**: Line `**Version**: X.Y.Z`
+5.  **`docs/MASTER_OPERATIONS.vi.md`**: Line `**Version**: X.Y.Z`
+
+**TUYỆT ĐỐI KHÔNG** cập nhật lẻ tẻ. Một phiên bản được coi là "hợp lệ" chỉ khi tất cả các file trên khớp nhau 100%.
 
 ---
 
-## 🛠️ 2. QUY TRÌNH THỰC HIỆN
+## 🛠️ 2. AUTOMATION TOOL (Công cụ Tự động)
 
-1. **Bước 1: Kiểm tra phiên bản cục bộ**: Đọc file `package.json` trong thư mục gốc của workspace.
-2. **Bước 2: Kiểm tra phiên bản mới nhất trên npm**: 
-   ```powershell
-   npm view antigravity-ide version
-   ```
-3. **Bước 3: So sánh và Thông báo**:
-   - Nếu `Local Version == NPM Version`: Thông báo người dùng đã ở bản mới nhất.
-   - Nếu `Local Version < NPM Version`: 
-     - Thông báo có bản mới.
-     - Liệt kê một vài thay đổi (nếu có thể lấy từ changelog hoặc giả định).
-     - **Hỏi xác nhận**: "Bạn có muốn tôi cập nhật lên phiên bản [NPM_VERSION] không?"
+Để tránh sai sót do con người (hoặc AI), hãy sử dụng script đã được chuẩn bị sẵn:
 
-4. **Bước 4: Thực thi Cập nhật (Nếu người dùng đồng ý)**:
-   ```powershell
-   npm install -g antigravity-ide@latest
-   ```
-   Sau đó thông báo người dùng khởi động lại CLI hoặc chat tiếp.
+```bash
+node scripts/bump.js <new-version>
+# Ví dụ: node scripts/bump.js 4.1.9
+```
+
+Script này sẽ tự động tìm và thay thế tất cả các vị trí cần thiết.
 
 ---
 
-## 🚨 3. LƯU Ý AN TOÀN
-- Luôn hỏi xác nhận trước khi chạy lệnh `npm install -g`.
-- Nếu lệnh lỗi, hướng dẫn người dùng chạy thủ công bằng quyền Admin.
+## 🚀 3. PUBLISHING CHECKLIST
+
+Sau khi bump version, quy trình chuẩn để phát hành là:
+
+1.  **Commit**: `git commit -m "chore: release vX.Y.Z"`
+2.  **Tag**: `git tag vX.Y.Z`
+3.  **Push Code**: `git push`
+4.  **Push Tag**: `git push origin vX.Y.Z` (Kích hoạt CI/CD & GitHub Release)
+
+---
+
+> **Lưu ý**: Nếu người dùng phàn nàn về version cũ/mới, hãy kiểm tra ngay 5 file trong danh sách trên đầu tiên.
