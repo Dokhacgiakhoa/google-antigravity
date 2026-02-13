@@ -41,8 +41,8 @@ test-cli-project/
 lab/
 
 # Exclude raw skills to reduce file count (use bundle instead)
-.agent/skills/**
-!.agent/skills/SKILL.md
+# .agent/skills/** (Restored for v4.1.29 - Critical for Copy Logic)
+# !.agent/skills/SKILL.md
 
 # Include the bundle
 !assets/skills-bundle.json
