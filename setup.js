@@ -86,13 +86,13 @@ async function setup() {
             name: 'projectScale',
             message: (prev, values) => values.lang === 'vi' ? 'Chọn Quy mô Dự án (Project Scale):' : 'Select Project Scale:',
             choices: (prev, values) => values.lang === 'vi' ? [
-                { title: '👤 Personal (Cá nhân) - Tinh gọn (Core + Debug)', value: 'personal' },
-                { title: '🏢 SME / Start-Up (Tiêu chuẩn) - Đầy đủ Big 5 [Mặc định]', value: 'sme' },
-                { title: '🏭 Enterprise (Tập đoàn) - Full Option + Compliance', value: 'enterprise' }
+                { title: '⚡ Instant (Tức thời) - Cá nhân & Nhanh gọn', value: 'instant' },
+                { title: '🎨 Creative (Sáng tạo) - Full AI Suite [Mặc định]', value: 'creative' },
+                { title: '🏢 SME / Enterprise (Doanh nghiệp) - Bảo mật & Chuẩn hóa', value: 'sme' }
             ] : [
-                { title: '👤 Personal - Lean (Core + Debug)', value: 'personal' },
-                { title: '🏢 SME / Start-Up - Standard Big 5 [Default]', value: 'sme' },
-                { title: '🏭 Enterprise - Full Option + Compliance', value: 'enterprise' }
+                { title: '⚡ Instant - Personal & Fast', value: 'instant' },
+                { title: '🎨 Creative - Full AI Suite [Default]', value: 'creative' },
+                { title: '🏢 SME / Enterprise - Security & Standard', value: 'sme' }
             ],
             initial: 1
         },
@@ -243,9 +243,11 @@ async function setup() {
 
     // Define rules for each scale
     const rulesToApply = {
-        'personal': ['GEMINI.md', 'security.md', 'debug.md'],
-        'sme': ['GEMINI.md', 'security.md', 'frontend.md', 'backend.md', 'debug.md', 'business.md'],
-        'enterprise': null // null means ALL files from Global
+        'instant': ['GEMINI.md', 'security.md', 'debug.md'], // Minimal
+        'personal': ['GEMINI.md', 'security.md', 'debug.md'], // Legacy fallback
+        'creative': null, // All Rules (Full Power)
+        'sme': ['GEMINI.md', 'security.md', 'frontend.md', 'backend.md', 'debug.md', 'business.md', 'compliance.md', 'architecture-review.md'],
+        'enterprise': null // All Rules
     };
 
     const targetRules = rulesToApply[projectScale];
