@@ -1,17 +1,15 @@
-
+<div align="center">
 
 # 🛰️ AntiGravity IDE
-### *Advanced Edition • v4.1.22 Meta-Engine*
+### *Advanced Edition • v4.1.26 Meta-Engine*
 
-<!-- VISUAL BADGES -->
-[![npm version](https://img.shields.io/npm/v/antigravity-ide?style=flat&color=2ea44f&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
-[![npm downloads](https://img.shields.io/npm/dm/antigravity-ide?style=flat&color=blueviolet&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
-[![CI Status](https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?style=flat&logo=github&label=BUILD)](https://github.com/Dokhacgiakhoa/antigravity-ide/actions)
-[![License](https://img.shields.io/npm/l/antigravity-ide?style=flat&color=orange)](LICENSE)
+<!-- UNIFIED BADGES -->
+[![NPM Version](https://img.shields.io/npm/v/antigravity-ide?style=for-the-badge&color=2ea44f&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
+[![Downloads](https://img.shields.io/npm/dm/antigravity-ide?style=for-the-badge&color=blueviolet&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?style=for-the-badge&logo=github&label=BUILD)](https://github.com/Dokhacgiakhoa/antigravity-ide/actions)
+[![License](https://img.shields.io/npm/l/antigravity-ide?style=for-the-badge&color=orange)](LICENSE)
 
-<!-- SECURITY & QUALITY -->
-[![Socket Badge](https://socket.dev/api/badge/npm/package/antigravity-ide)](https://socket.dev/npm/package/antigravity-ide)
-[![Code Size](https://img.shields.io/github/languages/code-size/Dokhacgiakhoa/antigravity-ide?style=flat&color=blue)](https://github.com/Dokhacgiakhoa/antigravity-ide)
+<br>
 
 **Easy Vibe, Lazy Code. One Command to Rule Them All.**
 
@@ -19,7 +17,7 @@
 
 ---
 
-### 📊 System Capability Matrix
+### 📊 System Identity Matrix
 
 | **15** Rules | **573** Skills | **2977** Patterns | **30** Flows | **17** Core Libs |
 | :---: | :---: | :---: | :---: | :---: |
@@ -27,19 +25,14 @@
 
 </div>
 
----
+<br>
 
 ## ⚡ Smart Installation (npx)
 
-Antigravity uses a **Dual-Scope Installation Strategy** to ensure stability:
+Antigravity uses a **Dual-Scope Strategy** to ensure absolute stability:
 
 1.  **Global Scope (Project Root)**: Installs `GEMINI.md` (Configuration).
-2.  **Workspace Scope (.agent/)**: Installs Rules, Skills, and Workflows (The Brain).
-
-**Safe-Sync Protocol:**
-- 🟢 **Missing Files**: Automatically added.
-- 🟡 **Existing Files**: Skipped to preserve your customizations.
-- 🔴 **Reset Force**: Use `--force` if you want to overwrite everything.
+2.  **Workspace Scope (`.agent/`)**: Installs Rules, Skills, and Workflows (The Brain).
 
 ```bash
 # ONE COMMAND TO RULE THEM ALL
@@ -51,7 +44,7 @@ npx antigravity-ide [project-name]
 
 ---
 
-## ✨ The Premium Edge (v4.1.22)
+## ✨ The Premium Edge (v4.1.26)
 
 Why choose AntiGravity over standard AI wrappers?
 
@@ -84,23 +77,13 @@ your-project/
 │   ├── rules/           # ⚖️ Governance (Compliance, Context)
 │   ├── skills/          # 🛠️ Mastery (573 Fractal Skills)
 │   └── workflows/       # 🚀 Ops (/create, /debug, /audit)
-└── (your app)           # ⚡ Your Source Code
+└── GEMINI.md            # 📋 Agent Identity & Configuration
 ```
 
 > [!NOTE]
 > **Scope Definition**: 
 > - **Global**: The CLI Tool (`npx antigravity-ide`) acts as the installer.
-> - **Workspace**: All Rules (`.agent/rules`), Skills, and Workflows are installed **Locally** into your project. This ensures total isolation—what happens in one project stays in that project.
-
----
-
-### 🧠 Master Ecosystem
-
-### 🛠️ Strategic Skill Domains
-- **High-Perf Web**: Next.js 15, React 19, Tailwind v4.
-- **Offensive Security**: OWASP, Malware, Pentesting.
-- **Infra & Cloud**: K8s, Docker, AWS, Vercel, Supabase.
-- **Advanced AI**: LangGraph, RAG, Multi-Agent Orchestration.
+> - **Workspace**: All Rules (`.agent/rules`), Skills, and Workflows are installed **Locally** into your project. This ensures total isolation context.
 
 ---
 
@@ -116,14 +99,22 @@ your-project/
 
 ## ❓ Frequent Questions
 
-**Q: Is this just another AI wrapper?**
-A: No. Wrappers are stateless. Antigravity installs a **Fractal Memory System** (.agent folder) directly into your project. It gives your AI long-term memory, context awareness, and self-correction capabilities.
+<details>
+<summary><strong>Q: Is this just another AI wrapper?</strong></summary>
+A: No. Wrappers are stateless. Antigravity installs a **Fractal Memory System** (`.agent` folder) directly into your project. It gives your AI long-term memory, context awareness, and self-correction capabilities.
+</details>
 
-**Q: What is "Pure Install"?**
+<details>
+<summary><strong>Q: What is "Pure Install"?</strong></summary>
 A: Starting from v4.1.23, we stripped all bloat. No internal scripts, no dev dependencies. You get **only** the production artifacts needed to run your AI team.
+</details>
 
-**Q: Can I customize the Agents?**
-A: Yes. All agents live in `.agent/agents/`. You can edit their prompts, give them new skills, or fire them. You are the boss.
+<details>
+<summary><strong>Q: Can I customize the Agents?</strong></summary>
+A: Yes. "Agents" are now dynamic personas powered by **Skills**. You can teach them new tricks by adding files to `.agent/skills/` or editing `GEMINI.md`. The system adapts to your instructions instantly.
+</details>
+
+<br>
 
 ---
 
@@ -133,9 +124,7 @@ A: Yes. All agents live in `.agent/agents/`. You can edit their prompts, give th
 
 ---
 
-
-
-
+<div align="center">
   Developed with 💡 by <strong>Dokhacgiakhoa</strong><br>
   <a href="LICENSE">MIT LICENSE</a>
 </div>

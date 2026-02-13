@@ -1,17 +1,15 @@
-
+<div align="center">
 
 # 🛰️ AntiGravity IDE
-### *Phiên bản Nâng cao • v4.1.22 Meta-Engine*
+### *Phiên bản Nâng cao • v4.1.26 Meta-Engine*
 
-<!-- VISUAL BADGES -->
-[![npm version](https://img.shields.io/npm/v/antigravity-ide?style=flat&color=2ea44f&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
-[![npm downloads](https://img.shields.io/npm/dm/antigravity-ide?style=flat&color=blueviolet&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
-[![CI Status](https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?style=flat&logo=github&label=BUILD)](https://github.com/Dokhacgiakhoa/antigravity-ide/actions)
-[![License](https://img.shields.io/npm/l/antigravity-ide?style=flat&color=orange)](LICENSE)
+<!-- UNIFIED BADGES -->
+[![NPM Version](https://img.shields.io/npm/v/antigravity-ide?style=for-the-badge&color=2ea44f&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
+[![Downloads](https://img.shields.io/npm/dm/antigravity-ide?style=for-the-badge&color=blueviolet&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?style=for-the-badge&logo=github&label=BUILD)](https://github.com/Dokhacgiakhoa/antigravity-ide/actions)
+[![License](https://img.shields.io/npm/l/antigravity-ide?style=for-the-badge&color=orange)](LICENSE)
 
-<!-- SECURITY & QUALITY -->
-[![Socket Badge](https://socket.dev/api/badge/npm/package/antigravity-ide)](https://socket.dev/npm/package/antigravity-ide)
-[![Code Size](https://img.shields.io/github/languages/code-size/Dokhacgiakhoa/antigravity-ide?style=flat&color=blue)](https://github.com/Dokhacgiakhoa/antigravity-ide)
+<br>
 
 **Vibe thoải mái, Code thảnh thơi. Một lệnh duy nhất cân cả thế giới.**
 
@@ -27,7 +25,7 @@
 
 </div>
 
----
+<br>
 
 ## ⚡ Cơ Chế Cài Đặt Thông Minh (Smart Sync)
 
@@ -35,11 +33,6 @@ Antigravity sử dụng chiến lược **Dual-Scope Installation** để đảm
 
 1.  **Global Scope (Gốc Dự Án)**: Cài đặt `GEMINI.md` (Cấu hình định danh).
 2.  **Workspace Scope (Thư mục .agent)**: Cài đặt Rules, Skills, Workflows (Bộ não).
-
-**Giao thức Safe-Sync:**
-- 🟢 **File Thiếu**: Tự động bổ sung.
-- 🟡 **File Trùng**: Tự động bỏ qua (Giữ nguyên code bạn đã sửa).
-- 🔴 **Reset Force**: Chỉ ghi đè khi bạn dùng cờ `--force`.
 
 ```bash
 # MỘT LỆNH DUY NHẤT CHO TẤT CẢ
@@ -51,7 +44,7 @@ npx antigravity-ide [ten-du-an]
 
 ---
 
-## ✨ Điểm khác biệt (Phiên bản v4.1.22)
+## ✨ Điểm khác biệt (Phiên bản v4.1.26)
 
 Tại sao nên chọn AntiGravity thay vì các AI wrapper thông thường?
 
@@ -84,23 +77,13 @@ du-an-cua-ban/
 │   ├── rules/           # ⚖️ Quản trị (Compliance, Context)
 │   ├── skills/          # 🛠️ Kỹ năng (573 Fractal Skills)
 │   └── workflows/       # 🚀 Quy trình (/create, /debug, /audit)
-└── (code của bạn)       # ⚡ Mã nguồn ứng dụng
+└── GEMINI.md            # 📋 Cấu hình định danh Agent
 ```
 
 > [!NOTE]
 > **Định Nghĩa Phạm Vi (Scope)**:
 > - **Global (Toàn cầu)**: Bộ công cụ CLI (`npx antigravity-ide`) dùng để cài đặt & quản lý.
 > - **Workspace (Dự án)**: Toàn bộ Quy tắc (`.agent/rules`), Kỹ năng và Quy trình được cài đặt **Cục bộ** vào từng dự án riêng biệt. Đảm bảo trí tuệ của dự án này không bị rò rỉ sang dự án khác.
-
----
-
-## 🧠 Hệ sinh thái Master
-
-### 🛠️ Lĩnh vực Tác chiến Kỹ năng
-- **Web Hiệu năng cao**: Next.js 15, React 19, Tailwind v4.
-- **Bảo mật Tấn công**: OWASP, Malware, Pentesting.
-- **Hạ tầng & Cloud**: K8s, Docker, AWS, Vercel, Supabase.
-- **AI Chuyên sâu**: LangGraph, RAG, Điều phối Đa Agent.
 
 ---
 
@@ -116,14 +99,22 @@ du-an-cua-ban/
 
 ## ❓ Câu Hỏi Thường Gặp
 
-**Q: Đây có phải chỉ là AI wrapper nữa không?**
+<details>
+<summary><strong>Q: Đây có phải chỉ là AI wrapper nữa không?</strong></summary>
 A: Không. Wrapper thì vô tri (stateless). Antigravity cài đặt một **Hệ Thống Ký Ức Fractal** (thư mục .agent) trực tiếp vào dự án. Nó mang lại khả năng ghi nhớ dài hạn, nhận thức ngữ cảnh và tự sửa lỗi.
+</details>
 
-**Q: "Pure Install" là gì?**
+<details>
+<summary><strong>Q: "Pure Install" là gì?</strong></summary>
 A: Từ v4.1.23, chúng tôi loại bỏ hoàn toàn mã thừa. Không script nội bộ, không file rác. Bạn chỉ nhận được **đúng** những gì cần thiết để vận hành đội ngũ AI.
+</details>
 
-**Q: Tôi có thể tùy chỉnh Agent không?**
-A: Có. Tất cả nhân sự ảo nằm trong `.agent/agents/`. Bạn có thể sửa prompt, dạy skill mới hoặc... sa thải họ. Bạn là sếp mà.
+<details>
+<summary><strong>Q: Tôi có thể tùy chỉnh Agent không?</strong></summary>
+A: Có. "Agent" giờ đây là các vai trò động dựa trên **Kỹ năng (Skills)**. Bạn có thể dạy họ chiêu mới bằng cách thêm file vào `.agent/skills/` hoặc sửa `GEMINI.md`. Hệ thống sẽ tự học ngay lập tức.
+</details>
+
+<br>
 
 ---
 
@@ -133,9 +124,7 @@ A: Có. Tất cả nhân sự ảo nằm trong `.agent/agents/`. Bạn có thể
 
 ---
 
-
-
-
+<div align="center">
   Phát triển với 💡 bởi <strong>Dokhacgiakhoa</strong><br>
   <a href="LICENSE">MIT LICENSE</a>
 </div>
