@@ -1,2 +1,0 @@
-# ❌ Tracking Properties as Events
-

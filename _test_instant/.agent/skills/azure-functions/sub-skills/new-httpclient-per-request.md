@@ -1,2 +1,0 @@
-# ❌ New HttpClient Per Request
-

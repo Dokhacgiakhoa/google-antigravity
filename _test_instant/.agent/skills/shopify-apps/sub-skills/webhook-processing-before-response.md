@@ -1,2 +1,0 @@
-# ❌ Webhook Processing Before Response
-

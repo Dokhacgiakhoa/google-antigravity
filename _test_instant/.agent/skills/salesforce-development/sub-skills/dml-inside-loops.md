@@ -1,2 +1,0 @@
-# ❌ DML Inside Loops
-

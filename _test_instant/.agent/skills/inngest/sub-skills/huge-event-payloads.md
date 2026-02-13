@@ -1,2 +1,0 @@
-# ❌ Huge Event Payloads
-

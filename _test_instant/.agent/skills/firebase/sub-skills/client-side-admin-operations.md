@@ -1,2 +1,0 @@
-# ❌ Client-Side Admin Operations
-

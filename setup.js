@@ -192,6 +192,31 @@ async function setup() {
         const src = path.join(SOURCE_DIR, folder);
         const dest = path.join(GLOBAL_DIR, folder);
 
+        // Special handling for 'skills' bundling
+        if (folder === 'skills') {
+            const bundlePath = path.join(__dirname, 'assets', 'skills-bundle.json');
+            if (fs.existsSync(bundlePath)) {
+                console.log('📦 Hydrating Skills from Bundle...');
+                try {
+                    const bundle = JSON.parse(fs.readFileSync(bundlePath, 'utf-8'));
+                    if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
+                    
+                    let count = 0;
+                    Object.entries(bundle).forEach(([relPath, content]) => {
+                        const fullPath = path.join(dest, relPath);
+                        const dir = path.dirname(fullPath);
+                        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+                        fs.writeFileSync(fullPath, content);
+                        count++;
+                    });
+                    console.log(`✅ Hydrated ${count} skills from bundle.`);
+                    return; // Skip normal copy for skills if bundle used
+                } catch (e) {
+                    console.error('❌ Failed to hydrate bundle, falling back to copy:', e.message);
+                }
+            }
+        }
+
         if (fs.existsSync(src)) {
             // ALWAYS sync full content to Global (Central Repository)
             // This ensures Global always has the latest & greatest version of everything.

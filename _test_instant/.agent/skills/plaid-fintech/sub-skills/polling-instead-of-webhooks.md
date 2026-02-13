@@ -1,2 +1,0 @@
-# ❌ Polling Instead of Webhooks
-

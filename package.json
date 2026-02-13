@@ -13,7 +13,8 @@
   "scripts": {
     "test": "jest",
     "setup": "node ./setup.js",
-    "update": "node ./update.js"
+    "update": "node ./update.js",
+    "prepublishOnly": "node ./scripts/bundle-skills.js"
   },
   "dependencies": {
     "boxen": "^5.1.2",
@@ -46,8 +47,13 @@
     "workflow",
     "automation",
     "llm",
-    "github-actions"
+    "github-actions",
+    "agent-skills-standard"
   ],
+  "standard": {
+    "upstream": "https://github.com/HoangNguyen0403/agent-skills-standard",
+    "skills_source": "https://github.com/anthropics/skills"
+  },
   "author": "Dokhacgiakhoa",
   "contributors": [
     "vudovn (Reference Author)",

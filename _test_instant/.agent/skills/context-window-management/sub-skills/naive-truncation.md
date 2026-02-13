@@ -1,2 +1,0 @@
-# ❌ Naive Truncation
-

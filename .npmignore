@@ -40,6 +40,13 @@ antigravity-doc/
 test-cli-project/
 lab/
 
+# Exclude raw skills to reduce file count (use bundle instead)
+.agent/skills/**
+!.agent/skills/SKILL.md
+
+# Include the bundle
+!assets/skills-bundle.json
+
 # Only keep Root README + Translations
 !README.md
 !README.vi.md

@@ -7,6 +7,18 @@ Lưu trữ danh sách các repo nguồn để tiện cho việc cập nhật h�
 - **Google Antigravity Lab**: `https://github.com/Dokhacgiakhoa/antigravity-lab` (Repo hiện tại)
 - **Google Antigravity Core**: `https://github.com/Dokhacgiakhoa/antigravity-ide` (Core CLI & Skills)
 
+### 🚀 Agent Skills Standard (The Protocol)
+- **Repository**: [HoangNguyen0403/agent-skills-standard](https://github.com/HoangNguyen0403/agent-skills-standard)
+- **Role**: Foundation / Specification
+- **Description**: Defines the folder structure (`SKILL.md`), Token Economy, and metadata format used by this IDE.
+
+### 🧠 Anthropics Skills (The Intelligence)
+- **Repository**: [anthropics/skills](https://github.com/anthropics/skills)
+- **Role**: Skill Implementation / Upstream Source
+- **Description**: Official repository from Anthropic containing production-ready skills for Claude.
+    - **Key Document Skills**: PDF, DOCX, XLSX parsing.
+    - **Creative Skills**: Art, Music, Design workflows.
+
 ### Official Documentation (The Source of Truth)
 - **Antigravity Docs**: `https://antigravity.google/docs`
 - **Agent Configuration**: `https://developers.google.com/antigravity/agent-configuration`

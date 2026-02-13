@@ -1,6 +1,0 @@
-# 🟢 Good
-
-- [positive observation]
-```
-
----

@@ -27,13 +27,18 @@
 
 Khuyến khích sử dụng thông qua **npx** để luôn có Engine và Skills mới nhất mà không gây rác hệ thống.
 
-```sh
 # LỆNH VẠN NĂNG: Tạo mới, Cập nhật, Sửa lỗi và Đồng bộ
 npx antigravity-ide [ten-du-an]
 
 # Chạy trong dự án cũ để tự động SỬA LỖI & CẬP NHẬT
 npx antigravity-ide .
+
+# Kiểm tra dự án theo chuẩn Agent Skills Standard
+npx antigravity-ide validate
 ```
+
+## 📜 Ghi nhận & Tiêu chuẩn
+Dự án áp dụng **[Agent Skills Standard](https://github.com/HoangNguyen0403/agent-skills-standard)** và tích hợp bộ kỹ năng từ **[anthropics/skills](https://github.com/anthropics/skills)** để đảm bảo tính tương thích và hiệu quả token tối đa.
 
 > [!TIP]
 > **Mới dùng npx?** Xem [Hướng dẫn Cài đặt](file:///docs/INSTALL_NPX_GUIDE.vi.md) để bắt đầu.
@@ -89,6 +94,11 @@ du-an-cua-ban/
 - **AI Chuyên sâu**: LangGraph, RAG, Điều phối Đa Agent.
 
 ---
+
+## 📚 Tài liệu tham khảo
+- **[Hướng dẫn Gemini](docs/GEMINI_USAGE.md)**: Cách cấu hình và sử dụng với Google Gemini.
+- **[Vận hành Master](docs/MASTER_OPERATIONS.md)**: Tìm hiểu sâu về cơ chế cốt lõi.
+- **[Hướng dẫn Phát hành](docs/PUBLISHING_GUIDE.md)**: Cách đóng gói và xuất bản Agent của riêng bạn.
 
 ## 🙏 Ghi nhận
 Phát triển bởi **Dokhacgiakhoa**. Cảm ơn [Antigravity Kit](https://github.com/vudovn/antigravity-kit), [Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills), [MCP](https://modelcontextprotocol.io/), và [Fabric](https://github.com/danielmiessler/fabric).

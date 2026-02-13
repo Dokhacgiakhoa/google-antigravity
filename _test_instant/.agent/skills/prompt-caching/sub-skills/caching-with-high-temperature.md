@@ -1,2 +1,0 @@
-# ❌ Caching with High Temperature
-

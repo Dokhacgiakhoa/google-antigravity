@@ -1,2 +1,0 @@
-# ❌ Blocking Async Calls
-

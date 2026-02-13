@@ -1,2 +1,0 @@
-# ❌ Giant Monolithic Tasks
-

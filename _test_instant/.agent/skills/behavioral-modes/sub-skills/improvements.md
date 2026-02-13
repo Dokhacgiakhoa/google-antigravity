@@ -1,3 +1,0 @@
-# 🟠 Improvements
-
-- [suggestion with example]

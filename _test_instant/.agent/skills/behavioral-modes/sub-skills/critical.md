@@ -1,3 +1,0 @@
-# 🔴 Critical
-
-- [issue with explanation]

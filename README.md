@@ -7,7 +7,16 @@
 [![npm downloads](https://img.shields.io/npm/dm/antigravity-ide.svg?style=for-the-badge&color=blueviolet)](https://www.npmjs.com/package/antigravity-ide)
 [![license](https://img.shields.io/npm/l/antigravity-ide.svg?style=for-the-badge&color=orange)](LICENSE)
 
-**Easy Vibe, Lazy Code. One Command to Rule Them All.**
+**Easy Vibe, Lazy Code. 
+## Acknowledgments
+
+This project adopts the **[Agent Skills Standard](https://github.com/HoangNguyen0403/agent-skills-standard)** for AI engineering practices.
+- **Goal**: Token Economy, High-Density Context, and Universal Compatibility.
+- **License**: MIT (Ref: HoangNguyen0403)
+
+We also integrate official skills from **[anthropics/skills](https://github.com/anthropics/skills)** (Apache 2.0).
+
+**
 
 [Explore Docs](https://antigravity-ide-cli.vercel.app/) • [Github](https://github.com/Dokhacgiakhoa/antigravity-ide) • [Report Bug](https://github.com/Dokhacgiakhoa/antigravity-ide/issues)
 
@@ -27,13 +36,14 @@
 
 The recommended way to use Antigravity IDE is via **npx**. No global clutter, always the latest engine.
 
-```sh
 # UNIFIED COMMAND: Create, Update, Repair, and Sync
 npx antigravity-ide [project-name]
 
 # If run in an existing project, it automatically REPAIRS & UPDATES
 npx antigravity-ide .
-```
+
+# Validate your project against Agent Skills Standard
+npx antigravity-ide validate
 
 > [!TIP]
 > **New to npx?** Check our [NPX Installation Guide](file:///docs/INSTALL_NPX_GUIDE.vi.md) for a step-by-step setup.
@@ -90,7 +100,12 @@ your-project/
 
 ---
 
-## 🙏 Credits
+## � Documentation
+- **[Gemini Usage Guide](docs/GEMINI_USAGE.md)**: How to configure and use with Google Gemini.
+- **[Master Operations](docs/MASTER_OPERATIONS.md)**: Deep dive into the IDE's core mechanics.
+- **[Publishing Guide](docs/PUBLISHING_GUIDE.md)**: How to release your own Agent packages.
+
+## �🙏 Credits
 Authored by **Dokhacgiakhoa**. Inspired by [Antigravity Kit](https://github.com/vudovn/antigravity-kit), [Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills), [MCP](https://modelcontextprotocol.io/), and [Fabric](https://github.com/danielmiessler/fabric).
 
 Developed with 💡 by **Dokhacgiakhoa** • [MIT LICENSE](LICENSE)

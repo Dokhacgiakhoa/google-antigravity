@@ -44,5 +44,13 @@ const { checkAndApplyUpdates } = require('./lib/auto-update');
         await createProject('.', { ...options, force: true });
       });
 
+    program
+      .command('validate')
+      .description('Check project compliance with Agent Skills Standard')
+      .action(async () => {
+        const { validateProject } = require('./validate');
+        await validateProject('.');
+      });
+
     program.parse(process.argv);
 })();
