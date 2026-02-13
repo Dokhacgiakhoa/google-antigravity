@@ -4,14 +4,14 @@
 ### *Advanced Edition • v4.1.7 Meta-Engine*
 
 <!-- VISUAL BADGES -->
-[![npm version](https://img.shields.io/npm/v/antigravity-ide?style=for-the-badge&color=2ea44f&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
-[![npm downloads](https://img.shields.io/npm/dm/antigravity-ide?style=for-the-badge&color=blueviolet&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
-[![CI Status](https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?style=for-the-badge&logo=github&label=BUILD)](https://github.com/Dokhacgiakhoa/antigravity-ide/actions)
-[![License](https://img.shields.io/npm/l/antigravity-ide?style=for-the-badge&color=orange)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/antigravity-ide?style=flat&color=2ea44f&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
+[![npm downloads](https://img.shields.io/npm/dm/antigravity-ide?style=flat&color=blueviolet&logo=npm)](https://www.npmjs.com/package/antigravity-ide)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/Dokhacgiakhoa/antigravity-ide/npm-publish.yml?style=flat&logo=github&label=BUILD)](https://github.com/Dokhacgiakhoa/antigravity-ide/actions)
+[![License](https://img.shields.io/npm/l/antigravity-ide?style=flat&color=orange)](LICENSE)
 
 <!-- SECURITY & QUALITY -->
 [![Socket Badge](https://socket.dev/api/badge/npm/package/antigravity-ide)](https://socket.dev/npm/package/antigravity-ide)
-[![Code Size](https://img.shields.io/github/languages/code-size/Dokhacgiakhoa/antigravity-ide?style=flat-square&color=blue)](https://github.com/Dokhacgiakhoa/antigravity-ide)
+[![Code Size](https://img.shields.io/github/languages/code-size/Dokhacgiakhoa/antigravity-ide?style=flat&color=blue)](https://github.com/Dokhacgiakhoa/antigravity-ide)
 
 **Easy Vibe, Lazy Code. One Command to Rule Them All.**
 
