@@ -127,7 +127,14 @@ async function repairProject(projectPath, options, config) {
                 const destSkill = path.join(skillsDestDir, skill);
                 
                 if (fs.existsSync(srcSkill)) {
-                    if (!fs.existsSync(destSkill) || options.force) {
+                    // Start SmartSync:
+                    // 1. If dest doesn't exist -> Copy
+                    // 2. If dest exists BUT is empty (failed install) -> Copy
+                    // 3. If force flag -> Copy (Overwrite)
+                    const destExists = fs.existsSync(destSkill);
+                    const isEmpty = destExists ? fs.readdirSync(destSkill).length === 0 : true;
+
+                    if (!destExists || isEmpty || options.force) {
                         await fs.copy(srcSkill, destSkill, { filter, overwrite: true });
                         restoredSkills++;
                     }
