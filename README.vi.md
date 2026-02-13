@@ -19,7 +19,7 @@
 
 ### 📊 Ma trận Năng lực Hệ thống
 
-| **15** Quy tắc | **573** Kỹ năng | **2977** Chiến thuật | **30** Quy trình | **17** Core Libs |
+| **16** Quy tắc | **573** Kỹ năng | **2977** Chiến thuật | **30** Quy trình | **17** Core Libs |
 | :---: | :---: | :---: | :---: | :---: |
 | *Quản trị* | *Công cụ lõi* | *Mẫu AI Nâng cao* | *Chuẩn hóa* | *DNA Dùng chung* |
 

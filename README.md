@@ -19,7 +19,7 @@
 
 ### 📊 System Identity Matrix
 
-| **15** Rules | **573** Skills | **2977** Patterns | **30** Flows | **17** Core Libs |
+| **16** Rules | **573** Skills | **2977** Patterns | **30** Flows | **17** Core Libs |
 | :---: | :---: | :---: | :---: | :---: |
 | *Governance* | *Operational* | *Advanced AI* | *Standardized* | *Core Libraries* |
 
