@@ -1,0 +1,22 @@
+<svg width="120" height="120" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient for the Triangle -->
+  <linearGradient id="triangleGradient" x1="124.629" y1="835.918" x2="899.371" y2="835.918" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#3B82F6"/>
+    <stop offset="0.5" stop-color="#EF4444"/>
+    <stop offset="1" stop-color="#10B981"/>
+  </linearGradient>
+  
+  <!-- Outer Triangle -->
+  <path d="M512 128L896 832H128L512 128Z" stroke="url(#triangleGradient)" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Center Star -->
+  <linearGradient id="starGradient" x1="412" y1="412" x2="612" y2="612" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#F59E0B"/>
+    <stop offset="1" stop-color="#EF4444"/>
+  </linearGradient>
+  
+  <path d="M512 384L544 480L640 512L544 544L512 640L480 544L384 512L480 480L512 384Z" fill="url(#starGradient)"/>
+  
+  <!-- Subtle Glow Effect -->
+  <circle cx="512" cy="512" r="200" fill="url(#starGradient)" fill-opacity="0.1"/>
+</svg>
