@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="antigravity-ide-logo.svg" alt="AntiGravity IDE Logo" width="120">
+  <img src="antigravity-ide-logo.png" alt="AntiGravity IDE Logo" width="120">
 
   # AntiGravity IDE
   ### Activate Senior Engineer Mindset for AI
