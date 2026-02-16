@@ -11,15 +11,15 @@
   > This is not an editor — it's a **Mindset Installer** that injects professional engineering standards (PDCA, Security, Architecture) directly into your AI's brain.
 </div>
 
-<div align="center">
-  [![npm version](https://img.shields.io/npm/v/antigravity-ide?color=red)](https://badge.fury.io/js/antigravity-ide)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-orange)](https://opensource.org/licenses/MIT)
-  [![Downloads](https://img.shields.io/npm/dm/antigravity-ide?color=yellow)](https://npmjs.com/package/antigravity-ide)
-  [![GitHub stars](https://img.shields.io/github/stars/Dokhacgiakhoa/google-antigravity?color=green)](https://github.com/Dokhacgiakhoa/google-antigravity/stargazers)
-  [![Contributors](https://img.shields.io/github/contributors/Dokhacgiakhoa/google-antigravity?color=blue)](https://github.com/Dokhacgiakhoa/google-antigravity/graphs/contributors)
-  [![Last Commit](https://img.shields.io/github/last-commit/Dokhacgiakhoa/google-antigravity?color=blueviolet)](https://github.com/Dokhacgiakhoa/google-antigravity/commits/main)
-  [![Code Size](https://img.shields.io/github/languages/code-size/Dokhacgiakhoa/google-antigravity?color=ff69b4)](https://github.com/Dokhacgiakhoa/google-antigravity)
-</div>
+<p align="center">
+  <a href="https://badge.fury.io/js/antigravity-ide"><img src="https://img.shields.io/npm/v/antigravity-ide?color=red" alt="npm version"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-orange" alt="License: MIT"></a>
+  <a href="https://npmjs.com/package/antigravity-ide"><img src="https://img.shields.io/npm/dm/antigravity-ide?color=yellow" alt="Downloads"></a>
+  <a href="https://github.com/Dokhacgiakhoa/google-antigravity/stargazers"><img src="https://img.shields.io/github/stars/Dokhacgiakhoa/google-antigravity?color=green" alt="GitHub stars"></a>
+  <a href="https://github.com/Dokhacgiakhoa/google-antigravity/graphs/contributors"><img src="https://img.shields.io/github/contributors/Dokhacgiakhoa/google-antigravity?color=blue" alt="Contributors"></a>
+  <a href="https://github.com/Dokhacgiakhoa/google-antigravity/commits/main"><img src="https://img.shields.io/github/last-commit/Dokhacgiakhoa/google-antigravity?color=blueviolet" alt="Last Commit"></a>
+  <a href="https://github.com/Dokhacgiakhoa/google-antigravity"><img src="https://img.shields.io/github/languages/code-size/Dokhacgiakhoa/google-antigravity?color=ff69b4" alt="Code Size"></a>
+</p>
 
 <div align="center">
 
