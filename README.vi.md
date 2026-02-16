@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=".agent/core/logo.png" alt="AntiGravity IDE Logo" width="120">
+  <img src="antigravity-ide-logo.png" alt="AntiGravity IDE Logo" width="120">
 
   # AntiGravity IDE
   ## Activate Senior Engineer Mindset for AI
@@ -127,8 +127,6 @@ Kích hoạt các Workflows chuyên sâu ngay trong chat:
 ```sh
 npx antigravity-ide update
 ```
-
----
 
 ---
 

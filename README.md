@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=".agent/core/logo.png" alt="AntiGravity IDE Logo" width="120">
+  <img src="antigravity-ide-logo.png" alt="AntiGravity IDE Logo" width="120">
 
   # AntiGravity IDE
   ## Activate Senior Engineer Mindset for AI
@@ -84,8 +84,6 @@ Comprehensive documentation is installed locally with every project. You don't n
 - **[Glossary](./docs/GLOSSARY.md)**: *Definitions of terms (Fractal, PDCA, MCP).*
 - **[Troubleshooting](./docs/TROUBLESHOOTING.md)**: *Common issues and solutions.*
 
-
----
 
 ---
 
