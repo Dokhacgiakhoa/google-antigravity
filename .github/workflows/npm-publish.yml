@@ -31,10 +31,6 @@ jobs:
       # Run Tests (Validation)
       - run: npm test
 
-      # Build/Bundle (This runs scripts/bundle-skills.js via prepublishOnly)
-      # We run it explicitly here to verify it works before publishing
-      - run: npm run prepublishOnly
-
       # Publish to npm (Primary)
       - run: npm publish --provenance --access public
         env:
@@ -42,7 +38,7 @@ jobs:
 
       # Create GitHub Release (Sidebar Sync)
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
           draft: false

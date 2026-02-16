@@ -1,6 +1,6 @@
 {
   "name": "antigravity-ide",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "The Ultimate AI Agent Brain - Rules, Skills, and Workflows",
   "main": "cli/index.js",
   "bin": {
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dokhacgiakhoa/google-antigravity.git"
+    "url": "git+https://github.com/Dokhacgiakhoa/antigravity-ide.git"
   },
   "keywords": [
     "antigravity",
